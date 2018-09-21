@@ -4,7 +4,6 @@ import autobind               from 'autobind-decorator';
 import { IntlProvider, Text } from 'preact-i18n';
 import { Dropdown }           from 'react-toolbox/lib/dropdown';
 import { DatePicker }         from 'react-toolbox/lib/date_picker';
-// import { Input }              from 'react-toolbox/lib/input';
 import { Button }             from 'react-toolbox/lib/button';
 import _const                 from '~/const';
 import {
@@ -82,8 +81,10 @@ class SearchForm extends PureComponent {
   render({ lang, mode }) {
     return (
       <IntlProvider definition={definition[lang]}>
-        <form class={`${form} ${this.props.mode === 'noSubmit' ? noSubmit : ''}`} 
-          style={this.props.mode === 'home' ? {flexWrap: 'wrap'} : null}> 
+        <form
+          class={`${form} ${this.props.mode === 'noSubmit' ? noSubmit : ''}`}
+          style={this.props.mode === 'home' ? { flexWrap: 'wrap' } : null}
+        >
           { this.props.mode !== 'secondline' ? (
             <div>
               <i class="material-icons">location_city</i>
@@ -102,14 +103,16 @@ class SearchForm extends PureComponent {
           { this.props.mode !== 'firstline' ? (
             <div>
               <i className="material-icons">date_range</i>
-              <DatePicker
-                locale={lang.substring(0, 2)}
-                label={<Text id="arrival">Arrival date</Text>}
-                floating={false}
-                value={this.state.date}
-                onChange={this.handleDateChange}
-                autoOk
-              />
+              { typeof window === 'object' ? (
+                <DatePicker
+                  locale={lang.substring(0, 2)}
+                  label={<Text id="arrival">Arrival</Text>}
+                  floating={false}
+                  value={this.state.date}
+                  onChange={this.handleDateChange}
+                  autoOk
+                />
+              ) : null }
             </div>
           ) : null }
           {this.props.mode === 'home' ? (
@@ -126,11 +129,18 @@ class SearchForm extends PureComponent {
   }
 }
 
-const definition = { 'fr-FR': {
-  arrival: 'Date d\'arrivée',
-  city: 'Ville *',
-  submit: 'Rechercher',
-} };
+const definition = {
+  'fr-FR': {
+    arrival: 'Arrivée',
+    city: 'Ville *',
+    submit: 'Rechercher',
+  },
+  'es-ES': {
+    arrival: 'Llegada',
+    city: 'Ciudad *',
+    submit: 'Buscar',
+  },
+};
 
 
 function mapStateToProps({ route: { date, lang, city } }) {

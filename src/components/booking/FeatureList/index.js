@@ -4,6 +4,7 @@ import Tooltip                from 'react-toolbox/lib/tooltip';
 import Utils                  from '~/utils';
 import featuresEn             from './features-en';
 import featuresFr             from './features-fr';
+import featuresEs             from './features-es';
 import {
   sublist,
   valueCell,
@@ -19,7 +20,7 @@ import {
 }                             from './style.css';
 
 const TooltipButton = Tooltip(Button);
-const features = Object.assign({}, featuresEn, featuresFr);
+const features = Object.assign({}, featuresEn, featuresFr, featuresEs);
 const colorClasses = [colorBasic, colorComfort, colorPrivilege];
 
 function FeatureList({ lang, isPriceHidden }) {
@@ -86,10 +87,17 @@ function Sublist({ header, features }) {
   );
 }
 
-const definition = { 'fr-FR': {
-  basic: 'Basique',
-  comfort: 'Confort',
-  privilege: 'Privilège',
-} };
+const definition = {
+  'fr-FR': {
+    basic: 'Basique',
+    comfort: 'Confort',
+    privilege: 'Privilège',
+  },
+  'es-ES': {
+    basic: 'Básico',
+    comfort: 'Confort',
+    privilege: 'Privilegio',
+  },
+};
 
 export default Utils.connectLang(FeatureList);

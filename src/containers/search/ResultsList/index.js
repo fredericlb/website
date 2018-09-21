@@ -89,23 +89,42 @@ class ResultsList extends PureComponent {
   }
 }
 
-const definition = { 'fr-FR': {
-  title: 'Colocations à {{city}}',
-  content: `
-    Découvrez et comparez notre sélection de {{count}} chambres en
-    colocation à {{city}}. Tous nos logements à {{city}} sont
-    entièrement meublés, équipés, tout inclus et en centre ville.
-    Réservez en ligne ou visitez nos appartements et apportez
-    juste votre valise : pour 1 mois, 1 semestre, 1 an...
-    Louer une colocation à {{city}} n'a jamais été aussi simple avec
-    Chez Nestor !
-  `,
-  noMatch: `
-    Il n'y a aucune chambre qui corresponde à votre recherche. Essayez
-    d'élargir vos critères ou
-  `,
-  contact: 'contactez notre équipe',
-} };
+const definition = {
+  'fr-FR': {
+    title: 'Colocations à {{city}}',
+    content: `
+      Découvrez et comparez notre sélection de {{count}} chambres en
+      colocation à {{city}}. Tous nos logements à {{city}} sont
+      entièrement meublés, équipés, tout inclus et en centre ville.
+      Réservez en ligne ou visitez nos appartements et apportez
+      juste votre valise : pour 1 mois, 1 semestre, 1 an...
+      Louer une colocation à {{city}} n'a jamais été aussi simple avec
+      Chez Nestor !
+    `,
+    noMatch: `
+      Il n'y a aucune chambre qui corresponde à votre recherche. Essayez
+      d'élargir vos critères ou
+    `,
+    contact: 'contactez notre équipe',
+  },
+  'es-ES': {
+    title: 'Piso compartido en {{city}}',
+    content: `
+      Descubra y compare nuestra selección de {{count}} habitaciones en
+      piso compartido en la ciudad {{city}}. Todos nuestros alojamientos en {{city}} son
+      totalmente amueblado, equipado, todo incluido y en el centro de la ciudad.
+      Reserve en línea o visite nuestros apartamentos y traiga
+      sólo su maleta: para 1 mes, 1 semestre, 1 año...
+      Alquile un apartamento compartido en {{city}} ¡nunca ha sido tan simple con
+      Chez Nestor!
+    `,
+    noMatch: `
+      No hay habitaciones que coincidan con su búsqueda. Intentar
+      ampliar sus criterios o
+    `,
+    contact: 'contacte con nuestro equipo',
+  },
+};
 
 const mapStateToProps = ({ route: { lang, city, date }, rooms, apartments }) => ({
   lang,
@@ -115,6 +134,7 @@ const mapStateToProps = ({ route: { lang, city, date }, rooms, apartments }) => 
     .filter((room) => typeof room === 'object')
     .map((room) => ({
       ...room,
+      roomName: Utils.localizeRoomName(room.name, lang),
       latLng: Utils.getApartmentLatLng(apartments[room.ApartmentId]),
       roomCount: apartments[room.ApartmentId].roomCount,
       pictures: [].concat(

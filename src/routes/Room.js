@@ -1,4 +1,3 @@
-import { IntlProvider }       from 'preact-i18n';
 import { PureComponent }      from 'react';
 import { connect }            from 'react-redux';
 import { route }              from 'preact-router';
@@ -9,26 +8,32 @@ import * as actions           from '~/actions';
 import Header                 from '~/containers/room/Header';
 
 class Room extends PureComponent {
-  async loadData(roomId) {
-    const { actions } = this.props;
 
+  static async prefetch(lang, roomId, dispatch) {
+    return Room.loadData(lang, roomId, {
+      getRoom: (roomId) => dispatch(actions.getRoom(roomId)),
+      getDistrict: (districtId) => dispatch(actions.getDistrict(districtId)),
+    });
+  }
+
+  static async loadData(lang, roomId, actions) {
     try {
       const { response: {
-        data: [roomData],
+        // data: [roomData],
         included: [apartmentData],
       } } = await actions.getRoom(roomId);
       const districtId = apartmentData.attributes._DistrictId;
 
       // This trick was used to allow linking from WordPress to the new website
-      if ( roomData.id !== roomId && typeof window !== 'undefined' ) {
-        return route(window.location.pathname.replace(/[\w-]+$/, roomData.id));
-      }
+      // if ( roomData.id !== roomId && typeof window !== 'undefined' ) {
+      //   return route(window.location.pathname.replace(/[\w-]+$/, roomData.id));
+      // }
 
       return actions.getDistrict(districtId);
     }
     catch (e) {
       if (e.error.isNotFound) {
-        route(`/${this.props.lang}/404`);
+        route(`/${lang}/404`);
       }
       else {
         throw e;
@@ -39,21 +44,20 @@ class Room extends PureComponent {
 
   componentWillMount() {
     if ( !this.props.room ) {
-      return this.loadData(this.props.roomId);
+      return Room.loadData(this.props.lang, this.props.roomId, this.props.actions);
     }
   }
 
   componentWillReceiveProps({ roomId }) {
     if ( roomId !== this.props.roomId ) {
-      this.loadData(roomId);
+      Room.loadData(roomId, this.props.actions);
     }
   }
 
   render() {
     const {
-      lang,
       roomId,
-      room,
+      apartmentId,
       isLoading,
     } = this.props;
 
@@ -66,19 +70,13 @@ class Room extends PureComponent {
     }
 
     return (
-      <IntlProvider definition={definition[lang]}>
-        <div>
-          <Header roomId={roomId} apartmentId={room.ApartmentId} />
-          <RoomContent roomId={roomId} apartmentId={room.ApartmentId} />
-        </div>
-      </IntlProvider>
+      <div>
+        <Header roomId={roomId} apartmentId={apartmentId} />
+        <RoomContent roomId={roomId} apartmentId={apartmentId} />
+      </div>
     );
   }
 }
-
-const definition = { 'fr-FR': {
-
-} };
 
 function mapStateToProps({ route: { lang }, apartments, rooms }, { roomId }) {
   const room = rooms[roomId];
@@ -88,9 +86,8 @@ function mapStateToProps({ route: { lang }, apartments, rooms }, { roomId }) {
   }
 
   return {
-    lang,
     roomId,
-    room,
+    apartmentId: room.ApartmentId,
   };
 }
 

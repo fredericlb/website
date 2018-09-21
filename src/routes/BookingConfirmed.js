@@ -5,6 +5,7 @@ import { connect }            from 'react-redux';
 import { ProgressBar }        from 'react-toolbox/lib/progress_bar';
 import { Button }             from 'react-toolbox/lib/button';
 import Heading                from '~/components/booking/Heading';
+import Utils                  from '~/utils';
 import * as actions           from '~/actions';
 import _const                 from '~/const';
 
@@ -71,17 +72,28 @@ class BookingStep3 extends PureComponent {
   }
 }
 
-const definition = { 'fr-FR': {
-  instructions: `
-    Vous allez recevoir un email de confirmation avec de plus amples instructions.
-    La première étape consiste à fournir vos données personnelles afin que nous
-    puissions éditer le contrat de location.
-  `,
-  fill: 'Remplir le formulaire',
-} };
+const definition = {
+  'fr-FR': {
+    instructions: `
+      Vous allez recevoir un email de confirmation avec de plus amples instructions.
+      La première étape consiste à fournir vos données personnelles afin que nous
+      puissions éditer le contrat de location.
+    `,
+    fill: 'Remplir le formulaire',
+  },
+  'es-ES': {
+    instructions: `
+      Recibirá un correo electrónico de confirmación con más instrucciones.
+      El primer paso es proporcionar sus datos personales para que podamos editar
+      el contrato de alquiler.
+    `,
+    fill: 'Rellene el formulario',
+  },
+};
 
 function mapStateToProps({ route: { lang }, rentings, rooms, client }, { rentingId }) {
   const renting = rentings[rentingId];
+  const room = renting && rooms[renting.RoomId];
 
   if ( !renting || renting.isLoading ) {
     return { isLoading: true };
@@ -89,7 +101,7 @@ function mapStateToProps({ route: { lang }, rentings, rooms, client }, { renting
 
   return {
     lang,
-    room: rooms[renting.RoomId],
+    room: { ...room, name: Utils.localizeRoomName(room.name, lang) },
     email: client.email,
   };
 }

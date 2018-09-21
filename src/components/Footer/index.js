@@ -57,7 +57,7 @@ function Footer({ lang }) {
                   &nbsp;&nbsp;&nbsp;
                 </li>
                 <li>
-                  <a href={`/${lang}/contact`}>
+                  <a href="#nogo" onClick={handleClickContact}>
                     Contact
                   </a>
                 </li>
@@ -93,13 +93,26 @@ function Footer({ lang }) {
   );
 }
 
-const definition = { 'fr-FR': {
-  services: 'Services Inclus',
-  booking: 'Réserver',
-  about: 'À propos de Chez Nestor',
-  // blog: 'Blog', // no translation needed
-  career: 'Travailler Chez Nestor',
-  terms: 'CGV et mentions légales',
-} };
+function handleClickContact() {
+  window.$crisp.push(['do', 'chat:open']);
+}
+
+const definition = {
+  'fr-FR': {
+    services: 'Services Inclus',
+    booking: 'Réserver',
+    about: 'À propos de Chez Nestor',
+    // blog: 'Blog', // no translation needed
+    career: 'Travailler Chez Nestor',
+    terms: 'CGV et mentions légales',
+  },
+  'es-ES': {
+    services: 'Servicios Incluidos',
+    booking: 'Reservar',
+    about: 'A propósito de Chez Nestor',
+    career: 'Trabajar en Nestor',
+    terms: 'Términos y Condiciones Generales y Avisos Legales',
+  },
+};
 
 export default Utils.connectLang(Footer);

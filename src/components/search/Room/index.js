@@ -25,12 +25,12 @@ function Room(args) {
       availableAt,
       _currentPrice,
       beds,
-      name,
       floorArea,
       createdAt,
       id,
       roomCount,
       galery,
+      roomName,
     },
     isThumbnail,
   } = args;
@@ -49,7 +49,7 @@ function Room(args) {
         </Carousel>
         <div className={style.roomAttributes}>
           <h4 className={style.roomName}>
-            {name}
+            {roomName}
           </h4>
           <Availability
             {...{ lang, arrivalDate, className: style.availability, availableAt }}
@@ -131,8 +131,18 @@ const definition = {
       multiple: '{{count}} beddings',
     },
   },
+  'es-ES': {
+    bedrooms: 'Habitaciones',
+    rooms: 'Cuartos',
+    beds: {
+      double: 'Cama doble',
+      simple: 'Cama individual',
+      sofa: 'Sofá cama',
+      multiple: '{{count}} amarraderos',
+    },
+  },
 };
 
-// /!\ This component cannot used the state because it's used inside leaflet
+// /!\ This component cannot use the state because it's used inside leaflet
 // and apparently these things are incompatible.
 export default Room;

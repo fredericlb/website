@@ -25,6 +25,7 @@ export const deleteApartmentPicture = createAction('delete picture from apartmen
 export const updateApartmentPicture = createAction('update picture from apartment');
 export const showSpecialOfferBanner = createAction('show special offer banner');
 export const hideSpecialOfferBanner = createAction('hide special offer banner');
+export const updateSSRStatus = createAction('trigger me once ssr async fetch is done');
 
 export const {
   updateBooking,
@@ -197,8 +198,6 @@ export const savePayment =
     } } },
   );
 
-
-
 function throwIfNotFound(modelName, id) {
   return (response) => {
     if (modelName === 'Page' && response.length === 0 ) {
@@ -261,7 +260,12 @@ function reduceRooms({ response: { data = [], included = [], meta: { count } } }
       .reduce(arrayToMap, {}),
     apartments: included
       .filter((item) => item.type === 'Apartment')
-      .map((item) => ({ ...item.attributes }))
+      .map(({ attributes }) => ({
+        ...attributes,
+        // The backend now sends the city as _addressCity,
+        // this handles backward compatibility
+        addressCity: attributes.addressCity || attributes._addressCity,
+      }))
       .reduce(arrayToMap, {}),
     count,
   };

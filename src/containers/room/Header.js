@@ -9,11 +9,12 @@ import { Button }             from 'react-toolbox/lib/button';
 import Portal                 from 'preact-portal';
 import Carousel               from '~/components/Carousel';
 import style                  from '~/containers/room/style.css';
-import { AnchorLink }         from 'react-spy-scroll';
 
 // https://stackoverflow.com/questions/20514596/document-documentelement-scrolltop-return-value-differs-in-chrome
 function getDocumentScrollTop() {
-  return window.scrollY
+  return typeof window !== 'object' ?
+    0 :
+    window.scrollY
     || window.pageYOffset
     || document.body.scrollTop + (document.documentElement
       && document.documentElement.scrollTop || 0);
@@ -51,8 +52,19 @@ class Header extends Component {
     this.state = {
       showBookBtn: false,
       showSlideshow: false,
+      libSpyScroll: null,
       showLinks: false,
     };
+
+    if ( typeof window === 'object' ) {
+      import('react-spy-scroll')
+        .then(spyScroll => {
+          this.setState({ libSpyScroll: spyScroll });
+
+          return true;
+        })
+        .catch(() => console.error('leaflet loading failed'));
+    }
   }
 
   componentDidMount() {
@@ -72,6 +84,11 @@ class Header extends Component {
     const btnState =  this.state.showBookBtn ?
       style.fixedHeaderShown :
       style.fixedHeaderHidden;
+    let AnchorLink = 'a';
+
+    if ( this.state.libSpyScroll ) {
+      AnchorLink = this.state.libSpyScroll.AnchorLink;
+    }
 
     return (
       <IntlProvider definition={definition[lang]}>
@@ -94,6 +111,7 @@ class Header extends Component {
           {this.state.showSlideshow ? (
             <Portal into="body">
               <div className={style.carouselOverlay} onClick={this.toggleSlideshow}>
+                <div className={style.carouselClose}>🗙</div>
                 <Carousel lazy slide arrows className="slideshow-full">
                   {pictures.map(({ url }) =>
                     <div className={style.slideshowImg} style={`background-image: url(${url})`} />
@@ -121,10 +139,16 @@ class Header extends Component {
   }
 }
 
-const definition = { 'fr-FR': {
-  book: 'Réserver ce logement',
-  galery: 'Voir toutes les photos',
-} };
+const definition = {
+  'fr-FR': {
+    book: 'Réserver ce logement',
+    galery: 'Voir toutes les photos',
+  },
+  'es-ES': {
+    book: 'Reservar este alojamiento',
+    galery: 'Ver todas las fotos',
+  },
+};
 
 function mapStateToProps({ route: { lang }, rooms, apartments }, { roomId, apartmentId }) {
   const room = rooms[roomId];
@@ -134,7 +158,7 @@ function mapStateToProps({ route: { lang }, rooms, apartments }, { roomId, apart
     lang,
     pictures,
     roomId,
-    roomName: room.name,
+    roomName: Utils.localizeRoomName(room.name, lang),
   };
 }
 

@@ -1,3 +1,4 @@
+import fp                     from 'lodash/fp';
 import { Component }          from 'react';
 import { IntlProvider, Text } from 'preact-i18n';
 import { Link }               from 'preact-router/match';
@@ -8,12 +9,22 @@ import { Navigation }         from 'react-toolbox/lib/navigation';
 import { Drawer }             from 'react-toolbox/lib/drawer';
 import appbarTheme            from 'react-toolbox/components/app_bar/theme.css';
 import Utils                  from '~/utils';
+import SearchForm             from '~/components/SearchForm';
+import CreateAlertButton      from '~/components/CreateAlertButton';
 import style                  from './style';
-import SearchForm             from '../SearchForm';
-import CreateAlertButton from "../CreateAlertButton";
+
+const languages = [
+  { value: 'en-US', label: '🇺🇸' },
+  { value: 'fr-FR', label: '🇫🇷' },
+  // { value: 'es-ES', label: '🇪🇸' },
+];
 
 // https://stackoverflow.com/questions/20514596/document-documentelement-scrolltop-return-value-differs-in-chrome
 function getDocumentScrollTop() {
+  if ( typeof window !== 'object' ) {
+    return 0;
+  }
+
   return window.scrollY
     || window.pageYOffset
     || document.body.scrollTop + (document.documentElement
@@ -27,20 +38,28 @@ class Header extends Component {
     this.setState({ isDrawerActive: !this.state.isDrawerActive });
   }
 
+  @autobind
+  handleScroll() {
+    this.setState({
+      scrollPx: getDocumentScrollTop(),
+    });
+  }
+
+  isSearchPage() {
+    return /\/[^/]*\/search/.test(this.props.path);
+  }
+
+  isRoomPage() {
+    return /\/[^/]*\/room/.test(this.props.path);
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
       isDrawerActive: false,
-      scrollPx: getDocumentScrollTop()
+      scrollPx: getDocumentScrollTop(),
     };
-  }
-
-  @autobind
-  handleScroll() {
-    this.setState({
-      scrollPx: getDocumentScrollTop()
-    })
   }
 
   componentDidMount() {
@@ -53,23 +72,13 @@ class Header extends Component {
     typeof window !== 'undefined' && window.removeEventListener('scroll', this.handleScroll);
   }
 
-  isSearchPage() {
-    return /\/[^/]*\/search/.test(this.props.path);
-  }
-
-  isRoomPage() {
-    return /\/[^/]*\/room/.test(this.props.path);
-  }
-
   renderLeftPart() {
     const headerIsLite = this.isSearchPage() || this.isRoomPage();
     return (
       <div class={style.headerLeftPart}>
         <AppBarTitle lang={this.props.lang} isLite={headerIsLite} handleToggle={this.handleToggle} />
         <div class={style.headerOptionalPart}>
-          { this.isSearchPage() ? (
-              <SearchForm mode="firstline"/> ) : null
-          }
+          { this.isSearchPage() ? ( <SearchForm mode="firstline" /> ) : null }
         </div>
       </div>
     );
@@ -80,11 +89,12 @@ class Header extends Component {
       style.header,
       this.isRoomPage() ? style.headerNotFixed : null,
       this.isSearchPage() ? style.headerMultiLine : null,
-    ]
+    ];
+
     return (
       <IntlProvider definition={definition[lang]}>
-        <div>
-          <header className={headerClasses.join(' ')}>
+        <header className={headerClasses.join(' ')}>
+          <div>
             <div>
               <div className={[style.wrapper].join(' ')}>
                 <AppBar
@@ -92,31 +102,30 @@ class Header extends Component {
                   flat
                   theme={style}
                 >
-                  <AppNavigation className="hide-md-down" type="horizontal" {...{lang, path}} />
+                  <AppNavigation
+                    className="hide-md-down"
+                    type="horizontal" {...{ lang, path }}
+                  />
                 </AppBar>
               </div>
               <Drawer type="left"
-                      active={this.state.isDrawerActive}
-                      onOverlayClick={this.handleToggle}
-                      theme={{wrapper: style.drawerWrapper}}
+                active={this.state.isDrawerActive}
+                onOverlayClick={this.handleToggle}
+                theme={{ wrapper: style.drawerWrapper }}
               >
-                <AppNavigation type="vertical" {...{lang, path}} />
+                <AppNavigation type="vertical" {...{ lang, path }} />
               </Drawer>
             </div>
-
-          </header>
-
-          {this.isSearchPage() ? (
-            <div className={style.searchLine}>
-              <div>
-                <SearchForm mode="secondline" />
-                <CreateAlertButton />
+            {this.isSearchPage() ? (
+              <div className={style.searchLine}>
+                <div>
+                  <SearchForm mode="secondline" />
+                  <CreateAlertButton />
+                </div>
               </div>
-
-            </div>
-          ) : null
-          }
-        </div>
+            ) : null}
+          </div>
+        </header>
       </IntlProvider>
     );
   }
@@ -124,15 +133,15 @@ class Header extends Component {
 
 function AppBarTitle({ lang, isLite = false, handleToggle }) {
   const logo = isLite ?
-    <img src="/assets/logo.png" alt="Chez Nestor" className={style.logoLite} />
-    : <img src="/assets/logo370x130.png" alt="Chez Nestor" />;
+    <img src="/assets/logo.png" alt="Chez Nestor" className={style.logoLite} /> :
+    <img src="/assets/logo370x130.png" alt="Chez Nestor" />;
 
   return (
     <h1 class={appbarTheme.title} style={{ margin: '0 0 0 -22px' }}>
       <div className="hide-lg-up">
-        <div onClick={handleToggle}>
+        <div onClick={handleToggle} style={{ color: '#aaa' }}>
           { logo }
-          >
+          ▸
         </div>
       </div>
       <div className="hide-md-down">
@@ -147,6 +156,9 @@ function AppBarTitle({ lang, isLite = false, handleToggle }) {
 function AppNavigation({ lang, path, type, className }) {
   return (
     <Navigation className={className} type={type} theme={style}>
+      <NavLink href={`/${lang}/`} theme={style}>
+        <Text id="home">Home</Text>
+      </NavLink>
       <NavLink href={`/${lang}/services`} theme={style}>
         <Text id="included">Included Services</Text>
       </NavLink>
@@ -156,25 +168,33 @@ function AppNavigation({ lang, path, type, className }) {
       <a onClick={handleClickContact} theme={style}>
         Contact
       </a>
-      {['en-US', 'fr-FR']
-        .filter((val) => lang !== val)
-        .map((val) => (
-          <NavLink href={path.replace(/^\/[^/]{0,5}/, `/${val}`)} theme={style}>
-            {val.split('-')[0].toUpperCase()}
+      {fp.flow(
+        fp.filter(({ value }) => lang !== value),
+        fp.map(({ value, label }) => (
+          <NavLink href={path.replace(/^\/[^/]{0,5}/, `/${value}`)} theme={style}>
+            {label}
           </NavLink>
         ))
-      }
+      )(languages)}
     </Navigation>
   );
 }
 
 function handleClickContact() {
-  window.$crisp.push(['do', 'chat:open']);
+  if (typeof window === 'object') {
+    window.$crisp.push(['do', 'chat:open']);
+  }
 }
 
-const definition = { 'fr-FR': {
-  included: 'Services Inclus',
-  booking: 'Réserver',
-} };
+const definition = {
+  'fr-FR': {
+    included: 'Services Inclus',
+    booking: 'Réserver',
+  },
+  'es-ES': {
+    included: 'Servicios Incluidos',
+    booking: 'Reservar',
+  },
+};
 
 export default Utils.connectLang(Header);

@@ -48,10 +48,13 @@
   margin-bottom: 2em;
 }
 
-
-
 .slideshowImg {
-  background-size: contain;
+  /*
+    without this !important, ".carousel > *" takes precedence in production
+    and results in bg-size being cover instead of contain. No idea why. This
+    is maddening.
+  */
+  background-size: contain !important;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
@@ -341,7 +344,7 @@
 }
 
 .picturesCont {
-  background-color: lightgrey;
+  background-color: var(--color-primary);
   background-size: 48px !important;
   background-position: center 10px;
   background-repeat: no-repeat;
@@ -605,7 +608,7 @@
 }
 
 .visitCont {
-  background-color: lightgrey;
+  background-color: var(--color-primary);
   text-indent: 0 !important;
   color: white;
   font-weight: bold;
@@ -640,4 +643,3 @@
 .buttonsDivide > div {
   flex: 0 0 48%;
 }
-

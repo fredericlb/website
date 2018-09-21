@@ -41,14 +41,15 @@ class Pictures extends PureComponent {
   }
 
   render({ lang, pictures, virtualVisitUrl, floorplans }) {
-    let cont = null, portal = null, visit = null;
+    let cont = null, portal = null, virtualVisit = null;
+    const maxThumbnails = virtualVisitUrl == null ? 4 : 3;
 
-    if (pictures.length > 4) {
+    if (pictures.length > maxThumbnails) {
       cont = (
         <div className={`${style.picturesCont} picto-photocamera_64px one-sixth`}
-             onClick={this.handleSlideshowClick}
+          onClick={this.handleSlideshowClick}
         >
-          + {pictures.length - 4}
+          + {pictures.length - maxThumbnails}
         </div>
       );
     }
@@ -59,8 +60,12 @@ class Pictures extends PureComponent {
           <div className={style.carouselOverlay} onClick={this.handleSlideshowClick}>
             <div className={style.carouselClose}>🗙</div>
             <Carousel lazy slide arrows>
-              {pictures.map(({ url }) => (
-                <div class={style.slideshowImg} style={`background-image: url(${url})`} title="Mon image" />
+              {pictures.map(({ url, alt }) => (
+                <div
+                  className={style.slideshowImg}
+                  style={`background-image: url(${url})`}
+                  alt={alt}
+                />
               ))}
             </Carousel>
           </div>
@@ -74,7 +79,11 @@ class Pictures extends PureComponent {
             <div className={style.carouselClose}>🗙</div>
             <Carousel lazy slide arrows>
               {floorplans.map(({ url }) => (
-                <div class={style.slideshowImg} style={`background-image: url(${url})`} />
+                <div
+                  className={style.slideshowImg}
+                  style={`background-image: url(${url})`}
+                  title={definition[lang].floorplanDisclaimer}
+                />
               ))}
             </Carousel>
           </div>
@@ -82,21 +91,20 @@ class Pictures extends PureComponent {
       );
     }
 
+    const visit = (
+      <div className={`${style.visitCont} one-sixth`}
+        onClick={this.handleFloorplansSlideshowClick}
+      >
+        <Text id="floorplans">Floor Plans</Text>
+      </div>
+    );
+
     if (virtualVisitUrl != null) {
-      visit = (
-        <div className={`${style.visitCont} ${style.visitContAlt} one-sixth`}>
+      virtualVisit = (
+        <div className={`${style.visitCont} one-sixth`}>
           <a href={virtualVisitUrl} target="_blank">
-            <Text id="virtualVisit">3D Visit</Text> 🗗
+            <Text id="virtualVisit">3D viewing</Text> 🗗
           </a>
-        </div>
-      );
-    }
-    else {
-      visit = (
-        <div className={`${style.visitCont} ${style.visitContAlt}  one-sixth`}
-             onClick={this.handleFloorplansSlideshowClick}
-        >
-          <Text id="floorplans">Floor Plans</Text>
         </div>
       );
     }
@@ -104,11 +112,12 @@ class Pictures extends PureComponent {
     return (
       <IntlProvider definition={definition[lang]}>
         <section className={`${style.pictures} grid-12 has-gutter`}>
-          {pictures.slice(0, 4).map((picture) => (
+          {pictures.slice(0, maxThumbnails).map((picture) => (
             <Picture picture={picture} onClick={this.handleSlideshowClick} />
           ))}
           {cont}
           {visit}
+          {virtualVisit}
           {portal}
         </section>
       </IntlProvider>
@@ -116,10 +125,30 @@ class Pictures extends PureComponent {
   }
 }
 
-const definition = { 'fr-FR': {
+const definition = {
+  'en-US': {
+    floorplanDisclaimer: `
+      Note: All surface (closet, balcony, area under slope...) is taking into
+      account in the surface area of each room.
+    `,
+  },
+  'fr-FR': {
     virtualVisit: 'Visite 3D',
-    floorplans: 'Plans',
-  } };
+    floorplans: 'Plan',
+    floorplanDisclaimer: `
+      Note : les surfaces des chambres comprennent toutes les surfaces
+      privatives au sol (placard, balcon, sous-pente...).
+    `,
+  },
+  'es-ES': {
+    virtualVisit: 'Tour 3D',
+    floorplans: 'Planes',
+    floorplanDisclaimer: `
+      Nota: Toda la superficie (armario, balcón, área bajo pendiente...) se
+      tiene en cuenta en la superficie de cada habitación.
+    `,
+  },
+};
 
 function mapStateToProps({ route: { lang }, rooms, apartments }, { roomId, apartmentId }) {
   const room = rooms[roomId];

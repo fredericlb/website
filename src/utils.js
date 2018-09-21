@@ -201,11 +201,14 @@ const pureUtils = {
     const definition = {
       'fr-FR': 'Je souhaite visiter cette chambre',
       'en-US': 'I wish to visit this room',
+      'es-ES': 'Deseo visitar esta habitación',
     };
 
     return () => {
-      window.$crisp.push(['do', 'chat:open']);
-      window.$crisp.push(['do', 'message:send', ['text', definition[lang]]]);
+      if (typeof window === 'object') {
+        window.$crisp.push(['do', 'chat:open']);
+        window.$crisp.push(['do', 'message:send', ['text', definition[lang]]]);
+      }
     };
   },
   formatDate(date, { lang, timeZone = 'Europe/Paris' } = {}) {
@@ -230,6 +233,16 @@ const pureUtils = {
         .format(new Date(value * 24 * 60 * 60 * 1000))
         .toUpperCase()
     );
+  },
+  localizeRoomName(roomName, lang) {
+    switch ( lang ) {
+    case 'fr-FR':
+      return roomName.replace('#', 'Chambre ');
+    case 'es-ES':
+      return roomName.replace('#', 'Habitación ');
+    default:
+      return roomName.replace('#', 'Room ');
+    }
   },
 };
 
@@ -294,6 +307,7 @@ const Utils = {
   fetchJson(_url, _options) {
     const options = { ..._options };
     const timezone =
+      typeof window === 'object' &&
       window.Intl &&
       window.Intl.DateTimeFormat().resolvedOptions().timeZone || 'Europe/London';
     const url = _url.startsWith('http') ?

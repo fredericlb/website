@@ -93,9 +93,14 @@ class Renting extends PureComponent {
   }
 }
 
-const definition = { 'fr-FR': {
-  title: 'Complétez votre réservation de la chambre',
-} };
+const definition = {
+  'fr-FR': {
+    title: 'Complétez votre réservation de la chambre',
+  },
+  'es-ES': {
+    title: 'Complete su reserva de habitación',
+  },
+};
 
 function mapStateToProps({ route: { lang }, rentings, orders, rooms }, { rentingId }) {
   const renting = rentings[rentingId];
@@ -117,7 +122,7 @@ function mapStateToProps({ route: { lang }, rentings, orders, rooms }, { renting
     rentingId,
     identityFormUrl:
       `https://${IDENTITY_FORM_URLS[packLevel]}?clientId=${renting.ClientId}`,
-    roomName: room && room.name,
+    roomName: room && Utils.localizeRoomName(room.name, lang),
     packOrder,
   };
 }

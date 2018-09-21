@@ -8,6 +8,7 @@ import { Button }             from 'react-toolbox/lib/button';
 import { ProgressBar }        from 'react-toolbox/lib/progress_bar';
 import BookingFormSections    from '~/components/booking/BookingFormSections';
 import Heading                from '~/components/booking/Heading';
+import Utils                  from '~/utils';
 import * as actions           from '~/actions';
 
 class BookingForm extends PureComponent {
@@ -40,12 +41,15 @@ class BookingForm extends PureComponent {
 
     if ( !room ) {
       return actions.getRoom(roomId)
-        .then(({ response: { data: [roomData] } }) =>
+        .then(({ response: { data: [roomData] } }) => {
           // This trick was used to allow linking from WordPress to the new website
-          roomData.id !== roomId &&
-          route(window.location.pathname.replace(/[\w-]+$/, roomData.id)) &&
-          actions.updateBooking({ roomId: roomData.id })
-        );
+          if (typeof window !== 'object') {
+            return Promise.resolve();
+          }
+          return  roomData.id !== roomId &&
+            route(window.location.pathname.replace(/[\w-]+$/, roomData.id)) &&
+            actions.updateBooking({ roomId: roomData.id });
+        });
     }
   }
 
@@ -119,18 +123,27 @@ function mapStateToProps({ route: { lang }, rooms, booking }, { roomId }) {
   return {
     lang,
     roomId,
-    room,
+    room: { ...room, name: Utils.localizeRoomName(room.name, lang) },
     booking,
   };
 }
 
-const definition = { 'fr-FR': {
-  errors: {
-    unavailable: 'Désolé, cette chambre n\'est plus disponible.',
-    room: 'Désolé, une erreur est survenue lors de la préparation de votre réservation.',
+const definition = {
+  'fr-FR': {
+    errors: {
+      unavailable: 'Désolé, cette chambre n\'est plus disponible.',
+      room: 'Désolé, une erreur est survenue lors de la préparation de votre réservation.',
+    },
+    button: 'Continuer',
   },
-  button: 'Continuer',
-} };
+  'es-ES': {
+    errors: {
+      unavailable: 'Lo siento, esta habitación ya no está disponible.',
+      room: 'Lo sentimos, se ha producido un error durante la preparación de su reserva.',
+    },
+    button: 'Continúa',
+  },
+};
 
 function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators(actions, dispatch) };
