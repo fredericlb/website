@@ -34,6 +34,10 @@
 	color: #FFF;
 }
 
+.titleLite {
+  padding: 0 15px 0 0 !important;
+}
+
 .appBar {
   height: var(--header-height);
   color: var(--color-greyish);
@@ -98,7 +102,7 @@
   width: 100%;
   position: fixed;
   z-index: 201;
-  margin-left: 131px;
+  margin-left: 116px;
 }
 
 .searchLine > div {
@@ -119,12 +123,12 @@
 
 @media screen and (min-width: 1024px) {
   .searchLine {
-    margin-left: 111px;
+    margin-left: 96px;
   }
 }
 
 @media screen and (max-width: 550px) {
   .searchLine > div {
-    width: calc(100% - 131px);
+    width: calc(100% - 116px);
   }
 }

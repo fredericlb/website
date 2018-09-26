@@ -137,7 +137,7 @@ function AppBarTitle({ lang, isLite = false, handleToggle }) {
     <img src="/assets/logo370x130.png" alt="Chez Nestor" />;
 
   return (
-    <h1 class={appbarTheme.title} style={{ margin: '0 0 0 -22px' }}>
+    <h1 className={[appbarTheme.title, style.titleLite].join(' ')} style={{ margin: '0 0 0 -22px' }}>
       <div className="hide-lg-up">
         <div onClick={handleToggle} style={{ color: '#aaa' }}>
           { logo }
