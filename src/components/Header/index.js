@@ -145,9 +145,9 @@ function AppBarTitle({ lang, isLite = false, handleToggle }) {
         </div>
       </div>
       <div className="hide-md-down">
-        <Link href={`/${lang}`} >
-          { logo }
-        </Link>
+        <div onClick={handleToggle} style={{ color: '#aaa' }}>
+        { logo }
+        </div>
       </div>
     </h1>
   );
