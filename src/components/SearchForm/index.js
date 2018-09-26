@@ -10,6 +10,7 @@ import {
   form,
   noSubmit,
   buttonContainer,
+  cityDropdown
 }                             from './style.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -89,6 +90,7 @@ class SearchForm extends PureComponent {
             <div>
               <i class="material-icons">location_city</i>
               <Dropdown
+                className={cityDropdown}
                 id={this.props.mode === 'header' ? null : 'city-select'}
                 onChange={this.handleCityChange}
                 label={<Text id="city">City *</Text>}

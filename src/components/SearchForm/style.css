@@ -113,3 +113,7 @@
   color: rgb(222, 50, 38) !important;
   font-weight: bold;
 }
+
+.cityDropdown {
+  z-index: 20000;
+}
