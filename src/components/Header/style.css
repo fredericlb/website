@@ -98,7 +98,7 @@
   width: 100%;
   position: fixed;
   z-index: 201;
-  margin-left: 115px;
+  margin-left: 131px;
 }
 
 .searchLine > div {
@@ -110,15 +110,21 @@
 }
 
 .searchLine form {
-  margin-top: 0 !important;
+  margin: 0 !important;
 }
 
 .searchLine a[data-react-toolbox="button"] {
   margin-top: 0;
 }
 
+@media screen and (min-width: 1024px) {
+  .searchLine {
+    margin-left: 111px;
+  }
+}
+
 @media screen and (max-width: 550px) {
   .searchLine > div {
-    width: calc(100% - 115px);
+    width: calc(100% - 131px);
   }
 }
