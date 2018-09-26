@@ -138,15 +138,10 @@ function AppBarTitle({ lang, isLite = false, handleToggle }) {
 
   return (
     <h1 className={[appbarTheme.title, style.titleLite].join(' ')} style={{ margin: '0 0 0 -22px' }}>
-      <div className="hide-lg-up">
+      <div>
         <div onClick={handleToggle} style={{ color: '#aaa' }}>
           { logo }
           ▸
-        </div>
-      </div>
-      <div className="hide-md-down">
-        <div onClick={handleToggle} style={{ color: '#aaa' }}>
-        { logo }
         </div>
       </div>
     </h1>

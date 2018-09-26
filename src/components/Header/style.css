@@ -103,14 +103,25 @@
   position: fixed;
   z-index: 201;
   margin-left: 116px;
+  padding-right: 1vw;
+  max-width: 410px;
+  @media screen and (max-width: 545px) {
+    max-width: calc(100vw - 116px);
+  }
+  @media screen and (min-width: 990px) {
+    padding-right: 0;
+  }
 }
 
+
+
 .searchLine > div {
-  width: 410px;
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+
 }
 
 .searchLine form {
@@ -119,16 +130,4 @@
 
 .searchLine a[data-react-toolbox="button"] {
   margin-top: 0;
-}
-
-@media screen and (min-width: 1024px) {
-  .searchLine {
-    margin-left: 96px;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .searchLine > div {
-    width: calc(100% - 116px);
-  }
 }
