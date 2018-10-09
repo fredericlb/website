@@ -92,8 +92,8 @@ class Pictures extends PureComponent {
       );
     }
 
-    const visit = (
-      <div className={`${style.imageLinkCont}   picto-photocamera_64px one-sixth`}
+    const floorplanLink = (
+      <div className={`${style.imageLinkCont}   picto-plans one-sixth`}
         onClick={this.handleFloorplansSlideshowClick}
       >
         <Text id="floorplans">Floor Plans</Text>
@@ -102,9 +102,9 @@ class Pictures extends PureComponent {
 
     if (virtualVisitUrl != null) {
       virtualVisit = (
-        <div className={`${style.imageLinkCont}  picto-photocamera_64px one-sixth`}>
+        <div className={`${style.imageLinkCont}  picto-visit one-sixth`}>
           <a href={virtualVisitUrl} target="_blank">
-            <Text id="virtualVisit">3D viewing</Text> 🗗
+            <Text id="virtualVisit">3D viewing</Text>
           </a>
         </div>
       );
@@ -117,7 +117,7 @@ class Pictures extends PureComponent {
             <Picture picture={picture} onClick={this.handleSlideshowClick} />
           ))}
           {cont}
-          {visit}
+          {floorplanLink}
           {virtualVisit}
           {portal}
         </section>
