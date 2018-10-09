@@ -9,7 +9,7 @@ export default Object.assign({}, common, {
       return 'https://ucyldwzph9.execute-api.eu-west-1.amazonaws.com/staging/forest';
     default:
     case 'development':
-      return 'http://localhost:3000/forest';
+      return 'https://ucyldwzph9.execute-api.eu-west-1.amazonaws.com/staging/forest';
     }
   })(process.env.PREACT_APP_ENV),
 

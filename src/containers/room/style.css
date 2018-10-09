@@ -343,23 +343,76 @@
   cursor: pointer;
 }
 
-.picturesCont {
+.imageLinkCont {
   background-color: var(--color-primary);
   background-size: 48px !important;
-  background-position: center 10px;
+  background-position: center 20px;
   background-repeat: no-repeat;
   text-indent: 0 !important;
   color: white;
   font-weight: bold;
   position: relative;
-  padding-top: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 10px;
   text-align: center;
+  font-size: 11px;
+}
+
+.selected {
+  font-weight: bolder;
+  text-decoration: underline;
+}
+
+.slideshowSwitch {
+  position: fixed;
+  width: 90vw;
+  left: calc(50% - 45vw);
+  bottom: 30px;
+  border-radius: 10px;
+  height: 25px;
+  line-height: 25px;
+  z-index: 20000;
+  font-family: 'Lato', sans-serif;
+  padding: 0 10px 0 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-variant: small-caps;
+  display: flex;
+  background: #1C2B4A;
+  color: white;
+  cursor: pointer;
+  justify-content: space-between;
+  font-weight: lighter;
+
+  @media screen and (min-width: 991px) {
+    display: none;
+  }
+}
+
+.slideshowSwitch > span:not(:first-child) {
+  border-left: 1px solid white;
+}
+
+.slideshowSwitch > span > a {
+  color: white !important;
+}
+
+.slideshowSwitch > span {
+  text-align: center;
+  flex: 1;
+}
+
+
+.picturesCont {
+  padding-bottom: 17px;
 }
 
 .picturesCont::after {
   content: '...';
   position: absolute;
-  bottom: 0;
+  bottom: 3px;
   left: 0;
   right: 0;
   text-align: center;

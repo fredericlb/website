@@ -9,6 +9,7 @@ import * as actions           from '~/actions';
 import Carousel               from '~/components/Carousel';
 
 import style from './style.css';
+import {selected} from "../../routes/Search/style.css";
 
 const Picture = ({ picture, onClick }) => {
   const st = {
@@ -46,7 +47,7 @@ class Pictures extends PureComponent {
 
     if (pictures.length > maxThumbnails) {
       cont = (
-        <div className={`${style.picturesCont} picto-photocamera_64px one-sixth`}
+        <div className={`${style.imageLinkCont} ${style.picturesCont} picto-photocamera_64px one-sixth`}
           onClick={this.handleSlideshowClick}
         >
           + {pictures.length - maxThumbnails}
@@ -92,7 +93,7 @@ class Pictures extends PureComponent {
     }
 
     const visit = (
-      <div className={`${style.visitCont} one-sixth`}
+      <div className={`${style.imageLinkCont}   picto-photocamera_64px one-sixth`}
         onClick={this.handleFloorplansSlideshowClick}
       >
         <Text id="floorplans">Floor Plans</Text>
@@ -101,7 +102,7 @@ class Pictures extends PureComponent {
 
     if (virtualVisitUrl != null) {
       virtualVisit = (
-        <div className={`${style.visitCont} one-sixth`}>
+        <div className={`${style.imageLinkCont}  picto-photocamera_64px one-sixth`}>
           <a href={virtualVisitUrl} target="_blank">
             <Text id="virtualVisit">3D viewing</Text> 🗗
           </a>
