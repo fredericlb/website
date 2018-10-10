@@ -79,7 +79,7 @@ class Pictures extends PureComponent {
       portal = (
         <Portal into="body">
           <div className={style.carouselOverlay} onClick={this.handleSlideshowClick}>
-            <div className={style.carouselClose}>🗙</div>
+            <div className={style.carouselClose}>×</div>
             <Carousel lazy slide arrows>
               {pictures.map(({ url, alt }) => (
                 <div
@@ -97,7 +97,7 @@ class Pictures extends PureComponent {
       portal = (
         <Portal into="body">
           <div className={style.carouselOverlay} onClick={this.handleFloorplansSlideshowClick}>
-            <div className={style.carouselClose}>🗙</div>
+            <div className={style.carouselClose}>×</div>
             <Carousel lazy slide arrows>
               {floorplans.map(({ url }) => (
                 <div

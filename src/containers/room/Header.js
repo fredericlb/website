@@ -125,7 +125,7 @@ class Header extends Component {
           {this.state.showSlideshow != null ? (
             <Portal into="body">
               <div className={style.carouselOverlay} onClick={this.hideSlideshow}>
-                <div className={style.carouselClose}>🗙</div>
+                <div className={style.carouselClose}>×</div>
                 {this.state.showSlideshow === 'gallery' && (
                   <Carousel lazy slide arrows className="slideshow-full">
                     {pictures.map(({ url }) =>
