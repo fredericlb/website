@@ -81,7 +81,12 @@
 }
 
 .headerOptionalPart {
-  width: 500px;
+  flex: 3;
+  display: flex;
+}
+
+.headerOptionalPart > *:not(:first-child) {
+  margin-left: 10px;
 }
 
 .headerOptionalPart > div {

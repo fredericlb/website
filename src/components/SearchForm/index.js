@@ -86,7 +86,7 @@ class SearchForm extends PureComponent {
           class={`${form} ${this.props.mode === 'noSubmit' ? noSubmit : ''}`}
           style={this.props.mode === 'home' ? { flexWrap: 'wrap' } : null}
         >
-          { this.props.mode !== 'secondline' ? (
+          { this.props.mode !== 'searchpage' ? (
             <div>
               <i class="material-icons">location_city</i>
               <Dropdown
@@ -102,21 +102,19 @@ class SearchForm extends PureComponent {
                 error={this.state.error}
               />
             </div> ) : null }
-          { this.props.mode !== 'firstline' ? (
-            <div>
-              <i className="material-icons">date_range</i>
-              { typeof window === 'object' ? (
-                <DatePicker
-                  locale={lang.substring(0, 2)}
-                  label={<Text id="arrival">Arrival</Text>}
-                  floating={false}
-                  value={this.state.date}
-                  onChange={this.handleDateChange}
-                  autoOk
-                />
-              ) : null }
-            </div>
-          ) : null }
+          <div>
+            <i className="material-icons">date_range</i>
+            { typeof window === 'object' ? (
+              <DatePicker
+                locale={lang.substring(0, 2)}
+                label={<Text id="arrival">Arrival</Text>}
+                floating={false}
+                value={this.state.date}
+                onChange={this.handleDateChange}
+                autoOk
+              />
+            ) : null }
+          </div>
           {this.props.mode === 'home' ? (
             <div class={buttonContainer}>
               <Button

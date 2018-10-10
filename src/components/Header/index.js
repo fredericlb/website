@@ -79,7 +79,8 @@ class Header extends Component {
       <div class={style.headerLeftPart}>
         <AppBarTitle lang={this.props.lang} isLite={headerIsLite} handleToggle={this.handleToggle} />
         <div class={style.headerOptionalPart}>
-          { this.isSearchPage() ? ( <SearchForm mode="firstline" /> ) : null }
+          { this.isSearchPage() && ( <SearchForm mode="searchpage" /> ) }
+          { this.isSearchPage() && ( <CreateAlertButton /> ) }
         </div>
       </div>
     );
@@ -88,8 +89,7 @@ class Header extends Component {
   render({ lang, path }) {
     const headerClasses = [
       style.header,
-      this.isRoomPage() ? style.headerNotFixed : null,
-      this.isSearchPage() ? style.headerMultiLine : null,
+      this.isRoomPage() ? style.headerNotFixed : null
     ];
 
     return (
@@ -117,14 +117,6 @@ class Header extends Component {
                 <AppNavigation type="vertical" {...{ lang, path }} handleToggle={this.handleToggle} />
               </Drawer>
             </div>
-            {this.isSearchPage() ? (
-              <div className={style.searchLine}>
-                <div>
-                  <SearchForm mode="secondline" />
-                  <CreateAlertButton />
-                </div>
-              </div>
-            ) : null}
           </div>
         </header>
       </IntlProvider>
