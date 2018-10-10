@@ -132,16 +132,10 @@ class Header extends Component {
 }
 
 function AppBarTitle({ lang, isLite = false, handleToggle }) {
-  const logo = isLite ?
-    <img src="/assets/logo.png" alt="Chez Nestor" className={style.logoLite} /> :
-    <img src="/assets/logo370x130.png" alt="Chez Nestor" />;
-
   return (
     <h1 className={[appbarTheme.title, style.titleLite].join(' ')} style={{ margin: '0 0 0 -22px' }}>
       <div>
-        <div onClick={handleToggle} style={{ color: '#aaa' }}>
-          { logo }
-          ▸
+        <div onClick={handleToggle} style={{ color: '#aaa' }} className={style.logo}>
         </div>
       </div>
     </h1>

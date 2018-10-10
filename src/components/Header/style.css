@@ -45,7 +45,6 @@
 }
 
 .appBar img {
-  height: calc(var(--header-height) - 4px);
   /* For come reason the image overflows the header without that correction */
 
 }
@@ -58,10 +57,24 @@
   cursor: pointer;
 }
 
-.logoLite {
-  padding: 7px;
-  padding-left: 10px;
+.logo {
+  width: calc((var(--header-height) - 4px) * 2.5);
+  height: calc(var(--header-height) - 4px);
+  background-image: url('../../assets/logo370x130.png');
+  background-size: contain;
+  background-position: left center;
 }
+
+@media screen and (max-width: 940px) {
+  .logo {
+    width: calc((var(--header-height) - 18px));
+    height: calc((var(--header-height) - 18px));
+    background-image: url('../../assets/logo.png');
+    margin: 7px;
+    margin-left: 10px;
+  }
+}
+
 
 .headerLeftPart {
   flex: 1;
