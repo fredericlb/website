@@ -35,6 +35,7 @@ function getDocumentScrollTop() {
 class Header extends Component {
   @autobind
   handleToggle() {
+    console.log('handleToggle')
     this.setState({ isDrawerActive: !this.state.isDrawerActive });
   }
 
@@ -113,7 +114,7 @@ class Header extends Component {
                 onOverlayClick={this.handleToggle}
                 theme={{ wrapper: style.drawerWrapper }}
               >
-                <AppNavigation type="vertical" {...{ lang, path }} />
+                <AppNavigation type="vertical" {...{ lang, path }} handleToggle={this.handleToggle} />
               </Drawer>
             </div>
             {this.isSearchPage() ? (
@@ -142,16 +143,16 @@ function AppBarTitle({ lang, isLite = false, handleToggle }) {
   );
 }
 
-function AppNavigation({ lang, path, type, className }) {
+function AppNavigation({ lang, path, type, className, handleToggle }) {
   return (
     <Navigation className={className} type={type} theme={style}>
-      <NavLink href={`/${lang}/`} theme={style}>
+      <NavLink href={`/${lang}/`} theme={style} onClick={handleToggle}>
         <Text id="home">Home</Text>
       </NavLink>
-      <NavLink href={`/${lang}/services`} theme={style}>
+      <NavLink  href={`/${lang}/services`} theme={style} onClick={handleToggle}>
         <Text id="included">Included Services</Text>
       </NavLink>
-      <NavLink href={`/${lang}/booking-process`} theme={style}>
+      <NavLink href={`/${lang}/booking-process`} theme={style} onClick={handleToggle}>
         <Text id="booking">Booking</Text>
       </NavLink>
       <a onClick={handleClickContact} theme={style}>
@@ -159,8 +160,8 @@ function AppNavigation({ lang, path, type, className }) {
       </a>
       {fp.flow(
         fp.filter(({ value }) => lang !== value),
-        fp.map(({ value, label }) => (
-          <NavLink href={path.replace(/^\/[^/]{0,5}/, `/${value}`)} theme={style}>
+          fp.map(({ value, label }) => (
+          <NavLink href={path.replace(/^\/[^/]{0,5}/, `/${value}`)} theme={style} onClick={handleToggle} >
             {label}
           </NavLink>
         ))
