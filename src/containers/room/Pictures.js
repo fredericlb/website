@@ -9,7 +9,6 @@ import * as actions           from '~/actions';
 import Carousel               from '~/components/Carousel';
 
 import style from './style.css';
-import {selected} from "../../routes/Search/style.css";
 
 const Picture = ({ picture, onClick }) => {
   const st = {
@@ -42,8 +41,29 @@ class Pictures extends PureComponent {
   }
 
   render({ lang, pictures, virtualVisitUrl, floorplans }) {
-    let cont = null, portal = null, virtualVisit = null;
-    const maxThumbnails = virtualVisitUrl == null ? 4 : 3;
+    let cont = null, portal = null, virtualVisit = null, floorPlanLink = null;
+
+    if (floorplans.length > 0) {
+      floorPlanLink = (
+        <div className={`${style.imageLinkCont}   picto-plans one-sixth`}
+          onClick={this.handleFloorplansSlideshowClick}
+        >
+          <Text id="floorplans">Floor Plans</Text>
+        </div>
+      );
+    }
+
+    if (virtualVisitUrl != null) {
+      virtualVisit = (
+        <div className={`${style.imageLinkCont}  picto-visit one-sixth`}>
+          <a href={virtualVisitUrl} target="_blank">
+            <Text id="virtualVisit">3D viewing</Text>
+          </a>
+        </div>
+      );
+    }
+
+    const maxThumbnails = 5 - (floorPlanLink != null ? 1 : 0) - (virtualVisitUrl != null ? 1 : 0);
 
     if (pictures.length > maxThumbnails) {
       cont = (
@@ -92,24 +112,6 @@ class Pictures extends PureComponent {
       );
     }
 
-    const floorplanLink = (
-      <div className={`${style.imageLinkCont}   picto-plans one-sixth`}
-        onClick={this.handleFloorplansSlideshowClick}
-      >
-        <Text id="floorplans">Floor Plans</Text>
-      </div>
-    );
-
-    if (virtualVisitUrl != null) {
-      virtualVisit = (
-        <div className={`${style.imageLinkCont}  picto-visit one-sixth`}>
-          <a href={virtualVisitUrl} target="_blank">
-            <Text id="virtualVisit">3D viewing</Text>
-          </a>
-        </div>
-      );
-    }
-
     return (
       <IntlProvider definition={definition[lang]}>
         <section className={`${style.pictures} grid-12 has-gutter`}>
@@ -117,7 +119,7 @@ class Pictures extends PureComponent {
             <Picture picture={picture} onClick={this.handleSlideshowClick} />
           ))}
           {cont}
-          {floorplanLink}
+          {floorPlanLink}
           {virtualVisit}
           {portal}
         </section>
