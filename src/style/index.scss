@@ -178,15 +178,26 @@ ul li a.scroll-spy-active {
 }
 
 .carousel-curr[title]:not([title=""]):before {
-  position: relative;
-  display: inline-block;
   content: attr(title);
-  margin: 20px;
+  margin: auto;
   background: var(--color-primary);
   color: white;
   border-radius: 20px;
   font-size: 0.7rem;
   padding: 5px 10px;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  margin-left: 20%;
+  text-align: center;
+  margin-right: 20%;
+}
+
+@media screen and (max-width: 940px) {
+  .carousel-curr[title]:not([title=""]):before {
+    bottom: 50px;
+  }
 }
 
 /* WORDPRESS CSS INTEGRATION */
