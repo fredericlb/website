@@ -469,6 +469,7 @@
 .descriptionItems, .featuresColumn ul {
   margin-left: 0;
   padding-left: 0;
+  margin-right: 20px;
 }
 
 .descriptionItems li, .featuresColumn li {
@@ -477,6 +478,7 @@
   max-height: 30px;
   align-items: center;
   margin-bottom: 10px;
+  white-space: nowrap;
 }
 
 .descriptionItems li i, .featuresColumn li i {
@@ -492,8 +494,12 @@
 }
 
 .featuresColumn {
-  flex: 1 2 200px;
   margin-bottom: 5px !important;
+}
+
+.featuresColumn > div:nth-child(2) {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .featuresRoom {
@@ -505,29 +511,32 @@
   flex: 2 0 400px;
 }
 
-.featuresColumn:not(:last-child) {
-  border-right: 1px solid black;
+.featuresColumn:not(:first-child) {
+  border-left: 1px solid black;
 }
 
 .featuresColumn:not(:first-child) {
-  margin-left: 20px;
+  padding-left: 20px;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
   .featuresContent {
     flex-wrap: wrap;
     flex-direction: column;
   }
 
+  .featuresColumn > div:nth-child(2) {
+    justify-content: space-between;
+  }
+
   .featuresColumn {
     flex: 1 2 100%;
-    margin-left: 0 !important;
-    border-right: 0 !important;
+    padding-left: 0 !important;
+    border-left: 0 !important;
   }
 
   .featuresColumn ul {
-    display: flex;
-    flex-wrap: wrap;
+    min-width: 150px;
     margin-bottom: 0.2em;
   }
 
