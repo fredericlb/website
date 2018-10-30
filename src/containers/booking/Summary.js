@@ -93,7 +93,7 @@ class Summary extends PureComponent {
               <p>{this.renderDetails([
                 <Text id="payment">Payment:</Text>,
                 <span>
-                  <b>{packPrice / 100}€</b>
+                  <b>{packPrice}€</b>
                   <Text id="housingPack.dueDate"> to pay immediatly (only once) </Text>
                 </span>,
               ])}</p>
@@ -126,7 +126,7 @@ class Summary extends PureComponent {
                   { Utils.formatMonth(bookingDate, { lang }) }
                 </span>,
                 <span>
-                  <b>{proratedRent / 100}€ </b>
+                  <b>{proratedRent}€ </b>
                   <Text id="rent.dueDate" />
                   <b> { Utils.formatDate(bookingDate, { lang }) }</b>,
                 </span>,
@@ -134,7 +134,7 @@ class Summary extends PureComponent {
                   { Utils.formatMonth(firstMonths[1], { lang }) }
                 </span>,
                 <span>
-                  <b>{totalRent / 100}€ </b>
+                  <b>{totalRent}€ </b>
                   <Text id="rent.dueDate" />
                   <b> { Utils.formatDate(firstMonths[1], { lang }) }</b>,
                 </span>,
@@ -142,7 +142,7 @@ class Summary extends PureComponent {
                   { Utils.formatMonth(firstMonths[2], { lang }) }
                 </span>,
                 <span>
-                  <b>{totalRent / 100}€ </b>
+                  <b>{totalRent}€ </b>
                   <Text id="rent.dueDate" />
                   <b> { Utils.formatDate(firstMonths[2], { lang }) }</b>
                 </span>,
@@ -685,12 +685,12 @@ function mapStateToProps(args) {
     room: { ...room, name: Utils.localizeRoomName(room.name, lang) },
     apartment,
     packLevel: packOrder && Utils.getPackLevel(packOrder) || booking.pack,
-    packPrice: packOrder && packOrder.amount,
-    depositPrice: depositOrder && depositOrder.amount,
+    packPrice: packOrder && packOrder.amount / 100,
+    depositPrice: depositOrder && depositOrder.amount / 100,
     client,
     bookingDate,
-    totalRent,
-    proratedRent: Utils.prorateFirstRent(totalRent, bookingDate),
+    totalRent: totalRent / 100,
+    proratedRent: Utils.prorateFirstRent(totalRent, bookingDate) / 100,
     firstMonths: Utils.getFirstMonths(bookingDate),
     weekdays: Utils.getWeekdays(lang),
     summary,
