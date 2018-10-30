@@ -41,12 +41,33 @@ class Pictures extends PureComponent {
   }
 
   render({ lang, pictures, virtualVisitUrl, floorplans }) {
-    let cont = null, portal = null, virtualVisit = null;
-    const maxThumbnails = virtualVisitUrl == null ? 4 : 3;
+    let cont = null, portal = null, virtualVisit = null, floorPlanLink = null;
+
+    if (floorplans.length > 0) {
+      floorPlanLink = (
+        <div className={`${style.imageLinkCont}   picto-plans one-sixth`}
+          onClick={this.handleFloorplansSlideshowClick}
+        >
+          <Text id="floorplans">Floor Plans</Text>
+        </div>
+      );
+    }
+
+    if (virtualVisitUrl != null) {
+      virtualVisit = (
+        <div className={`${style.imageLinkCont}  picto-visit one-sixth`}>
+          <a href={virtualVisitUrl} target="_blank">
+            <Text id="virtualVisit">3D viewing</Text>
+          </a>
+        </div>
+      );
+    }
+
+    const maxThumbnails = 5 - (floorPlanLink != null ? 1 : 0) - (virtualVisitUrl != null ? 1 : 0);
 
     if (pictures.length > maxThumbnails) {
       cont = (
-        <div className={`${style.picturesCont} picto-photocamera_64px one-sixth`}
+        <div className={`${style.imageLinkCont} ${style.picturesCont} picto-photocamera_64px one-sixth`}
           onClick={this.handleSlideshowClick}
         >
           + {pictures.length - maxThumbnails}
@@ -58,7 +79,7 @@ class Pictures extends PureComponent {
       portal = (
         <Portal into="body">
           <div className={style.carouselOverlay} onClick={this.handleSlideshowClick}>
-            <div className={style.carouselClose}>🗙</div>
+            <div className={style.carouselClose}>×</div>
             <Carousel lazy slide arrows>
               {pictures.map(({ url, alt }) => (
                 <div
@@ -76,7 +97,7 @@ class Pictures extends PureComponent {
       portal = (
         <Portal into="body">
           <div className={style.carouselOverlay} onClick={this.handleFloorplansSlideshowClick}>
-            <div className={style.carouselClose}>🗙</div>
+            <div className={style.carouselClose}>×</div>
             <Carousel lazy slide arrows>
               {floorplans.map(({ url }) => (
                 <div
@@ -91,24 +112,6 @@ class Pictures extends PureComponent {
       );
     }
 
-    const visit = (
-      <div className={`${style.visitCont} one-sixth`}
-        onClick={this.handleFloorplansSlideshowClick}
-      >
-        <Text id="floorplans">Floor Plans</Text>
-      </div>
-    );
-
-    if (virtualVisitUrl != null) {
-      virtualVisit = (
-        <div className={`${style.visitCont} one-sixth`}>
-          <a href={virtualVisitUrl} target="_blank">
-            <Text id="virtualVisit">3D viewing</Text> 🗗
-          </a>
-        </div>
-      );
-    }
-
     return (
       <IntlProvider definition={definition[lang]}>
         <section className={`${style.pictures} grid-12 has-gutter`}>
@@ -116,7 +119,7 @@ class Pictures extends PureComponent {
             <Picture picture={picture} onClick={this.handleSlideshowClick} />
           ))}
           {cont}
-          {visit}
+          {floorPlanLink}
           {virtualVisit}
           {portal}
         </section>

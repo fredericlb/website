@@ -7,7 +7,24 @@
 
 .footer nav {
   padding: 20px 0 40px;
-  border-top: 1px solid white;
+}
+
+.footer nav h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12pt;
+  margin-bottom: 20px;
+}
+
+.footer nav:nth-child(3) ul {
+  display: flex;
+  margin-top: 30px;
+}
+
+.footer nav:nth-child(3) img {
+  width: 64px;
+  height: 64px;
+  margin-right: 8px;
 }
 
 .footer ul {
@@ -25,14 +42,21 @@
   text-decoration: underline;
 }
 
-.social svg {
-  display: inline-block;
-  width: 36px;
-  height: 36px;
+.terms {
+  text-align: right;
+  font-size: 12px !important;
 }
 
-.social [class^="brandico-"] {
-  text-decoration: none;
-  font-size: 2rem;
+.alertButton {
+  display: inline-block;
+  border: 1px solid white;
+  background-image: url('../../assets/footer/bell.png');
+  background-size: 35px;
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 55px;
   padding-right: 20px;
+  font-weight: bold;
 }

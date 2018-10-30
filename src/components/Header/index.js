@@ -78,7 +78,8 @@ class Header extends Component {
       <div class={style.headerLeftPart}>
         <AppBarTitle lang={this.props.lang} isLite={headerIsLite} handleToggle={this.handleToggle} />
         <div class={style.headerOptionalPart}>
-          { this.isSearchPage() ? ( <SearchForm mode="firstline" /> ) : null }
+          { this.isSearchPage() && ( <SearchForm mode="searchpage" /> ) }
+          { this.isSearchPage() && ( <CreateAlertButton /> ) }
         </div>
       </div>
     );
@@ -87,8 +88,7 @@ class Header extends Component {
   render({ lang, path }) {
     const headerClasses = [
       style.header,
-      this.isRoomPage() ? style.headerNotFixed : null,
-      this.isSearchPage() ? style.headerMultiLine : null,
+      this.isRoomPage() ? style.headerNotFixed : null
     ];
 
     return (
@@ -113,17 +113,9 @@ class Header extends Component {
                 onOverlayClick={this.handleToggle}
                 theme={{ wrapper: style.drawerWrapper }}
               >
-                <AppNavigation type="vertical" {...{ lang, path }} />
+                <AppNavigation type="vertical" {...{ lang, path }} handleToggle={this.handleToggle} />
               </Drawer>
             </div>
-            {this.isSearchPage() ? (
-              <div className={style.searchLine}>
-                <div>
-                  <SearchForm mode="secondline" />
-                  <CreateAlertButton />
-                </div>
-              </div>
-            ) : null}
           </div>
         </header>
       </IntlProvider>
@@ -132,37 +124,26 @@ class Header extends Component {
 }
 
 function AppBarTitle({ lang, isLite = false, handleToggle }) {
-  const logo = isLite ?
-    <img src="/assets/logo.png" alt="Chez Nestor" className={style.logoLite} /> :
-    <img src="/assets/logo370x130.png" alt="Chez Nestor" />;
-
   return (
-    <h1 class={appbarTheme.title} style={{ margin: '0 0 0 -22px' }}>
-      <div className="hide-lg-up">
-        <div onClick={handleToggle} style={{ color: '#aaa' }}>
-          { logo }
-          ▸
+    <h1 className={[appbarTheme.title, style.titleLite].join(' ')} style={{ margin: '0 0 0 -22px' }}>
+      <div>
+        <div onClick={handleToggle} style={{ color: '#aaa' }} className={style.logo}>
         </div>
-      </div>
-      <div className="hide-md-down">
-        <Link href={`/${lang}`} >
-          { logo }
-        </Link>
       </div>
     </h1>
   );
 }
 
-function AppNavigation({ lang, path, type, className }) {
+function AppNavigation({ lang, path, type, className, handleToggle }) {
   return (
     <Navigation className={className} type={type} theme={style}>
-      <NavLink href={`/${lang}/`} theme={style}>
+      <NavLink href={`/${lang}/`} theme={style} onClick={handleToggle}>
         <Text id="home">Home</Text>
       </NavLink>
-      <NavLink href={`/${lang}/services`} theme={style}>
+      <NavLink  href={`/${lang}/services`} theme={style} onClick={handleToggle}>
         <Text id="included">Included Services</Text>
       </NavLink>
-      <NavLink href={`/${lang}/booking-process`} theme={style}>
+      <NavLink href={`/${lang}/booking-process`} theme={style} onClick={handleToggle}>
         <Text id="booking">Booking</Text>
       </NavLink>
       <a onClick={handleClickContact} theme={style}>
@@ -171,7 +152,7 @@ function AppNavigation({ lang, path, type, className }) {
       {fp.flow(
         fp.filter(({ value }) => lang !== value),
         fp.map(({ value, label }) => (
-          <NavLink href={path.replace(/^\/[^/]{0,5}/, `/${value}`)} theme={style}>
+          <NavLink href={path.replace(/^\/[^/]{0,5}/, `/${value}`)} theme={style} onClick={handleToggle} >
             {label}
           </NavLink>
         ))

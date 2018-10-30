@@ -43,15 +43,28 @@ class Header extends Component {
   }
 
   @autobind
-  toggleSlideshow() {
-    this.setState({ showSlideshow: !this.state.showSlideshow });
+  hideSlideshow() {
+    this.setState({ showSlideshow: null });
   }
+
+  @autobind
+  showGallery(e) {
+    e.stopPropagation();
+    this.setState({ showSlideshow: 'gallery' });
+  }
+
+  @autobind
+  showFloorPlans(e) {
+    e.stopPropagation();
+    this.setState({ showSlideshow: 'floorplans' });
+  }
+
 
   constructor(props) {
     super(props);
     this.state = {
       showBookBtn: false,
-      showSlideshow: false,
+      showSlideshow: null,
       libSpyScroll: null,
       showLinks: false,
     };
@@ -77,7 +90,7 @@ class Header extends Component {
       window.removeEventListener('scroll', this.handleScroll);
   }
 
-  render({ lang, pictures, roomName, roomId }) {
+  render({ lang, pictures, roomName, roomId, floorplans, virtualVisitUrl }) {
     const localStyle = pictures.length ?
       { backgroundImage: `url(${pictures[0].url})` } :
       {};
@@ -108,15 +121,51 @@ class Header extends Component {
               </ul>
             </div>
           ): null }
-          {this.state.showSlideshow ? (
+          {this.state.showSlideshow != null ? (
             <Portal into="body">
-              <div className={style.carouselOverlay} onClick={this.toggleSlideshow}>
-                <div className={style.carouselClose}>🗙</div>
-                <Carousel lazy slide arrows className="slideshow-full">
-                  {pictures.map(({ url }) =>
-                    <div className={style.slideshowImg} style={`background-image: url(${url})`} />
+              <div className={style.carouselOverlay} onClick={this.hideSlideshow}>
+                <div className={style.carouselClose}>×</div>
+                {this.state.showSlideshow === 'gallery' && (
+                  <Carousel lazy slide arrows className="slideshow-full">
+                    {pictures.map(({ url }) =>
+                      <div className={style.slideshowImg} style={`background-image: url(${url})`} />
+                    )}
+                  </Carousel>
+                )}
+                {this.state.showSlideshow === 'floorplans' && (
+                  <Carousel lazy slide arrows className="slideshow-full">
+                    {floorplans.map(({ url }) => (
+                      <div
+                        className={style.slideshowImg}
+                        style={`background-image: url(${url})`}
+                        title={definition[lang].floorplanDisclaimer}
+                      />
+                    ))}
+                  </Carousel>
+                )}
+                <div className={style.slideshowSwitch}>
+                  <span
+                    onClick={this.showGallery}
+                    className={this.state.showSlideshow === 'gallery' ? style.selected : null}
+                  >
+                    <Text id="gallery">Gallery</Text>
+                  </span>
+                  {floorplans.length > 0 && (
+                    <span
+                      onClick={this.showFloorPlans}
+                      className={this.state.showSlideshow === 'floorplans' ? style.selected : null}
+                    >
+                      <Text id="floorplans">Floor Plans</Text>
+                    </span>
                   )}
-                </Carousel>
+                  {virtualVisitUrl != null && (
+                    <span>
+                      <a href={virtualVisitUrl} target="_blank">
+                        <Text id="virtualVisit">3D viewing</Text> 🗗
+                      </a>
+                    </span>
+                  )}
+                </div>
               </div>
             </Portal>
           ) : ''}
@@ -129,7 +178,7 @@ class Header extends Component {
           </div>
           <section className={style.coverPicture} style={localStyle}>
             <div className={style.coverPictureRoomName}>{ roomName }</div>
-            <Button className={style.allPicsBtn} onClick={this.toggleSlideshow}>
+            <Button className={style.allPicsBtn} onClick={this.showGallery}>
               <Text id="galery">See all pictures</Text>
             </Button>
           </section>
@@ -143,18 +192,49 @@ const definition = {
   'fr-FR': {
     book: 'Réserver ce logement',
     galery: 'Voir toutes les photos',
+    virtualVisit: 'Visite 3D',
+    floorplans: 'Plans',
+    gallery: 'Galerie',
+    floorplanDisclaimer: `
+      Note : les surfaces des chambres comprennent toutes les surfaces
+      privatives au sol (placard, balcon, sous-pente...).
+    `,
+  },
+  'en-US': {
+    book: 'Book this accomodation',
+    galery: 'See all pictures',
+    virtualVisit: '3D Visit',
+    floorplans: 'Plans',
+    gallery: 'Gallery',
+    floorplanDisclaimer: `
+      Note: All surface (closet, balcony, area under slope...) is taking into
+      account in the surface area of each room.
+    `,
   },
   'es-ES': {
     book: 'Reservar este alojamiento',
-    galery: 'Ver todas las fotografías',
+    galery: 'Ver todas las fotos',
+    floorplanDisclaimer: `
+      Nota: Toda la superficie (armario, balcón, área bajo pendiente...) se
+      tiene en cuenta en la superficie de cada habitación.
+    `,
   },
 };
 
 function mapStateToProps({ route: { lang }, rooms, apartments }, { roomId, apartmentId }) {
   const room = rooms[roomId];
-  const pictures = Utils.getPictures(room);
+  const apartment = apartments[apartmentId];
+  const pictures = []
+    .concat(Utils.getPictures(room), Utils.getPictures(apartment))
+    .filter(({ alt }) => alt !== 'floorplan');
+  const floorplans = []
+    .concat(Utils.getPictures(room), Utils.getPictures(apartment))
+    .filter(({ alt }) => alt === 'floorplan');
+  const { virtualVisitUrl } = room;
 
   return {
+    floorplans,
+    virtualVisitUrl,
     lang,
     pictures,
     roomId,

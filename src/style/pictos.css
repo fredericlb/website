@@ -1,3 +1,15 @@
+.picto-photocamera {
+    background-image: url(../assets/photo-camera.png);
+}
+
+.picto-plans {
+    background-image: url(../assets/plans.png);
+}
+
+.picto-visit {
+    background-image: url(../assets/360.png);
+}
+
 .picto-bouton_visite {
     background-image: url(../assets/rooms/bouton_visite.png);
 }

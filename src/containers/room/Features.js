@@ -44,6 +44,7 @@ function Features({ lang, roomFeatures, apartmentFeatures }) {
             <FeaturesList
               lang={lang}
               group={group}
+              twoColumns={['general', 'kitchen'].indexOf(group) !== -1}
               features={apartmentFeatures[group]}
               featureDetails={ENUMS[`apartment-features-${group}`]}
             />
@@ -54,20 +55,29 @@ function Features({ lang, roomFeatures, apartmentFeatures }) {
   );
 }
 
-function FeaturesList({ lang, group, taxonomy, features = [], featureDetails }) {
+function FeaturesList({ lang, group, taxonomy, features = [], featureDetails, twoColumns = false }) {
+  const firstColumnContent = twoColumns ? features.slice(0, Math.ceil(features.length / 2)) : features;
+  const secondColumnContent = twoColumns ? features.slice(Math.ceil(features.length / 2), features.length) : null;
   return features.length > 0 && (
     <section className={style.featuresColumn}>
       <div className={style.featuresRoom}>
         <Text id={group}>{_.capitalize(group)}</Text>
       </div>
-      <CroppedContainer height={170}>
-        <ul>{features.map((name) => (
+      <div>
+        <ul>{firstColumnContent.map((name) => (
           <Feature
             label={featureDetails[name][lang]}
             className={featureDetails[name].css}
           />
         ))}</ul>
-      </CroppedContainer>
+        {secondColumnContent != null && (
+          (<ul>{secondColumnContent.map(name => (
+            <Feature
+              label={featureDetails[name][lang]}
+              className={featureDetails[name].css}
+            />
+          ))}</ul>))}
+      </div>
     </section>
   );
 }

@@ -34,6 +34,10 @@
 	color: #FFF;
 }
 
+.titleLite {
+  padding: 0 15px 0 0 !important;
+}
+
 .appBar {
   height: var(--header-height);
   color: var(--color-greyish);
@@ -41,7 +45,6 @@
 }
 
 .appBar img {
-  height: calc(var(--header-height) - 4px);
   /* For come reason the image overflows the header without that correction */
 
 }
@@ -54,17 +57,36 @@
   cursor: pointer;
 }
 
-.logoLite {
-  padding: 7px;
-  padding-left: 10px;
+.logo {
+  width: calc((var(--header-height) - 4px) * 2.5);
+  height: calc(var(--header-height) - 4px);
+  background-image: url('../../assets/logo370x130.png');
+  background-size: contain;
+  background-position: left center;
 }
+
+@media screen and (max-width: 940px) {
+  .logo {
+    width: calc((var(--header-height) - 18px));
+    height: calc((var(--header-height) - 18px));
+    background-image: url('../../assets/logo.png');
+    margin: 7px;
+    margin-left: 10px;
+  }
+}
+
 
 .headerLeftPart {
   flex: 1;
 }
 
 .headerOptionalPart {
-  width: 500px;
+  flex: 3;
+  display: flex;
+}
+
+.headerOptionalPart > *:not(:first-child) {
+  margin-left: 10px;
 }
 
 .headerOptionalPart > div {
@@ -98,27 +120,32 @@
   width: 100%;
   position: fixed;
   z-index: 201;
-  margin-left: 115px;
+  margin-left: 116px;
+  padding-right: 1vw;
+  max-width: 410px;
+  @media screen and (max-width: 545px) {
+    max-width: calc(100vw - 116px);
+  }
+  @media screen and (min-width: 990px) {
+    padding-right: 0;
+  }
 }
 
+
+
 .searchLine > div {
-  width: 410px;
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+
 }
 
 .searchLine form {
-  margin-top: 0 !important;
+  margin: 0 !important;
 }
 
 .searchLine a[data-react-toolbox="button"] {
   margin-top: 0;
-}
-
-@media screen and (max-width: 550px) {
-  .searchLine > div {
-    width: calc(100% - 115px);
-  }
 }
