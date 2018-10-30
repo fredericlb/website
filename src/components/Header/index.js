@@ -151,7 +151,7 @@ function AppNavigation({ lang, path, type, className, handleToggle }) {
       </a>
       {fp.flow(
         fp.filter(({ value }) => lang !== value),
-          fp.map(({ value, label }) => (
+        fp.map(({ value, label }) => (
           <NavLink href={path.replace(/^\/[^/]{0,5}/, `/${value}`)} theme={style} onClick={handleToggle} >
             {label}
           </NavLink>
