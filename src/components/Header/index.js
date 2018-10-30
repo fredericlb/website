@@ -35,7 +35,6 @@ function getDocumentScrollTop() {
 class Header extends Component {
   @autobind
   handleToggle() {
-    console.log('handleToggle')
     this.setState({ isDrawerActive: !this.state.isDrawerActive });
   }
 
