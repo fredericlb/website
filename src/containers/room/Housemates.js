@@ -31,7 +31,7 @@ function Housemate({ lang, housemate, roomId, index }) {
   return (
     <div className={style.housemate}>
       <div className={style.housemateTitle}>
-        <Text id="room">Room</Text>&nbsp;{housemate.roomNumber}
+        <Text id="bedroom">Bedroom</Text>&nbsp;{housemate.roomNumber}
       </div>
       {('availableAt' in housemate) ? (
         <div>
@@ -60,16 +60,16 @@ const definition = {
   'fr-FR': {
     title: 'Colocataires',
     available: 'Disponible',
-    booked: 'Réservé',
+    booked: 'Réservée',
     view: 'voir',
-    room: 'Chambre',
+    bedroom: 'Chambre',
   },
   'es-ES': {
     title: 'Compañeros de cuarto',
     available: 'Disponible',
     booked: 'Reservado',
-    view: 'decir',
-    room: 'Habitación',
+    view: 'ver',
+    bedroom: 'Habitación',
   },
 };
 

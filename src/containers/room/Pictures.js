@@ -131,7 +131,7 @@ class Pictures extends PureComponent {
 const definition = {
   'en-US': {
     floorplanDisclaimer: `
-      Note: All surface (closet, balcony, area under slope...) is taking into
+      Note: All surface (closet, balcony, area under slope...) is taken into
       account in the surface area of each room.
     `,
   },
@@ -147,8 +147,8 @@ const definition = {
     virtualVisit: 'Tour 3D',
     floorplans: 'Planes',
     floorplanDisclaimer: `
-      Nota: Toda la superficie (armario, balcón, área bajo pendiente...) se
-      tiene en cuenta en la superficie de cada habitación.
+      Nota: Las superficies de las habitaciones incluyen todas las superficies
+      privativas al suelo (aparador, balcón, techo inclinado...).
     `,
   },
 };
@@ -165,7 +165,7 @@ function mapStateToProps({ route: { lang }, rooms, apartments }, { roomId, apart
   const { virtualVisitUrl } = room;
 
   return {
-    virtualVisitUrl,
+    virtualVisitUrl: `${virtualVisitUrl}&lang=${lang.split('-')[0]}`,
     floorplans,
     lang,
     pictures,

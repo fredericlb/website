@@ -65,7 +65,6 @@ class BookingSummary extends PureComponent {
 
     return (
       <IntlProvider definition={definition[lang]}>
-
         <div class="content">
           <Heading room={room} type="summary" />
 
@@ -103,11 +102,18 @@ class BookingSummary extends PureComponent {
   }
 }
 
-const definition = { 'fr-FR': {
-  title: 'Récapitulatif de la réservation pour la chambre',
-  back: 'Retour',
-  forward: 'Réserver la chambre',
-} };
+const definition = {
+  'fr-FR': {
+    title: 'Récapitulatif de la réservation pour la chambre',
+    back: 'Retour',
+    forward: 'Réserver la chambre',
+  },
+  'es-ES': {
+    title: 'Resumen de la reserva para la habitación',
+    back: 'Atrás',
+    forward: 'Réservar la habitación',
+  },
+};
 
 function mapStateToProps(state, { lang, rentingId }) {
   const { rentings, rooms, apartments, orders, summary } = state;

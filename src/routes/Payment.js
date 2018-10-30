@@ -9,6 +9,7 @@ import { Button }             from 'react-toolbox/lib/button';
 import OrderDetails           from '~/components/OrderDetails';
 import LoadingError           from '~/components/LoadingError';
 import CardForm               from '~/containers/payment/CardForm';
+import CouponField            from '~/containers/payment/CouponField';
 import * as actions           from '~/actions';
 
 class Payment extends PureComponent {
@@ -57,6 +58,7 @@ class Payment extends PureComponent {
       order,
       payment,
       isLoading,
+      isPackOrder,
     } = this.props;
 
     if ( isLoading ) {
@@ -79,6 +81,7 @@ class Payment extends PureComponent {
 
     const { isValidated, errors } = payment;
     const amount = order.balance / -100;
+    const isPaid = order.balance === 0;
 
     return (
       <IntlProvider definition={definition[lang]}>
@@ -87,9 +90,13 @@ class Payment extends PureComponent {
 
           <section>
             <OrderDetails order={order} />
+            { !isValidated && !isPaid && isPackOrder ?
+              <CouponField {...{ orderId }} />
+              : ''
+            }
           </section>
           <section>
-            { !isValidated && !errors.payment && order.balance !== 0 ?
+            { !isValidated && !errors.payment && !isPaid ?
               <h3>
                 <Text id="payment.title">Payment can be made by Mastercard or Visa.</Text>
               </h3>
@@ -98,7 +105,7 @@ class Payment extends PureComponent {
             <CardForm />
           </section>
 
-          { !isValidated && !errors.payment && order.balance !== 0 ?
+          { !isValidated && !errors.payment && !isPaid ?
             <nav class="text-center">
               { payment.isValidating || payment.isSaving ?
                 <ProgressBar type="circular" mode="indeterminate" /> :
@@ -133,10 +140,10 @@ const definition = {
     },
   },
   'es-ES': {
-    title: 'Pago seguro de la factura de',
+    title: 'Pago seguro para la factura de',
     payment: {
-      title: 'El pago se puede realizar con tarjeta de crédito Mastercard o Visa.',
-      button: 'Pagador {{amount}}€',
+      title: 'El pago se puede realizar con una tarjeta bancaria Mastercard o Visa.',
+      button: 'Pagar {{amount}}€',
     },
   },
 };
@@ -147,6 +154,9 @@ function mapStateToProps({ route: { lang, returnUrl, rentingPrice }, orders, pay
   if ( !order || order.isLoading ) {
     return { isLoading: true };
   }
+
+  const isPackOrder =
+    order.OrderItems.some(({ ProductId }) => /-pack$/.test(ProductId));
 
   return {
     lang,
@@ -160,6 +170,7 @@ function mapStateToProps({ route: { lang, returnUrl, rentingPrice }, orders, pay
     // instead, since that is the most likely to have been updated without the
     // user noticing
     rentingPrice,
+    isPackOrder,
   };
 }
 

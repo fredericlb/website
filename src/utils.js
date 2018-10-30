@@ -8,11 +8,12 @@ import reduce       from 'lodash/reduce';
 import filter       from 'lodash/filter';
 import capitalize   from 'lodash/capitalize';
 import values       from 'lodash/values';
+import forEach      from 'lodash/forEach';
 import Raven        from 'raven-js';
 import _const       from '~/const';
 import holidays     from './holidays.json';
 
-const _ = { reduce, filter, capitalize, values };
+const _ = { reduce, filter, capitalize, values, forEach };
 const {
   BASIC_PACK,
   SPECIAL_CHECKIN_FEES,
@@ -241,8 +242,20 @@ const pureUtils = {
     case 'es-ES':
       return roomName.replace('#', 'Habitación ');
     default:
-      return roomName.replace('#', 'Room ');
+      return roomName.replace('#', 'Bedroom ');
     }
+  },
+  getPackPrices({ products, city }) {
+    const rPack = new RegExp(`^${city}-.*?-pack$`);
+    const packPrices = {};
+
+    _.forEach(products, ({ price }, id) => {
+      if ( rPack.test(id) ) {
+        packPrices[id.split('-')[1]] = price;
+      }
+    });
+
+    return packPrices;
   },
 };
 

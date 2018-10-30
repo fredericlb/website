@@ -107,7 +107,9 @@ function Footer({ lang }) {
   );
 }
 
-function handleClickContact() {
+function handleClickContact(e) {
+  e.preventDefault();
+
   window.$crisp.push(['do', 'chat:open']);
 }
 
@@ -126,7 +128,7 @@ const definition = {
     services: 'Servicios Incluidos',
     booking: 'Reservar',
     about: 'A propósito de Chez Nestor',
-    career: 'Trabajar en Nestor',
+    career: 'Trabajar Chez Nestor',
     terms: 'Términos y Condiciones Generales y Avisos Legales',
   },
 };
