@@ -103,7 +103,6 @@ class Header extends Component {
       AnchorLink = this.state.libSpyScroll.AnchorLink;
     }
 
-    console.log(this.state.showSlideshow, floorplans);
     return (
       <IntlProvider definition={definition[lang]}>
         <div>
