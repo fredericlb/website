@@ -6,7 +6,7 @@
 export default {
   'header-height': '80px',
   'preferred-font': '"Open Sans", sans-serif',
-  'headings-font-family': 'var(--font-sans-serif)',
+  'headings-font-family': '"Lato", sans-serif',
   'color-primary': '#1C2B4A',
   'color-background': '#FAFAFA',
   'color-text': 'rgb(38, 50, 56)',
