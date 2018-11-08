@@ -8,7 +8,7 @@ const { SEARCHABLE_CITIES } = _const;
 function Cities({ lang }) {
   return (
     <IntlProvider definition={definition[lang]}>
-      <section class={`grid-3-large-1 has-gutter ${style.towns}`}>
+      <section className={`grid-3-large-1 has-gutter ${style.towns}`}>
         {SEARCHABLE_CITIES
           .filter(({ image }) => Boolean(image))
           .map((town) => (

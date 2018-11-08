@@ -25,7 +25,7 @@ function PackList(args) {
 
   return (
     <IntlProvider definition={definition[lang]}>
-      <p class="grid-3-large-1 has-gutter">
+      <p className="grid-3-large-1 has-gutter">
         {packCardArgs.map((name) => (
           <PackCard
             {...{
@@ -89,7 +89,7 @@ const packs = {
     stars: '★',
     'fr-FR': {
       title: 'Basique',
-      subtitle: 'Les principaux services pour un séjour sans stress dans votre appartement ',
+      subtitle: 'Les principaux services pour un séjour sans stress dans votre logement ',
       listHeader: 'Principaux services',
       listItems: [
         'Contrat individuel personnalisé',
@@ -100,7 +100,7 @@ const packs = {
     },
     'en-US': {
       title: 'Basic',
-      subtitle: 'All essential services for a stress-free stay in your apartment',
+      subtitle: 'All essential services for a stress-free stay in your accomodation',
       listHeader: 'Main services including',
       listItems: [
         'Customized individual contract',
@@ -111,7 +111,7 @@ const packs = {
     },
     'es-ES': {
       title: 'Básico',
-      subtitle: 'Los principales servicios para una estancia sin estrés en su apartamento',
+      subtitle: 'Los principales servicios para una estancia sin estrés en su alojamiento',
       listHeader: 'Principales servicios',
       listItems: [
         'Contrato individual personalizado',

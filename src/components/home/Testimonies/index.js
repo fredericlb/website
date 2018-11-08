@@ -12,7 +12,10 @@ function Testimonies({ lang }) {
 function Testimony({ title, comment, author, i }) {
   return (
     <div className={style.testimony}>
-      <img src={require(`../../../assets/home/testimony-${i+1}-imageoptim.jpg`)} />
+      <img
+        src={require(`../../../assets/home/testimony-${i+1}-imageoptim.jpg`)}
+        alt=""
+      />
       <h3>
         {title}{' '}
         <b>★&nbsp;★&nbsp;★&nbsp;★&nbsp;★</b>

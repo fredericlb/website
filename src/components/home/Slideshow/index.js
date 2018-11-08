@@ -11,12 +11,12 @@ export default function Slideshow({ children }) {
       <Carousel lazy autoplay autoplayInterval={4000} fade className={carousel}>
         {Array.from(Array(7)).map((val, i) => (
           <div
-            class={image}
+            className={image}
             style={{ backgroundImage: `url(/assets/home/gallery/home-gallery-${i+1}-o.jpg)` }}
           />
         ))}
       </Carousel>
-      <div class={searchEngineContainer}>
+      <div className={searchEngineContainer}>
         {children}
       </div>
     </div>

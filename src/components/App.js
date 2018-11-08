@@ -206,8 +206,8 @@ const definition = {
     appDescription: `
       Chez Nestor is the leader in furnished shared accommodation in France.
       Present in many cities, we offer you brand new, equipped and furnished
-      apartments in the heart of the city centre! Discover and book your room
-      on our website!
+      accomodations in the heart of the city centre! Discover and book your
+      room on our website!
     `,
   },
   'fr-FR': {
@@ -217,7 +217,7 @@ const definition = {
     `,
     appDescription: `
       Chez Nestor est le leader de la colocation meublée en France. Présent
-      dans de nombreuses villes, nous vous proposons des appartements refaits
+      dans de nombreuses villes, nous vous proposons des logements refaits
       à neufs, équipés et meublés en plein centre-ville ! Découvrez et réservez
       votre chambre sur notre site !
     `,
@@ -226,9 +226,10 @@ const definition = {
     appTitle: 'Chez Nestor, el líder de la vivienda compartida amueblada.',
     appDescription: `
       Chez Nestor es el líder de la vivienda compartida amueblada en
-      Francia. Estamos presentes en numerosas ciudades, le ofrecemos apartamentos completamente renovados,
-      equipados y amueblados en el corazón de la ciudad! Descubre y
-      reserva tu habitación desde nuestra página web!
+      Francia. Estamos presentes en numerosas ciudades, le ofrecemos
+      alojamiento completamente renovados, equipados y amueblados en el
+      corazón de la ciudad! Descubre y reserva tu habitación desde nuestra
+      página web!
     `,
   },
 };

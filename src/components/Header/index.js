@@ -1,7 +1,6 @@
 import fp                     from 'lodash/fp';
 import { Component }          from 'react';
 import { IntlProvider, Text } from 'preact-i18n';
-import { Link }               from 'preact-router/match';
 import autobind               from 'autobind-decorator';
 import { Link as NavLink }    from 'react-toolbox/lib/link';
 import { AppBar }             from 'react-toolbox/lib/app_bar';
@@ -14,9 +13,9 @@ import CreateAlertButton      from '~/components/CreateAlertButton';
 import style                  from './style';
 
 const languages = [
-  { value: 'en-US', label: '🇺🇸' },
-  { value: 'fr-FR', label: '🇫🇷' },
-  // { value: 'es-ES', label: '🇪🇸' },
+  { value: 'en-US', label: '🇺🇸', flag: require('../../assets/flags/en-US.png') },
+  { value: 'fr-FR', label: '🇫🇷', flag: require('../../assets/flags/fr-FR.png') },
+  { value: 'es-ES', label: '🇪🇸', flag: require('../../assets/flags/es-ES.png') },
 ];
 
 // https://stackoverflow.com/questions/20514596/document-documentelement-scrolltop-return-value-differs-in-chrome
@@ -75,9 +74,9 @@ class Header extends Component {
   renderLeftPart() {
     const headerIsLite = this.isSearchPage() || this.isRoomPage();
     return (
-      <div class={style.headerLeftPart}>
+      <div className={style.headerLeftPart}>
         <AppBarTitle lang={this.props.lang} isLite={headerIsLite} handleToggle={this.handleToggle} />
-        <div class={style.headerOptionalPart}>
+        <div className={style.headerOptionalPart}>
           { this.isSearchPage() && ( <SearchForm mode="searchpage" /> ) }
           { this.isSearchPage() && ( <CreateAlertButton /> ) }
         </div>
@@ -88,7 +87,7 @@ class Header extends Component {
   render({ lang, path }) {
     const headerClasses = [
       style.header,
-      this.isRoomPage() ? style.headerNotFixed : null
+      this.isRoomPage() ? style.headerNotFixed : null,
     ];
 
     return (
@@ -125,12 +124,11 @@ class Header extends Component {
 
 function AppBarTitle({ lang, isLite = false, handleToggle }) {
   return (
-    <h1 className={[appbarTheme.title, style.titleLite].join(' ')} style={{ margin: '0 0 0 -22px' }}>
+    <div className={[appbarTheme.title, style.titleLite].join(' ')} style={{ margin: '0 0 0 -22px' }}>
       <div>
-        <div onClick={handleToggle} style={{ color: '#aaa' }} className={style.logo}>
-        </div>
+        <div onClick={handleToggle} style={{ color: '#aaa' }} className={style.logo} />
       </div>
-    </h1>
+    </div>
   );
 }
 
@@ -151,9 +149,9 @@ function AppNavigation({ lang, path, type, className, handleToggle }) {
       </a>
       {fp.flow(
         fp.filter(({ value }) => lang !== value),
-        fp.map(({ value, label }) => (
+        fp.map(({ value, label, flag }) => (
           <NavLink href={path.replace(/^\/[^/]{0,5}/, `/${value}`)} theme={style} onClick={handleToggle} >
-            {label}
+            <img src={flag} alt={label} width="18" />
           </NavLink>
         ))
       )(languages)}

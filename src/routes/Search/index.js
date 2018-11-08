@@ -110,11 +110,10 @@ export class Search extends PureComponent {
         >
           <div className={leftPane}>
             { isLoading ? (
-              <div class="text-center">
+              <div className="text-center">
                 <ProgressBar type="circular" mode="indeterminate" />
               </div> ) : (
               <div>
-                <SameSearchCount count={this.state.sameSearchCounter} />
                 <ResultsList onRoomOver={this.onRoomOver} />
                 <Paging />
               </div>

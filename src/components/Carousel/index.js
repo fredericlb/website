@@ -52,11 +52,11 @@ class Carousel extends PureComponent {
 
   renderArrows() {
     return (
-      <div class="carousel-arrows">
-        <div class="carousel-arrow-left" onClick={this.prev}>
+      <div className="carousel-arrows">
+        <div className="carousel-arrow-left" onClick={this.prev}>
           <span>❬</span>
         </div>
-        <div class="carousel-arrow-right" onClick={this.next}>
+        <div className="carousel-arrow-right" onClick={this.next}>
           <span>❭</span>
         </div>
       </div>

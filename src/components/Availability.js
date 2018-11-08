@@ -1,14 +1,14 @@
 import { IntlProvider, Text } from 'preact-i18n';
 
 function Availability({ lang, className, availableAt, arrivalDate }) {
-  let icon = <span class="material-icons">check_circle</span>;
+  let icon = <span className="material-icons">check_circle</span>;
   let text = <Text id="availableNow">Available now</Text>;
-  let _className = `${className} availableNow`;
+  let _class = `${className} availableNow`;
 
   if ( availableAt === null ) {
-    icon = <span class="material-icons">remove_circle</span>;
+    icon = <span className="material-icons">remove_circle</span>;
     text = <Text id="unavailable">Unavailable</Text>;
-    _className = `${className} unavailable`;
+    _class = `${className} unavailable`;
   }
   else if ( +availableAt > +Date.now() ) {
     let date = availableAt.toLocaleDateString().replace(/\/\d{4}/, '');
@@ -18,14 +18,14 @@ function Availability({ lang, className, availableAt, arrivalDate }) {
       </Text>
     );
     if ( arrivalDate != null && (+availableAt > +arrivalDate) ) {
-      icon = <span class="material-icons">warning</span>;
-      _className = `${className} availableFrom`;
+      icon = <span className="material-icons">warning</span>;
+      _class = `${className} availableFrom`;
     }
   }
 
   return (
     <IntlProvider definition={definition[lang]}>
-      <div className={_className}>
+      <div className={_class}>
         {icon}{' '}
         {text}
       </div>

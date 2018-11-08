@@ -6,7 +6,6 @@ import CroppedContainer       from '~/components/room/CroppedContainer';
 import * as actions           from '~/actions';
 import style                  from './style.css';
 
-
 const _ = { capitalize };
 
 function Description({ lang, room, apartment }) {
@@ -16,12 +15,12 @@ function Description({ lang, room, apartment }) {
         <h3 className={style.heading}>
           <Text id="title">Description</Text>
         </h3>
-        <ul className={'grid-4 has-gutter ' + style.descriptionItems}>
+        <ul className={style.descriptionItems}>
           <li>
             <i className="icon-24 picto-description_surface" />
             <span>
               {apartment.floorArea}m²
-              (<Text id="apartment">apartment</Text>)
+              (<Text id="accomodation">accomodation</Text>)
             </span>
           </li>
           <ElevatorDetail {...{ lang, apartment }} />
@@ -30,7 +29,7 @@ function Description({ lang, room, apartment }) {
             <i className="icon-24 picto-description_surface" />
             <span>{room.floorArea}m² (<Text id="room">room</Text>)</span>
           </li>
-          <li class="two-thirds">
+          <li className="two-thirds">
             <i className="icon-24 picto-picto_adresse" />
             <a href="#map">
               {apartment.addressStreet} {apartment.addressZip}{' '}
@@ -69,7 +68,7 @@ function ElevatorDetail({ lang, apartment }) {
         <Text id="groundFloor">ground floor</Text>
       ) : (
         <span>
-          <Text id="floor">floor</Text>{' '}
+          <Text id="floor">Floor</Text>{' '}
           {apartment.floor}{' '}
           {apartment.elevator ?
             <Text id="with">with</Text> :
@@ -85,9 +84,9 @@ function ElevatorDetail({ lang, apartment }) {
 const definition = {
   'fr-FR': {
     title: 'Description',
-    apartment: 'logement',
+    accomodation: 'logement',
     groundFloor: 'rez-de-chaussée',
-    floor: 'étage',
+    floor: 'Étage',
     elevator: 'ascenseur',
     room: 'chambre',
     with: 'avec',
@@ -95,9 +94,9 @@ const definition = {
   },
   'es-ES': {
     title: 'Descripción',
-    apartment: 'vivienda',
+    accomodation: 'vivienda',
     groundFloor: 'planta baja',
-    floor: 'planta',
+    floor: 'Planta',
     elevator: 'ascensor',
     room: 'habitación ',
     with: 'con',

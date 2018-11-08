@@ -5,8 +5,8 @@ import style                  from './style.css';
 function SameSearchCount({ lang, count }) {
   return (
     <IntlProvider definition={definition[lang]}>
-      <p class={style.message} style="display: flex;">
-        <i class="material-icons">timer</i>
+      <p className={style.message} style="display: flex;">
+        <i className="material-icons">timer</i>
         &nbsp;
         <Text id="count" fields={{ count }}>
           {`${count} visitors made the same search this week.`}

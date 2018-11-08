@@ -4,7 +4,7 @@ import Card                   from '~/components/Card';
 export default function Services({ lang }) {
   return (
     <IntlProvider definition={definition[lang]}>
-      <div class="content service">
+      <div className="content service">
         <h1>
           <Text id="title">Services included with your housing</Text>
         </h1>
@@ -12,10 +12,10 @@ export default function Services({ lang }) {
           <Text id="subtitle">
             At Chez Nestor, everything is included: we take care of it all so
             that you don't have to worry about anything and you can enjoy your
-            apartment!
+            accomodation!
           </Text>
         </p>
-        <div class="grid-5 has-gutter-xl">
+        <div className="grid-5 has-gutter-xl">
           {services.map((service) => (
             <Card
               title={service[lang].title}
@@ -32,11 +32,17 @@ export default function Services({ lang }) {
 const definition = {
   'fr-FR': {
     title: 'Services inclus avec votre logement',
-    subtitle: 'Chez Nestor, tout est inclus : nous veillons à ce que vous n\'ayez à vous soucier de rien pour profiter de votre appartement !',
+    subtitle: `
+      Chez Nestor, tout est inclus : nous veillons à ce que vous n'ayez à
+      vous soucier de rien pour profiter de votre logement !
+    `,
   },
   'es-ES': {
     title: 'Servicios incluidos en su alojamiento',
-    subtitle: 'Chez Nestor, todo está incluido : Nos encargamos de todo para que pueda disfrutar de tu apartamento sin tener que preocuparse de nada.',
+    subtitle: `
+      Chez Nestor, todo está incluido : Nos encargamos de todo para que pueda
+      disfrutar de tu alojamiento sin tener que preocuparse de nada.
+    `,
   },
 };
 
@@ -44,15 +50,15 @@ const services = [{
   image: 'wifi.png',
   'en-US': {
     title: 'Wifi',
-    content: 'High-speed, unlimited Wi-Fi in your apartment!',
+    content: 'High-speed, unlimited Wi-Fi in your accomodation!',
   },
   'fr-FR': {
     title: 'Wifi',
-    content: 'Connexion wifi illimitée et haut débit dans votre appartement !',
+    content: 'Connexion wifi illimitée et haut débit dans votre logement !',
   },
   'es-ES': {
     title: 'Wifi',
-    content: 'Conexión wifi de banda ancha y ilimitada en tu apartamento!',
+    content: 'Conexión wifi de banda ancha y ilimitada en tu alojamiento!',
   },
 }, {
   image: 'electricity.png',
@@ -142,15 +148,15 @@ const services = [{
   image: 'insurance.png',
   'en-US': {
     title: 'Insurance',
-    content: 'Comprehensive Home Insurance is included for the apartment.',
+    content: 'Comprehensive Home Insurance is included for the accomodation.',
   },
   'fr-FR': {
     title: 'Assurance',
-    content: 'Votre assurance multirisque habitation est incluse pour l\'appartement.',
+    content: 'Votre assurance multirisque habitation est incluse pour le logement.',
   },
   'es-ES': {
     title: 'Seguro de vivienda',
-    content: 'El precio de su seguro multirriesgo de vivienda está incluido para el apartamento.',
+    content: 'El precio de su seguro multirriesgo de vivienda está incluido para el alojamiento.',
   },
 }, {
   image: 'support.png',
@@ -170,15 +176,15 @@ const services = [{
   image: 'subsidies.png',
   'en-US': {
     title: 'Subsidies',
-    content: 'All of our apartments are eligible for the rent subsidy from the CAF (rent and revenue conditions apply).',
+    content: 'All of our accomodations are eligible for the rent subsidy from the CAF (rent and revenue conditions apply).',
   },
   'fr-FR': {
     title: 'APL',
-    content: '100% de nos appartements sont éligibles aux APL de la CAF (sous conditions de loyer et revenus).',
+    content: '100% de nos logements sont éligibles aux APL de la CAF (sous conditions de loyer et revenus).',
   },
   'es-ES': {
     title: 'APL',
-    content: 'Todos nuestros apartamentos son elegibles para el subsidio de alquiler (APL) de la CAF (con sujeción a condiciones de arrendamiento and ingresos).',
+    content: 'Todos nuestros alojamiento son elegibles para el subsidio de alquiler (APL) de la CAF (con sujeción a condiciones de arrendamiento and ingresos).',
   },
 }, {
   image: 'flexibility.png',
@@ -198,15 +204,15 @@ const services = [{
   image: 'furniture.png',
   'en-US': {
     title: 'Furniture',
-    content: 'We have taken great care in furnishing your apartment tastefully.',
+    content: 'We have taken great care in furnishing your accomodation tastefully.',
   },
   'fr-FR': {
     title: 'Meubles',
-    content: 'Nous avons pris le plus grand soin pour meubler votre appartement avec goût.',
+    content: 'Nous avons pris le plus grand soin pour meubler votre logement avec goût.',
   },
   'es-ES': {
     title: 'Muebles',
-    content: 'Se ha tomado el máximo cuidado para amueblar su apartamento con gusto.',
+    content: 'Se ha tomado el máximo cuidado para amueblar su alojamiento con gusto.',
   },
 }, {
   image: 'fittings.png',

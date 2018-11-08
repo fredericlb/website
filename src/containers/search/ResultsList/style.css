@@ -4,12 +4,12 @@
 }
 
 
-.message h3, .message p {
+.message h1, .message p {
   color: white;
   font-size: 13px;
   margin-bottom: 0;
 }
-.message h3 {
+.message h1 {
   font-weight: bold;
   margin-bottom: 10px;
 }

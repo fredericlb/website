@@ -1,5 +1,4 @@
 import map                        from 'lodash/map';
-import { Link }                   from 'preact-router';
 import {
   IntlProvider,
   Text,
@@ -38,9 +37,10 @@ function Room(args) {
 
   return (
     <IntlProvider definition={definition[lang]}>
-      <Link
+      <a
         className={`${style.room} ${isThumbnail ? style['is-thumbnail'] : ''}`}
         href={`/${lang}/room/${id}`}
+        target="_blank"
       >
         <Carousel lazy slide arrows className={style.roomCarousel}>
           {_.map(galery, (url) => (
@@ -88,7 +88,7 @@ function Room(args) {
             </Localizer>
           </div>
         </div>
-      </Link>
+      </a>
     </IntlProvider>
   );
 }

@@ -158,12 +158,10 @@ class Header extends Component {
                       <Text id="floorplans">Floor Plans</Text>
                     </span>
                   )}
-                  {virtualVisitUrl != null && (
-                    <span>
-                      <a href={virtualVisitUrl} target="_blank">
-                        <Text id="virtualVisit">3D viewing</Text> 🗗
-                      </a>
-                    </span>
+                  {virtualVisitUrl && (
+                    <a href={virtualVisitUrl} target="_blank">
+                      <Text id="virtualVisit">3D viewing</Text> 🗗
+                    </a>
                   )}
                 </div>
               </div>

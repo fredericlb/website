@@ -10,7 +10,10 @@ function Guide({ lang }) {
   return (
     <IntlProvider definition={definition[lang]}>
       <section className={style.guide}>
-        <img src={require('../../../assets/home/gallery/home-gallery-1-o.jpg')} />
+        <img
+          src={require('../../../assets/home/gallery/home-gallery-1-o.jpg')}
+          alt=""
+        />
         <h2>
           <Text id="title">Free housing guide</Text>
         </h2>

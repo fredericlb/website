@@ -175,15 +175,13 @@ const pureUtils = {
       return acc;
     }, {});
   },
-  parseHouseMates(housemates = [], lang) {
+  parseHouseMates(housemates = []) {
     return housemates.map((housemate) => {
       const parsed = JSON.parse(housemate);
 
       if ( 'availableAt' in parsed ) {
         parsed.availableAt = new Date(parsed.availableAt);
       }
-
-      parsed.description = parsed[`description${lang === 'en-US' ? 'En' : 'Fr' }`];
 
       return parsed;
     });

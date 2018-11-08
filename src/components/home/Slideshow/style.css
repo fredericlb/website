@@ -10,7 +10,7 @@
   position: absolute;
   height: calc(100vh - 80px);
   width: 100%;
-  top: 0;
+  top: 80px;
   left: 0;
   display: flex;
   display: flex;

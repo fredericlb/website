@@ -41,7 +41,7 @@ class Payment extends PureComponent {
   renderTitle(lang, label) {
     return (
       <IntlProvider definition={definition[lang]}>
-        <div class="content">
+        <div className="content">
           <h1>
             <Text id="title">Secured payment for order</Text><br />
             <em>{label}</em>
@@ -63,7 +63,7 @@ class Payment extends PureComponent {
 
     if ( isLoading ) {
       return (
-        <div class="content text-center">
+        <div className="content text-center">
           <ProgressBar type="circular" mode="indeterminate" />
         </div>
       );
@@ -85,7 +85,7 @@ class Payment extends PureComponent {
 
     return (
       <IntlProvider definition={definition[lang]}>
-        <div class="content">
+        <div className="content">
           {this.renderTitle(lang, order.label)}
 
           <section>
@@ -106,7 +106,7 @@ class Payment extends PureComponent {
           </section>
 
           { !isValidated && !errors.payment && !isPaid ?
-            <nav class="text-center">
+            <nav className="text-center">
               { payment.isValidating || payment.isSaving ?
                 <ProgressBar type="circular" mode="indeterminate" /> :
                 <section style="margin-top: 2rem;">

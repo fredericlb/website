@@ -9,11 +9,11 @@ const { SALES_EMAIL, SUPPORT_EMAIL } = _const;
 export default function Services({ lang }) {
   return (
     <IntlProvider definition={definition[lang]}>
-      <div class="content">
+      <div className="content">
         <h1>
           <Text id="title">Let's get in touch</Text>
         </h1>
-        <div class="grid-2">
+        <div className="grid-2">
           <div>
             <h3>
               <Text id="address">Address</Text>

@@ -55,11 +55,13 @@ class Pictures extends PureComponent {
 
     if (virtualVisitUrl != null) {
       virtualVisit = (
-        <div className={`${style.imageLinkCont}  picto-visit one-sixth`}>
-          <a href={virtualVisitUrl} target="_blank">
-            <Text id="virtualVisit">3D viewing</Text>
-          </a>
-        </div>
+        <a
+          className={`${style.imageLinkCont} picto-visit one-sixth`}
+          href={virtualVisitUrl}
+          target="_blank"
+        >
+          <Text id="virtualVisit">3D viewing</Text>
+        </a>
       );
     }
 
@@ -165,7 +167,8 @@ function mapStateToProps({ route: { lang }, rooms, apartments }, { roomId, apart
   const { virtualVisitUrl } = room;
 
   return {
-    virtualVisitUrl: `${virtualVisitUrl}&lang=${lang.split('-')[0]}`,
+    virtualVisitUrl:
+      virtualVisitUrl &&`${virtualVisitUrl}&lang=${lang.split('-')[0]}`,
     floorplans,
     lang,
     pictures,

@@ -34,7 +34,7 @@ class BookingStep3 extends PureComponent {
 
     if ( isLoading ) {
       return (
-        <div class="content text-center">
+        <div className="content text-center">
           <ProgressBar type="circular" mode="indeterminate" />
         </div>
       );
@@ -42,7 +42,7 @@ class BookingStep3 extends PureComponent {
 
     return (
       <IntlProvider definition={definition[lang]}>
-        <div class="content">
+        <div className="content">
           <Heading room={room} type="confirmed" />
 
           <section>
@@ -54,7 +54,7 @@ class BookingStep3 extends PureComponent {
               </Text>
             </p>
 
-            <p class="text-center">
+            <p className="text-center">
               <Button primary raised href={`${IDENTITY_FORM_URL}?clientId=${email}`}>
                 <Text id="fill">Fill in the form</Text>
               </Button>

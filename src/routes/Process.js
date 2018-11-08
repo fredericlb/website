@@ -27,29 +27,29 @@ class Services extends PureComponent {
 
     return (
       <IntlProvider definition={definition[lang]}>
-        <div class="content service">
-          <h1>
-            <Text id="steps">Book your apartment in less than 1 minute</Text>
-          </h1>
-          <div class="grid-4 has-gutter-xl">
+        <div className="content service">
+          <h2>
+            <Text id="steps">Book your accomodation in less than 1 minute</Text>
+          </h2>
+          <div className="grid-4 has-gutter-xl">
             {steps.map((step) => (
               <Card
                 title={step[lang].title}
                 content={step[lang].content}
-                image={`/assets/booking/${step.image}`}
+                image={step.image}
               />
             ))}
           </div>
-          <h1>
+          <h2>
             <Text id="choose">Choose your housing pack</Text>
-          </h1>
+          </h2>
           <p>
             <Text id="subtitle">All the different services throughout your stay depending on which Housing Pack you have chosen:</Text>
           </p>
           <PackList pack="comfort" isPriceHidden />
-          <h1>
+          <h2>
             <Text id="comparison">Detailed comparison of the Housing Packs</Text>
-          </h1>
+          </h2>
           <FeatureList {...{ packLines, depositLines }} />
           <p>
             <b>Important</b> |
@@ -66,37 +66,37 @@ class Services extends PureComponent {
 
 const definition = {
   'fr-FR': {
-    steps: 'Réservez votre appartement en moins d\'une minute',
+    steps: 'Réservez votre logement en moins d\'une minute',
     choose: 'Choisissez votre pack logement',
-    subtitle: 'Différentes gammes de services pour votre appartement, tout au long du séjour, selon le pack choisi :',
+    subtitle: 'Différentes gammes de services pour votre logement, tout au long du séjour, selon le pack choisi :',
     comparison: 'Comparaison détaillée des différents packs',
     deposit: 'La caution et le pack logement sont deux montants différents. La caution est remboursable, pas le pack logement.',
   },
   'es-ES': {
-    steps: 'Reserva su apartamento en menos de un minuto',
+    steps: 'Reserva su alojamiento en menos de un minuto',
     choose: 'Elija su Housing Pack',
-    subtitle: 'Distintas gamas de servicios para su apartamento, a lo largo de su estancia, según el pack elegido :',
+    subtitle: 'Distintas gamas de servicios para su alojamiento, a lo largo de su estancia, según el pack elegido :',
     comparison: 'Comparación detallada de los diferentes Packs',
     deposit: 'La fianza y el Housing Pack son dos distintos importes. La fianza es un importe reembolsable pero no el Housing Pack.',
   },
 };
 
 const steps = [{
-  image: 'step-one.png',
+  image: require('../assets/booking/step-one.png'),
   'en-US': {
     title: 'Find',
-    content: 'Your ideal apartment from hundreds of flat shares.',
+    content: 'Your ideal accomodation from hundreds of flat shares.',
   },
   'fr-FR': {
     title: 'Trouvez',
-    content: 'Votre appartement idéal parmi nos centaines d\'offres de colocations.',
+    content: 'Votre logement idéal parmi nos centaines d\'offres de colocations.',
   },
   'es-ES': {
     title: 'Encuentre',
-    content: 'el apartamento de sus sueños entre nuestras centenas de viviendas compartidas.',
+    content: 'el alojamiento de sus sueños entre nuestras centenas de viviendas compartidas.',
   },
 }, {
-  image: 'step-two.png',
+  image: require('../assets/booking/step-two.png'),
   'en-US': {
     title: 'Choose',
     content: 'Your Housing Pack from the list below. All our services are included in the pack and the payment allows us to complete your booking.',
@@ -110,7 +110,7 @@ const steps = [{
     content: 'su Housing Pack en la siguiente lista. Todos nuestros servicios están incluidos en el Housing Pack y su pago finaliza su reserva.',
   },
 }, {
-  image: 'step-three.png',
+  image: require('../assets/booking/step-three.png'),
   'en-US': {
     title: 'Arrive',
     content: 'In your new city with your baggage and pick up your keys.',
@@ -124,18 +124,18 @@ const steps = [{
     content: 'A su nueva ciudad con su equipaje para recoger sus llaves.',
   },
 }, {
-  image: 'step-four.png',
+  image: require('../assets/booking/step-four.png'),
   'en-US': {
     title: 'Move in',
     content: 'To your new home and enjoy our services throughout your whole stay!',
   },
   'fr-FR': {
     title: 'Emmenagez',
-    content: 'Dans votre nouvel appartement et profitez de nos services tout au long de votre séjour.',
+    content: 'Dans votre nouveau logement et profitez de nos services tout au long de votre séjour.',
   },
   'es-ES': {
     title: 'Múdense',
-    content: 'A su nuevo apartamento y disfruta de nuestros servicios durante toda su estancia!',
+    content: 'A su nuevo alojamiento y disfruta de nuestros servicios durante toda su estancia!',
   },
 }];
 

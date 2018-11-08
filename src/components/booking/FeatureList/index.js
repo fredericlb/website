@@ -49,20 +49,20 @@ function FeatureList({ lang, isPriceHidden, packLines = [], depositLines = [] })
 // receive arguments more likely to change.
 function Sublist({ header, features }) {
   return (
-    <table class={sublist}>
+    <table className={sublist}>
       <thead>
         <tr>
           <th>{header}</th>
-          <th class={valueCellHeader}><Text id="basic">Basic</Text></th>
-          <th class={valueCellHeader}><Text id="comfort">Comfort</Text></th>
-          <th class={valueCellHeader}><Text id="privilege">Privilege</Text></th>
+          <th className={valueCellHeader}><Text id="basic">Basic</Text></th>
+          <th className={valueCellHeader}><Text id="comfort">Comfort</Text></th>
+          <th className={valueCellHeader}><Text id="privilege">Privilege</Text></th>
         </tr>
       </thead>
       <tbody>
         {features.map(([label, tooltip, ...values]) => (
           <tr>
-            <td class={featureCell}>
-              <span class={featureLabel}>
+            <td className={featureCell}>
+              <span className={featureLabel}>
                 <TooltipButton
                   label={label}
                   tooltip={`${label.toUpperCase()} — ${tooltip}`}
@@ -71,12 +71,12 @@ function Sublist({ header, features }) {
                   ripple={false}
                 />
               </span>
-              <span class={featureDetails}>— {tooltip}</span>
+              <span className={featureDetails}>— {tooltip}</span>
             </td>
             {values.map((value, i) => (
-              <td class={`${valueCell} ${value && colorClasses[i]}`}>
+              <td className={`${valueCell} ${value && colorClasses[i]}`}>
                 {typeof value === 'string' ?
-                  <span class={valueText}>{value}</span> : ( value ? '✔' : '✘' )
+                  <span className={valueText}>{value}</span> : ( value ? '✔' : '✘' )
                 }
               </td>
             ))}

@@ -3,7 +3,7 @@ import { IntlProvider, Text } from 'preact-i18n';
 export default function Services({ lang }) {
   return (
     <IntlProvider definition={definition[lang]}>
-      <div class="content">
+      <div className="content">
         <h1>
           <Text id="title">About</Text>
         </h1>

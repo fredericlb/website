@@ -48,7 +48,24 @@ function Housemate({ lang, housemate, roomId, index }) {
         <div>
           <div className={`${style.housemateIcon} ${pictoClass}`} />
           <div>
-            { housemate.description || (<Text id="booked">Booked</Text>) }
+            { housemate.age ? (
+              <ul className="unstyled" style="margin-bottom: 0;">
+                <li><b>{housemate.firstName}</b></li>
+                <li>{housemate.age} <Text id="yearsOld">years old</Text></li>
+                <li>{ housemate.isStudent ? (
+                  housemate.gender === 'male' ?
+                    <Text id="student.male">Student</Text> :
+                    <Text id="student.female">Student</Text>
+                ) : (
+                  housemate.gender === 'male' ?
+                    <Text id="student.male">Student</Text> :
+                    <Text id="student.female">Student</Text>
+                ) }</li>
+                <li>{housemate.countryEn}</li>
+              </ul>
+            ) : (
+              <Text id="booked">Booked</Text>
+            ) }
           </div>
         </div>
       )}
@@ -63,6 +80,15 @@ const definition = {
     booked: 'Réservée',
     view: 'voir',
     bedroom: 'Chambre',
+    yearsOld: 'ans',
+    student: {
+      female: 'Étudiante',
+      male: 'Étudiant',
+    },
+    youngWorker: {
+      female: 'Jeune active',
+      male: 'Jeune actif',
+    },
   },
   'es-ES': {
     title: 'Compañeros de cuarto',
@@ -70,6 +96,15 @@ const definition = {
     booked: 'Reservado',
     view: 'ver',
     bedroom: 'Habitación',
+    yearsOld: 'años',
+    student: {
+      female: 'Estudiante',
+      male: 'Estudiante',
+    },
+    youngWorker: {
+      female: 'Joven professional',
+      male: 'Joven professional',
+    },
   },
 };
 

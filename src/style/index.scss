@@ -53,13 +53,13 @@ header + footer {
   color: rgb(222, 50, 38);
 }
 
-h1 {
-  margin-bottom: 3rem;
+h1, .like-h1 {
+  margin-bottom: 1.5rem;
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
-h2 {
-  margin: 3rem 0;
+h2, .like-h2 {
+  margin: 1.3rem 0;
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
@@ -69,6 +69,11 @@ h3, h4, h5, h6 {
 
 section {
   margin-bottom: 4rem;
+}
+
+.unstyled {
+  list-style-type: none !important;
+  padding-left: 0px;
 }
 
 [class^="grid-"] > dd {

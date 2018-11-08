@@ -46,26 +46,26 @@ class ResultsList extends PureComponent {
         <div>
           { this.state.openMessage ? (
             <div className={message}>
-              <h3>
-                <span class={`material-icons ${closeButton}`} onClick={this.closeMessage}>
+              <h1 className="like-h3">
+                <span className={`material-icons ${closeButton}`} onClick={this.closeMessage}>
                   🗙
                 </span>
                 <Text id="title" fields={{ city }}>{`Flat-share in ${city}`}</Text>
-              </h3>
+              </h1>
               <p>
                 <Text id="content" fields={{ city, count }}>{`
                   Discover and compare our selection of ${count} shared rooms
-                  in ${city}. All our apartments in ${city} are fully
+                  in ${city}. All our accomodations in ${city} are fully
                   furnished, equipped, all included and in the city center.
-                  Book online or visit our apartments and just bring your
+                  Book online or visit our rooms and just bring your
                   suitcase: for 1 month, 1 semester, 1 year… Renting a shared
-                  apartment in ${city} has never been easier with Chez Nestor!
+                  accomodation in ${city} has never been easier with Chez Nestor!
                 `}</Text>
               </p>
             </div>
           ) : ''}
           { arrRooms.length ? (
-            <div class="grid-3 has-gutter">
+            <div className="grid-3 has-gutter">
               { arrRooms.map((room) => (
                 <Room
                   {...{ lang, arrivalDate, room }}
@@ -96,7 +96,7 @@ const definition = {
       Découvrez et comparez notre sélection de {{count}} chambres en
       colocation à {{city}}. Tous nos logements à {{city}} sont
       entièrement meublés, équipés, tout inclus et en centre ville.
-      Réservez en ligne ou visitez nos appartements et apportez
+      Réservez en ligne ou visitez nos chambres et apportez
       juste votre valise : pour 1 mois, 1 semestre, 1 an...
       Louer une colocation à {{city}} n'a jamais été aussi simple avec
       Chez Nestor !
@@ -111,12 +111,13 @@ const definition = {
     title: 'Piso compartido en {{city}}',
     content: `
       Descubra y compare nuestra selección de {{count}} habitaciones en
-      piso compartido en la ciudad {{city}}. Todos nuestros alojamientos en {{city}} son
-      totalmente amueblado, equipado, todo incluido y en el centro de la ciudad.
-      Reserve en línea o visite nuestros apartamentos y traiga
+      piso compartido en la ciudad {{city}}. Todos nuestros alojamientos en
+      {{city}} son totalmente amueblado, equipado, todo incluido y en el
+      centro de la ciudad.
+      Reserve en línea o visite nuestros habitaciones y traiga
       sólo su maleta: para 1 mes, 1 semestre, 1 año...
-      Alquile un apartamento compartido en {{city}} ¡nunca ha sido tan simple con
-      Chez Nestor!
+      Alquile un alojamiento compartido en {{city}} ¡nunca ha sido tan simple
+      con Chez Nestor!
     `,
     noMatch: `
       No hay habitaciones que coincidan con su búsqueda. Intentar

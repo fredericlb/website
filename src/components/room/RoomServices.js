@@ -59,7 +59,7 @@ const definition = {
   'es-ES': [{
     imgIndex: 2,
     title: 'Amueblados al 100%',
-    desc: 'Nuestros apartamentos son cuidadosamente amueblados para ofrecer diseño y comodidad.',
+    desc: 'Nuestros alojamientos son cuidadosamente amueblados para ofrecer diseño y comodidad.',
   }, {
     imgIndex: 3,
     title: 'Totalmente equipados',

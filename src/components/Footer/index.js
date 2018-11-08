@@ -10,12 +10,12 @@ import _const from '../../const';
 function Footer({ lang }) {
   return (
     <IntlProvider definition={definition[lang]}>
-      <footer class={footer}>
-        <div class="content">
-          <h2 class="text-center">
+      <footer className={footer}>
+        <div className="content">
+          <h2 className="text-center">
             <img src="/assets/logo370x130.png" alt="Chez Nestor" width="185" />
           </h2>
-          <div class="grid-3 has-gutter-xl">
+          <div className="grid-3 has-gutter-xl">
             <nav>
               <h3>Votre colocation</h3>
               <ul>
@@ -99,7 +99,12 @@ function Footer({ lang }) {
           </div>
           <p className={terms}>
             © {new Date().getFullYear()} Chez Nestor&nbsp;|&nbsp;
-            <a href="https://drive.google.com/file/d/0B8dLiyBmm3wJa1IwbWsxbk85LWs/view">CGV - CGU - Mentions légales</a>
+            <a
+              href="https://drive.google.com/file/d/0B8dLiyBmm3wJa1IwbWsxbk85LWs/view"
+              target="blank"
+            >
+              CGV - CGU - Mentions légales
+            </a>
           </p>
         </div>
       </footer>

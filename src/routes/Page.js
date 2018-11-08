@@ -51,7 +51,7 @@ class Page extends Component {
 
     if ( page === undefined || page.isLoading) {
       return (
-        <div class="content text-center">
+        <div className="content text-center">
           <ProgressBar type="circular" mode="indeterminate" />
         </div>
       );

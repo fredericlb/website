@@ -13,7 +13,7 @@ const _ = { capitalize };
 function ApartmentDescription({ lang, isLoading, apartment, district, floorPlan }) {
   if ( isLoading ) {
     return (
-      <div class="content text-center">
+      <div className="content text-center">
         <ProgressBar type="circular" mode="indeterminate" />
       </div>
     );
@@ -27,21 +27,18 @@ function ApartmentDescription({ lang, isLoading, apartment, district, floorPlan 
           <div className={`grid-10 has-gutter-l ${style.districtContent}`}>
             <div className="one-half">
               <CroppedContainer height={150}>
-                <h5>{district.label}</h5>
+                <p><b>{district.label}</b></p>
                 <div>{district[`description${_.capitalize(lang.split('-')[0])}`]}</div>
               </CroppedContainer>
             </div>
             <div className="one-quarter">
               <CroppedContainer height={150}>
-                <h5>
-                  <Text id="transports">Transports</Text>
-                </h5>
-                <div />
+                <p><b><Text id="transports">Transports</Text></b></p>
               </CroppedContainer>
             </div>
             <div className="one-quarter">
               <CroppedContainer height={150}>
-                <h5><Text id="nearbySchool">Nearby Schools</Text></h5>
+                <p><b><Text id="nearbySchool">Nearby Schools</Text></b></p>
                 <ul className={style.nearbySchools}>
                   {(district.nearbySchools || '')
                     .replace(/(^|\n)- /g, '\n')

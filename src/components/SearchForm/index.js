@@ -83,12 +83,12 @@ class SearchForm extends PureComponent {
     return (
       <IntlProvider definition={definition[lang]}>
         <form
-          class={`${form} ${this.props.mode === 'noSubmit' ? noSubmit : ''}`}
+          className={`${form} ${this.props.mode === 'noSubmit' ? noSubmit : ''}`}
           style={this.props.mode === 'home' ? { flexWrap: 'wrap' } : null}
         >
           { this.props.mode !== 'searchpage' ? (
             <div>
-              <i class="material-icons">location_city</i>
+              <i className="material-icons">location_city</i>
               <Dropdown
                 className={cityDropdown}
                 id={this.props.mode === 'header' ? null : 'city-select'}
@@ -116,7 +116,7 @@ class SearchForm extends PureComponent {
             ) : null }
           </div>
           {this.props.mode === 'home' ? (
-            <div class={buttonContainer}>
+            <div className={buttonContainer}>
               <Button
                 label={<Text id="submit">Search</Text>}
                 onClick={this.handleSubmit}

@@ -22,15 +22,37 @@ class BookingForm extends PureComponent {
     } = this.props;
 
     await actions.validateBooking(booking);
+    const intervalId = setInterval(() => (
+      this.setState({ progress: this.state.progress + 7 })
+    ), 700);
+
+    this.setState({ intervalId, progress: 7 });
+
     const { response: { rentingId } } =
       await actions.saveBooking({ room, booking, lang });
 
+    this.resetProgress();
+
     route(`/${this.props.lang}/summary/${rentingId}`);
+  }
+
+  @autobind
+  resetProgress() {
+    this.state.intervalId && clearInterval(this.state.intervalId);
+
+    this.setState({ progress: 0 });
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = { progress: 0 };
   }
 
   componentWillMount() {
     const { roomId, actions } = this.props;
 
+    this.setState({ progress: 0 });
     actions.updateBooking({ roomId });
   }
 
@@ -67,6 +89,10 @@ class BookingForm extends PureComponent {
     }
   }
 
+  componentWillUnmount() {
+    this.resetProgress();
+  }
+
   // Note: `user` comes from the URL, courtesy of our router
   render() {
     const {
@@ -75,10 +101,11 @@ class BookingForm extends PureComponent {
       booking,
       isLoading,
     } = this.props;
-
+    const { progress } = this.state;
+console.log(progress);
     if ( isLoading ) {
       return (
-        <div class="content text-center">
+        <div className="content text-center">
           <ProgressBar type="circular" mode="indeterminate" />
         </div>
       );
@@ -88,7 +115,7 @@ class BookingForm extends PureComponent {
     if ( room.name === undefined ) {
       return (
         <IntlProvider definition={definition[lang]}>
-          <h1 class="content">
+          <h1 className="content">
             <Text id="errors.room">
               Sorry, an error occured while preparing your booking for this room.
             </Text>
@@ -99,7 +126,7 @@ class BookingForm extends PureComponent {
 
     return (
       <IntlProvider definition={definition[lang]}>
-        <div class="content">
+        <div className="content">
           <Heading room={room} type="details" />
 
           { room.availableAt === null ?
@@ -111,9 +138,9 @@ class BookingForm extends PureComponent {
             <BookingFormSections />
           }
 
-          <nav class="text-center">
+          <nav className="text-center">
             { booking.isSaving ?
-              <ProgressBar type="circular" mode="indeterminate" /> :
+              <ProgressBar type="linear" mode="determinate" value={progress} /> :
               <Button raised primary
                 label="Continue"
                 icon="forward"
@@ -126,6 +153,23 @@ class BookingForm extends PureComponent {
     );
   }
 }
+
+const definition = {
+  'fr-FR': {
+    errors: {
+      unavailable: 'Désolé, cette chambre n\'est plus disponible.',
+      room: 'Désolé, une erreur est survenue lors de la préparation de votre réservation.',
+    },
+    button: 'Continuer',
+  },
+  'es-ES': {
+    errors: {
+      unavailable: 'Lo sentimos, esta habitación ya no está disponible.',
+      room: 'Lo sentimos, se ha producido un error durante la preparación de su reserva.',
+    },
+    button: 'Continuar',
+  },
+};
 
 function mapStateToProps(state, { roomId }) {
   const { route: { lang }, rooms, apartments, products, booking } = state;
@@ -147,23 +191,6 @@ function mapStateToProps(state, { roomId }) {
     packPrices,
   };
 }
-
-const definition = {
-  'fr-FR': {
-    errors: {
-      unavailable: 'Désolé, cette chambre n\'est plus disponible.',
-      room: 'Désolé, une erreur est survenue lors de la préparation de votre réservation.',
-    },
-    button: 'Continuer',
-  },
-  'es-ES': {
-    errors: {
-      unavailable: 'Lo sentimos, esta habitación ya no está disponible.',
-      room: 'Lo sentimos, se ha producido un error durante la preparación de su reserva.',
-    },
-    button: 'Continuar',
-  },
-};
 
 function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators(actions, dispatch) };

@@ -7,8 +7,7 @@ import mapValues              from 'lodash/mapValues';
 import Utils                  from '~/utils';
 import * as actions           from '~/actions';
 import _const                 from '~/const';
-import CroppedContainer       from '~/components/room/CroppedContainer';
-import style from './style.css';
+import style                  from './style.css';
 
 const _ = { capitalize, values, mapValues };
 const { ENUMS } = _const;
@@ -36,7 +35,7 @@ function Features({ lang, roomFeatures, apartmentFeatures }) {
         </div>
         <h4 className={style.subtitle}>
           <span>
-            <Text id="apartment">Apartment</Text>
+            <Text id="accomodation">Accomodation</Text>
           </span>
         </h4>
         <div className={style.featuresContent}>
@@ -56,22 +55,22 @@ function Features({ lang, roomFeatures, apartmentFeatures }) {
 }
 
 function FeaturesList({ lang, group, taxonomy, features = [], featureDetails, twoColumns = false }) {
-  const firstColumnContent = twoColumns ? features.slice(0, Math.ceil(features.length / 2)) : features;
-  const secondColumnContent = twoColumns ? features.slice(Math.ceil(features.length / 2), features.length) : null;
+  const halfLength = Math.ceil(features.length / 2);
+  const firstColumn = twoColumns ? features.slice(0, halfLength) : features;
+  const secondColumn = twoColumns && features.slice(halfLength, features.length);
+
   return features.length > 0 && (
     <section className={style.featuresColumn}>
-      <div className={style.featuresRoom}>
-        <Text id={group}>{_.capitalize(group)}</Text>
-      </div>
+      <p><b><Text id={group}>{_.capitalize(group)}</Text></b></p>
       <div>
-        <ul>{firstColumnContent.map((name) => (
+        <ul>{firstColumn.map((name) => (
           <Feature
             label={featureDetails[name][lang]}
             className={featureDetails[name].css}
           />
         ))}</ul>
-        {secondColumnContent != null && (
-          (<ul>{secondColumnContent.map(name => (
+        {secondColumn && (
+          (<ul>{secondColumn.map(name => (
             <Feature
               label={featureDetails[name][lang]}
               className={featureDetails[name].css}
@@ -95,7 +94,7 @@ const definition = {
   'fr-FR': {
     title: 'Équipements',
     bedroom: 'Chambre',
-    apartment: 'Appartement',
+    accomodation: 'Logement',
     sleep: 'Dormir',
     dress: 'S\'habiller',
     work: 'Travailler',
@@ -106,7 +105,7 @@ const definition = {
   'es-ES': {
     title: 'Equipamiento',
     bedroom: 'Habitación',
-    apartment: 'Apartamento',
+    accomodation: 'Alojamiento',
     sleep: 'Dormir',
     dress: 'Vestirse',
     work: 'Trabajo',

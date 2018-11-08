@@ -54,7 +54,7 @@ class CardForm extends PureComponent {
       return (
         <IntlProvider definition={definition[lang]}>
           <section>
-            <div class={payment.isValidated ? 'text-center' : 'handleError'}>
+            <div className={payment.isValidated ? 'text-center' : 'handleError'}>
               <h4>
                 { payment.isValidated ?
                   <Text id="payment.success">Your payment has succeeded.</Text> :
@@ -97,7 +97,7 @@ class CardForm extends PureComponent {
             onChange={this.handleChange}
             error={errors.holderName}
           />
-          <p class="grid-3-large-1 has-gutter">
+          <p className="grid-3-large-1 has-gutter">
             <Input type="number" min="1" max="12" step="1" maxLength="2"
               label={<Text id="card.expiry.month">Expiry Month</Text>}
               name="expiryMonth"
@@ -184,7 +184,7 @@ function Error({ orderStatus, paymentError }) {
   }
 
   return (
-    <div class="handleError">
+    <div className="handleError">
       <h4>{errorMessage}</h4><br />
       <span>
         { !canRetry ? '' : (

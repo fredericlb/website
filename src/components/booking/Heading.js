@@ -4,13 +4,13 @@ import Utils                              from '~/utils';
 function Heading({ lang, room, type }) {
   return (
     <IntlProvider definition={definition[lang]}>
-      <h1 class="grid has-gutter-xl">
-        <div class="two-thirds">
+      <h1 className="grid has-gutter-xl">
+        <div className="two-thirds">
           {definition[lang][type]}&nbsp;
           <Text id="forRoom" /><br />
           <em>{room.name}</em>
         </div>
-        <div class="one-third">
+        <div className="one-third">
           <Localizer>
             <img src={room['pic 0 url']}
               alt={<Text id="alt">Cover picture of the room</Text>}

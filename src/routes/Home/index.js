@@ -11,7 +11,7 @@ import style from './style.css';
 function Home ({ lang }) {
   return (
     <IntlProvider definition={definition[lang]}>
-      <div class="home">
+      <div className="home">
         <Slideshow>
           <div className={style.searchEngine}>
             <h1>
@@ -25,28 +25,29 @@ function Home ({ lang }) {
             </h3>
             <SearchForm mode="home" />
           </div>
+          <a href="#secondary">↓</a>
         </Slideshow>
-        <div class="content">
-          <h2 class="text-center">
+        <div id="secondary" className="content">
+          <h2 className="text-center">
             <Text id="cities">Discover the cities with Chez Nestor</Text>
           </h2>
           <Cities />
         </div>
         <div>
-          <h2 class="text-center">
+          <h2 className="text-center">
             <Text id="services">A new way of flatsharing</Text>
           </h2>
           <Services />
         </div>
         <div style="background: #E1E1E1; padding: 1px 0;">
-          <div class="content">
-            <h2 class="text-center">
+          <div className="content">
+            <h2 className="text-center">
               <Text id="testimonies">Our housemates recommend us</Text>
             </h2>
             <Testimonies />
           </div>
         </div>
-        <div class="content">
+        <div className="content">
           <Guide />
         </div>
       </div>

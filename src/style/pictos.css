@@ -470,6 +470,10 @@
     background-image: url(../assets/rooms/equipement_chambre_table_basse_64px.png);
 }
 
+.picto-equipement_chambre_lampe_chevet {
+    background-image: url(../assets/rooms/equipement_chambre_lampe_chevet.png);
+}
+
 .picto-equipement_chambre_table_chevet {
     background-image: url(../assets/rooms/equipement_chambre_table_chevet.png);
 }

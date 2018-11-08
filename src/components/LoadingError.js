@@ -7,7 +7,7 @@ const { SALES_EMAIL } = _const;
 function LoadingError({ lang, label, error }) {
   return (
     <IntlProvider definition={definition[lang]}>
-      <div class="content">
+      <div className="content">
         <h1>
           <Text id="error">An error just occured while loading</Text><br />
           {label}

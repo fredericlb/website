@@ -56,7 +56,7 @@ class Room extends PureComponent {
 
     if ( isLoading ) {
       return (
-        <div class="content text-center">
+        <div className="content text-center">
           <ProgressBar type="circular" mode="indeterminate" />
         </div>
       );

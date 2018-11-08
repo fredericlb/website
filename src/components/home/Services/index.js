@@ -7,7 +7,7 @@ function Services({ lang }) {
   return (
     <IntlProvider definition={definition[lang]}>
       <section>
-        <div class="grid-6-large-2 grid-6-small-1 has-gutter">
+        <div className="grid-6-large-2 grid-6-small-1 has-gutter">
           {definition[lang].list.map((s, i) => (
             <Service
               title={s.title}

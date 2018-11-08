@@ -195,7 +195,7 @@ export const saveBooking =
 
         return { errors: { unexpected: error } };
       } },
-      ok: { payloadReducer: ({ response }) => (response) },
+      ok: { payloadReducer: ({ response }) => response },
     },
   );
 

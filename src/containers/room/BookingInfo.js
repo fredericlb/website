@@ -1,7 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import { IntlProvider, Text } from 'preact-i18n';
-// import { Link }               from 'preact-router/match';
 import { Button }             from 'react-toolbox/lib/button';
 import Utils                  from '~/utils';
 import * as actions           from '~/actions';
@@ -128,7 +127,7 @@ const BookingInfo = ({ lang, roomId, room }) => {
             disabled={availableAt === null}
             href={`/${lang}/booking/${roomId}`}
             id="bookBtn"
-            style="width: 100%"
+            style="width: 100%; font-weight: bold;"
           >
             <Text id="booking">Book this accommodation</Text>
           </Button>
@@ -198,8 +197,8 @@ const definition = {
     serviceFees: 'Gastos',
     caf: 'Ayuda de vivienda (CAF)',
     cafInfo: `
-      Este alojamiento es elegible para obtener la APL. El desembolso de esta ayuda 
-      no es sistemático y su importe, aleatorio, varía en función del alquiler y 
+      Este alojamiento es elegible para obtener la APL. El desembolso de esta ayuda
+      no es sistemático y su importe, aleatorio, varía en función del alquiler y
       depende de su situación personal. Póngase en contacto con la CAF.
     `,
     deposit: 'Depósito de seguridad',

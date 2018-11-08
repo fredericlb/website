@@ -9,9 +9,9 @@ function OrderDetails({ lang, order }) {
           <thead>
             <tr>
               <th><Text id="item">Item</Text></th>
-              <th class="text-right"><Text id="unitPrice">Unit Price</Text></th>
+              <th className="text-right"><Text id="unitPrice">Unit Price</Text></th>
               <th><Text id="quantity">Quantity</Text></th>
-              <th class="text-right">Total</th>
+              <th className="text-right">Total</th>
             </tr>
           </thead>
           <tbody>
@@ -32,7 +32,7 @@ function OrderDetails({ lang, order }) {
                 <p><Text id="paid">Already paid</Text></p>
                 <p><Text id="balance">Balance</Text></p>
               </th>
-              <th class="text-right">
+              <th className="text-right">
                 <p>{order.amount / 100}€</p>
                 <p>{order.totalPaid / 100}€</p>
                 <p>{order.balance / 100}€</p>
@@ -49,9 +49,9 @@ function OrderItem({ label, unitPrice, quantity }) {
   return (
     <tr>
       <td>{label}</td>
-      <td class="text-right">{unitPrice / 100}€</td>
+      <td className="text-right">{unitPrice / 100}€</td>
       <td>{quantity}</td>
-      <td class="text-right">{unitPrice * quantity / 100}€</td>
+      <td className="text-right">{unitPrice * quantity / 100}€</td>
     </tr>
   );
 }

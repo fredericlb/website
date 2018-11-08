@@ -57,7 +57,7 @@ class BookingSummary extends PureComponent {
 
     if ( isLoading ) {
       return (
-        <div class="content text-center">
+        <div className="content text-center">
           <ProgressBar type="circular" mode="indeterminate" />
         </div>
       );
@@ -65,7 +65,7 @@ class BookingSummary extends PureComponent {
 
     return (
       <IntlProvider definition={definition[lang]}>
-        <div class="content">
+        <div className="content">
           <Heading room={room} type="summary" />
 
           <nav>

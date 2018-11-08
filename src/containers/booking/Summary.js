@@ -34,10 +34,10 @@ class Summary extends PureComponent {
   @autobind
   renderDetails(children) {
     return (
-      <dl class="grid-2 has-gutter">
+      <dl className="grid-2 has-gutter">
         {children.map((child, i) => i % 2 ?
-          <dd class="four-fifths margin-y-none">{child}</dd> :
-          <dt class="one-fifth">{child}</dt>
+          <dd className="four-fifths margin-y-none">{child}</dd> :
+          <dt className="one-fifth">{child}</dt>
         )}
       </dl>
     );
@@ -78,8 +78,8 @@ class Summary extends PureComponent {
 
     return (
       <IntlProvider definition={definition[lang]}>
-        <div class="grid has-gutter-xl">
-          <div class="two-thirds">
+        <div className="grid has-gutter-xl">
+          <div className="two-thirds">
             <section>
               <h4>1. <Text id="housingPack.title">Housing Pack</Text></h4>
               <p>
@@ -97,8 +97,8 @@ class Summary extends PureComponent {
                   <Text id="housingPack.dueDate"> to pay immediatly (only once) </Text>
                 </span>,
               ])}</p>
-              <p class="text-small">
-                <i class="text-small material-icons">warning</i>{' '}
+              <p className="text-small">
+                <i className="text-small material-icons">warning</i>{' '}
                 <Text id="housingPack.condition">
                   Please note: this bedroom remains available and can be booked
                   by someone else at any point as long as the Housing Pack is
@@ -149,8 +149,8 @@ class Summary extends PureComponent {
                 <i>etc.</i>,
               ])}</p>
 
-              <p class="text-small">
-                <i class="text-small material-icons">warning</i>
+              <p className="text-small">
+                <i className="text-small material-icons">warning</i>
                 <Text id="rent.condition.0"> Please note: </Text>
                 <ul>
                   <li>
@@ -170,7 +170,7 @@ class Summary extends PureComponent {
                   </li>
                   <li>
                     <Text id="rent.condition.3">
-                      If you are two to live in this bedrorom, 90€ will be
+                      If you are two to live in this bedroom, 90€ will be
                       added on to the monthly rent. Before booking, please
                       check with our team via hello@chez-nestor.com to check
                       if this particular bedroom is fit for two people.
@@ -237,8 +237,8 @@ class Summary extends PureComponent {
                 </ol>
               </p>
 
-              <p class="text-small">
-                <i class="text-small material-icons">warning</i>
+              <p className="text-small">
+                <i className="text-small material-icons">warning</i>
                 <Text id="checkin.condition"> Please note: </Text>
                 <ul>
                   <li>
@@ -374,7 +374,10 @@ class Summary extends PureComponent {
                     I have read and agreed to the terms and conditions stated
                     in the&nbsp;
                   </Text>
-                  <a href="https://drive.google.com/file/d/1J3CI5S-rudYMpc1dKz5cSjwb0zY2X4cy/view?usp=sharing">
+                  <a
+                    href="https://drive.google.com/file/d/1J3CI5S-rudYMpc1dKz5cSjwb0zY2X4cy/view?usp=sharing"
+                    target="_blank" rel="noopener noreferrer"
+                  >
                     <Text id="letsGo.checks.4">tenancy agreement</Text>
                   </a>.
                 </Checkbox>
@@ -391,7 +394,10 @@ class Summary extends PureComponent {
                   <Text id="letsGo.checks.5">
                     I confirm that I have read and accepted the&nbsp;
                   </Text>
-                  <a href="https://drive.google.com/file/d/0B8dLiyBmm3wJa1IwbWsxbk85LWs/view">
+                  <a
+                    href="https://drive.google.com/file/d/0B8dLiyBmm3wJa1IwbWsxbk85LWs/view"
+                    target="_blank" rel="noopener noreferrer"
+                  >
                     <Text id="letsGo.checks.6">general terms and conditions</Text>
                   </a>.
                 </Checkbox>
@@ -399,10 +405,10 @@ class Summary extends PureComponent {
             </section>
           </div>
 
-          <div class="one-third">
+          <div className="one-third">
             <section>
               <h4><Text id="acommodation.title">Accommodation details</Text></h4>
-              <ul class={theme.unstyled}>
+              <ul className={theme.unstyled}>
                 <li>{room.name.split('-')[1]}</li>
                 <li>{apartment.addressStreet}</li>
                 <li>{_.capitalize(apartment.addressCity)} {apartment.addressZipcode}</li>
@@ -410,7 +416,7 @@ class Summary extends PureComponent {
             </section>
             <section>
               <h4><Text id="personal.title">Personal details</Text></h4>
-              <ul class={theme.unstyled}>
+              <ul className={theme.unstyled}>
                 <li>{firstName} {lastName}</li>
                 <li>{email}</li>
               </ul>
@@ -445,7 +451,7 @@ const definition = {
       basic: 'basique',
       comfort: 'confort',
       privilege: 'privilège',
-      dueDate: ' à payer immédatement (uns seule fois)',
+      dueDate: ' à payer immédatement (une seule fois)',
       condition: `
         À noter : la chambre reste disponible et peut être réservée par
         quelqu’un d’autre à tout moment, tant que votre Pack Logement n’est
@@ -581,7 +587,7 @@ const definition = {
           `En caso de retraso del pago de sus alquileres, se aplica una penalización automática de 10€/día`,
           `Si son dos (ej: pareja) a ocupar esta habitación,
           90€/mes se añaden al alquiler. Antes de reservar, póngase en contacto con nuestro equipo
-          a través de hello@chez-nestor.com para comprobar la posibilidad de mudarse con otra persona. 
+          a través de hello@chez-nestor.com para comprobar la posibilidad de mudarse con otra persona.
           Si no lo hace, su reserva podría ser cancelada.`,
         ],
       },

@@ -82,8 +82,8 @@ class CouponField extends PureComponent {
     return (
       <IntlProvider definition={definition[lang]}>
         {showInput ? (
-          <div class="grid-6 has-gutter">
-            <Input type="text" class="one-third"
+          <div className="grid-6 has-gutter">
+            <Input type="text" className="one-third"
               label={<Text id="holder">Coupon code</Text>}
               name="couponName"
               value={couponName}
@@ -91,14 +91,14 @@ class CouponField extends PureComponent {
               disabled={isInputDisabled}
               error={couponError}
             />
-            <Button raised primary class="one-sixth" style={{ marginTop: '20px' }}
+            <Button raised primary className="one-sixth" style={{ marginTop: '20px' }}
               icon={isCouponValidated ? 'done' : 'send'}
               label={isCouponValidated ? '' : <Text id="apply">Apply</Text>}
               onClick={this.handleSubmitCoupon}
               disabled={isInputDisabled}
             />
             {isCouponValidating ? (
-              <span class="one-sixth">
+              <span className="one-sixth">
                 <ProgressBar type="circular" mode="indeterminate" />
               </span>
             ) : ''}
