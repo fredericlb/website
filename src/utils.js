@@ -255,6 +255,15 @@ const pureUtils = {
 
     return packPrices;
   },
+  // https://stackoverflow.com/questions/20514596/document-documentelement-scrolltop-return-value-differs-in-chrome
+  getDocumentScrollTop() {
+    return typeof window !== 'object' ?
+      0 :
+      window.scrollY
+      || window.pageYOffset
+      || document.body.scrollTop + (document.documentElement
+        && document.documentElement.scrollTop || 0);
+  },
 };
 
 const currYear = pureUtils.getCurrYear();

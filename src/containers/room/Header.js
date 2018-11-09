@@ -10,16 +10,6 @@ import Portal                 from 'preact-portal';
 import Carousel               from '~/components/Carousel';
 import style                  from '~/containers/room/style.css';
 
-// https://stackoverflow.com/questions/20514596/document-documentelement-scrolltop-return-value-differs-in-chrome
-function getDocumentScrollTop() {
-  return typeof window !== 'object' ?
-    0 :
-    window.scrollY
-    || window.pageYOffset
-    || document.body.scrollTop + (document.documentElement
-      && document.documentElement.scrollTop || 0);
-}
-
 class Header extends Component {
   @autobind
   handleScroll() {
@@ -27,7 +17,7 @@ class Header extends Component {
     let $el = document.getElementById('bookBtn');
     if ( $el !== null ) {
       const maxPos = $el.offsetTop + window.innerHeight;
-      const showBookBtn = getDocumentScrollTop() > maxPos;
+      const showBookBtn = Utils.getDocumentScrollTop() > maxPos;
       if (this.state.showBookBtn !== showBookBtn) {
         this.setState({ showBookBtn });
       }
@@ -35,7 +25,7 @@ class Header extends Component {
     $el = document.getElementById('room-anchors');
     if ( $el !== null ) {
       const maxPos = $el.offsetTop + window.innerHeight;
-      const showLinks = getDocumentScrollTop() > maxPos;
+      const showLinks = Utils.getDocumentScrollTop() > maxPos;
       if (this.state.showLinks !== showLinks) {
         this.setState({ showLinks });
       }

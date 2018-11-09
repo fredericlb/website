@@ -18,19 +18,6 @@ const languages = [
   { value: 'es-ES', label: '🇪🇸', flag: require('../../assets/flags/es-ES.png') },
 ];
 
-// https://stackoverflow.com/questions/20514596/document-documentelement-scrolltop-return-value-differs-in-chrome
-function getDocumentScrollTop() {
-  if ( typeof window !== 'object' ) {
-    return 0;
-  }
-
-  return window.scrollY
-    || window.pageYOffset
-    || document.body.scrollTop + (document.documentElement
-      && document.documentElement.scrollTop || 0);
-}
-
-
 class Header extends Component {
   @autobind
   handleToggle() {
@@ -40,7 +27,7 @@ class Header extends Component {
   @autobind
   handleScroll() {
     this.setState({
-      scrollPx: getDocumentScrollTop(),
+      scrollPx: Utils.getDocumentScrollTop(),
     });
   }
 
@@ -57,7 +44,7 @@ class Header extends Component {
 
     this.state = {
       isDrawerActive: false,
-      scrollPx: getDocumentScrollTop(),
+      scrollPx: Utils.getDocumentScrollTop(),
     };
   }
 

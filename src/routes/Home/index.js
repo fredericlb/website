@@ -13,19 +13,23 @@ function Home ({ lang }) {
     <IntlProvider definition={definition[lang]}>
       <div className="home">
         <Slideshow>
-          <div className={style.searchEngine}>
-            <h1>
-              <Text id="search.title">Your ready-to-live-in flatshares</Text>
-            </h1>
-            <h3>
-              <Text id="search.subtitle">
-                Find your furnished, fully equipped, all-inclusive flatshare,
-                in the heart of the city-centre today.
-              </Text>
-            </h3>
-            <SearchForm mode="home" />
+          <div>
+            <div className={style.searchEngine}>
+              <h1>
+                <Text id="search.title">Your ready-to-live-in flatshares</Text>
+              </h1>
+              <h3>
+                <Text id="search.subtitle">
+                  Find your furnished, fully equipped, all-inclusive flatshare,
+                  in the heart of the city-centre today.
+                </Text>
+              </h3>
+              <SearchForm mode="home" />
+            </div>
+            <div className={style.contentAnchor}>
+              <a href="#secondary">↓</a>
+            </div>
           </div>
-          <a href="#secondary">↓</a>
         </Slideshow>
         <div id="secondary" className="content">
           <h2 className="text-center">
