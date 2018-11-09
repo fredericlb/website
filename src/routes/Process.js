@@ -82,7 +82,7 @@ const definition = {
 };
 
 const steps = [{
-  image: require('../assets/booking/step-one.png'),
+  image: require('../assets/booking/booking-step1.png'),
   'en-US': {
     title: 'Find',
     content: 'Your ideal accomodation from hundreds of flat shares.',
@@ -96,7 +96,7 @@ const steps = [{
     content: 'el alojamiento de sus sueños entre nuestras centenas de viviendas compartidas.',
   },
 }, {
-  image: require('../assets/booking/step-two.png'),
+  image: require('../assets/booking/booking-step2.png'),
   'en-US': {
     title: 'Choose',
     content: 'Your Housing Pack from the list below. All our services are included in the pack and the payment allows us to complete your booking.',
@@ -110,7 +110,7 @@ const steps = [{
     content: 'su Housing Pack en la siguiente lista. Todos nuestros servicios están incluidos en el Housing Pack y su pago finaliza su reserva.',
   },
 }, {
-  image: require('../assets/booking/step-three.png'),
+  image: require('../assets/booking/booking-step3.png'),
   'en-US': {
     title: 'Arrive',
     content: 'In your new city with your baggage and pick up your keys.',
@@ -124,7 +124,7 @@ const steps = [{
     content: 'A su nueva ciudad con su equipaje para recoger sus llaves.',
   },
 }, {
-  image: require('../assets/booking/step-four.png'),
+  image: require('../assets/booking/booking-step4.png'),
   'en-US': {
     title: 'Move in',
     content: 'To your new home and enjoy our services throughout your whole stay!',
