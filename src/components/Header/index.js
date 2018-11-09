@@ -93,29 +93,25 @@ class Header extends Component {
     return (
       <IntlProvider definition={definition[lang]}>
         <header className={headerClasses.join(' ')}>
-          <div>
-            <div>
-              <div className={[style.wrapper].join(' ')}>
-                <AppBar
-                  title={this.renderLeftPart()}
-                  flat
-                  theme={style}
-                >
-                  <AppNavigation
-                    className="hide-md-down"
-                    type="horizontal" {...{ lang, path }}
-                  />
-                </AppBar>
-              </div>
-              <Drawer type="left"
-                active={this.state.isDrawerActive}
-                onOverlayClick={this.handleToggle}
-                theme={{ wrapper: style.drawerWrapper }}
-              >
-                <AppNavigation type="vertical" {...{ lang, path }} handleToggle={this.handleToggle} />
-              </Drawer>
-            </div>
+          <div className={[style.wrapper].join(' ')}>
+            <AppBar
+              title={this.renderLeftPart()}
+              flat
+              theme={style}
+            >
+              <AppNavigation
+                className="hide-md-down"
+                type="horizontal" {...{ lang, path }}
+              />
+            </AppBar>
           </div>
+          <Drawer type="left"
+            active={this.state.isDrawerActive}
+            onOverlayClick={this.handleToggle}
+            theme={{ wrapper: style.drawerWrapper }}
+          >
+            <AppNavigation type="vertical" {...{ lang, path }} handleToggle={this.handleToggle} />
+          </Drawer>
         </header>
       </IntlProvider>
     );
@@ -124,10 +120,11 @@ class Header extends Component {
 
 function AppBarTitle({ lang, isLite = false, handleToggle }) {
   return (
-    <div className={[appbarTheme.title, style.titleLite].join(' ')} style={{ margin: '0 0 0 -22px' }}>
-      <div>
-        <div onClick={handleToggle} style={{ color: '#aaa' }} className={style.logo} />
-      </div>
+    <div
+      className={[appbarTheme.title, style.titleLite].join(' ')}
+      style={{ margin: '0 0 0 -22px', float: 'left' }}
+    >
+      <div onClick={handleToggle} style={{ color: '#aaa' }} className={style.logo} />
     </div>
   );
 }
