@@ -52,7 +52,14 @@ export class Search extends PureComponent {
   }
 
   getUsersCount() {
-    return _.random(750, 950);
+    const city = this.props.city.toLowerCase();
+
+    return (
+      500 +
+      ((new Date()).getDate() * 3) +
+      city[0].charCodeAt(0) + city[1].charCodeAt(0) +
+      _.random(0, 7)
+    );
   }
 
   constructor(props) {
@@ -114,6 +121,7 @@ export class Search extends PureComponent {
                 <ProgressBar type="circular" mode="indeterminate" />
               </div> ) : (
               <div>
+                <SameSearchCount count={this.state.sameSearchCounter} />
                 <ResultsList onRoomOver={this.onRoomOver} />
                 <Paging />
               </div>

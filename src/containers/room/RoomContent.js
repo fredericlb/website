@@ -135,7 +135,12 @@ function mapStateToProps({ route: { lang }, rooms, apartments }, { roomId, apart
     lang,
     room: { ...room, name: Utils.localizeRoomName(room.name, lang) },
     apartment,
-    viewsCount: _.random(350, 550),
+    viewsCount: (
+      100 +
+      ((new Date()).getDate() * 2) +
+      room.id.toLowerCase().charCodeAt(0) +
+      _.random(0, 7)
+    ),
   };
 }
 
