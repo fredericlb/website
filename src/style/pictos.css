@@ -398,6 +398,18 @@
     background-image: url(../assets/rooms/equipement_chambre_lit_double_64px.png);
 }
 
+.picto-equipement_chambre_lit_simple {
+    background-image: url(../assets/rooms/equipement_chambre_lit_simple.png);
+}
+
+.picto-equipement_chambre_lit_simple_16px {
+    background-image: url(../assets/rooms/equipement_chambre_lit_simple_16px.png);
+}
+
+.picto-equipement_chambre_lit_simple_64px {
+    background-image: url(../assets/rooms/equipement_chambre_lit_simple_64px.png);
+}
+
 .picto-equipement_chambre_mobilier_de_terrasse {
     background-image: url(../assets/rooms/equipement_chambre_mobilier_de_terrasse.png);
 }

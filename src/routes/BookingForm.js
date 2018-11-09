@@ -102,7 +102,7 @@ class BookingForm extends PureComponent {
       isLoading,
     } = this.props;
     const { progress } = this.state;
-console.log(progress);
+
     if ( isLoading ) {
       return (
         <div className="content text-center">
