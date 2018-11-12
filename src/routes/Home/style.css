@@ -16,17 +16,21 @@
 }
 
 .contentAnchor {
-  margin: 20px auto 0;
+  position: absolute;
+  bottom: 40px;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 1px 1px #888;
   text-align: center;
 }
 
 .contentAnchor a {
   display: inline-block;
-  padding: 0 15px;
   color: white !important;
-  font-size: 40px;
-  font-weight: bold;
+  text-shadow: 0 1px 1px #888;
+  font-size: 36px;
   text-decoration: none !important;
-  border-radius: 50%;
-  border: 2px solid white;
 }
