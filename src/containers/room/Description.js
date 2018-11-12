@@ -65,7 +65,7 @@ function ElevatorDetail({ lang, apartment }) {
     <li>
       <i className="icon-24 picto-elevator" />
       { apartment.floor === 0 ? (
-        <Text id="groundFloor">ground floor</Text>
+        <Text id="groundFloor">Ground floor</Text>
       ) : (
         <span>
           <Text id="floor">Floor</Text>{' '}
@@ -85,7 +85,7 @@ const definition = {
   'fr-FR': {
     title: 'Description',
     accomodation: 'logement',
-    groundFloor: 'rez-de-chaussée',
+    groundFloor: 'Rez-de-chaussée',
     floor: 'Étage',
     elevator: 'ascenseur',
     room: 'chambre',
@@ -95,7 +95,7 @@ const definition = {
   'es-ES': {
     title: 'Descripción',
     accomodation: 'vivienda',
-    groundFloor: 'planta baja',
+    groundFloor: 'Planta baja',
     floor: 'Planta',
     elevator: 'ascensor',
     room: 'habitación ',
