@@ -1,9 +1,12 @@
+import get                    from 'lodash/get';
 import { Component }          from 'preact';
 import { connect }            from 'react-redux';
 import autobind               from 'autobind-decorator';
 import mapDispatchToProps     from '~/actions/mapDispatchToProps';
 import { Snackbar }           from 'react-toolbox/lib/snackbar';
 import style                  from './style.css';
+
+const  _ = { get };
 
 class Banner extends Component {
   @autobind
@@ -67,8 +70,12 @@ class Banner extends Component {
   }
 }
 
-function mapStateToProps({ route: { lang, roomId, city }, session, i18ns }) {
-  const cityId = city && city.toLowerCase();
+function mapStateToProps(args) {
+  const { route: { lang, roomId, city }, session, rooms, apartments, i18ns } = args;
+  const apartmentId = _.get(rooms, `${roomId}.ApartmentId`, '');
+  const cityId = city ?
+    city.toLowerCase() :
+    _.get(apartments, `${apartmentId}.addressCity`);
   const roomInfo = roomId && i18ns[`${roomId}-${lang}-banner`];
   const cityInfo = cityId && i18ns[`${cityId}-${lang}-banner`];
   const isActive = (cityInfo || roomInfo) && session.isInfoSnackbarActive;

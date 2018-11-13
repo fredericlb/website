@@ -26,8 +26,8 @@ function Home ({ lang }) {
               </h3>
               <SearchForm mode="home" />
             </div>
-            <div className={`hide-xs hide-sm ${style.contentAnchor}`}>
-              <a href="#secondary">⮟</a>
+            <div id="skip" className={`hide-xs hide-sm ${style.contentAnchor}`}>
+              <a href="#skip">⮟</a>
             </div>
           </div>
         </Slideshow>
