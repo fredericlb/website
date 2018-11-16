@@ -1,0 +1,40 @@
+.title {
+  color: #465e8a;
+}
+
+.itemsTable {
+  padding:10px;
+  width: 100%;
+  display: table;
+  margin-top: 40px;
+}
+
+.itemsTable tfoot table {
+  margin-bottom: 0;
+}
+
+.itemsTable tfoot td {
+  padding-left: 0;
+  padding-right: 0;
+  vertical-align: bottom;
+}
+
+.totals {
+  width: 400px;
+  line-height: 20px;
+  font-size: 20px;
+  float: right;
+  border: none;
+}
+
+.smallDetails {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: normal;
+  padding-top: 10px;
+}
+
+.conditions {
+  max-width: 400px;
+  padding: 1.5rem;
+}

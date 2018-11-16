@@ -4,8 +4,8 @@ import { route }              from 'preact-router';
 import { bindActionCreators } from 'redux';
 import { ProgressBar }        from 'react-toolbox/lib/progress_bar';
 import * as actions           from '~/actions';
-import RoomContent            from '~/containers/room/RoomContent';
-import Header                 from '~/containers/room/Header';
+import RoomContent            from '~/components/room/RoomContent';
+import Header                 from '~/components/room/Header';
 
 class Room extends PureComponent {
   static async prefetch(lang, roomId, dispatch) {

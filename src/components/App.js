@@ -16,7 +16,7 @@ import BookingSummary   from '~/routes/BookingSummary';
 import BookingConfirmed from '~/routes/BookingConfirmed';
 import Payment          from '~/routes/Payment';
 import Invoice          from '~/routes/Invoice';
-import InfoSnackbar     from '~/containers/InfoSnackbar';
+import InfoSnackbar     from '~/components/InfoSnackbar';
 
 import { updateRoute }  from '~/actions';
 import Utils            from '~/utils';

@@ -8,7 +8,7 @@ import { Button }             from 'react-toolbox/lib/button';
 import { ProgressBar }        from 'react-toolbox/lib/progress_bar';
 import Utils                  from '~/utils';
 import * as actions           from '~/actions';
-import Summary                from '~/containers/booking/Summary';
+import Summary                from '~/components/booking/Summary';
 import Heading                from '~/components/booking/Heading';
 
 class BookingSummary extends PureComponent {

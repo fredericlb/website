@@ -6,10 +6,10 @@ import { route }              from 'preact-router';
 import autobind               from 'autobind-decorator';
 import { ProgressBar }        from 'react-toolbox/lib/progress_bar';
 import { Button }             from 'react-toolbox/lib/button';
-import OrderDetails           from '~/components/OrderDetails';
+import OrderDetails           from '~/components/order/OrderDetails';
 import LoadingError           from '~/components/LoadingError';
-import CardForm               from '~/containers/payment/CardForm';
-import CouponField            from '~/containers/payment/CouponField';
+import CardForm               from '~/components/payment/CardForm';
+import CouponField            from '~/components/payment/CouponField';
 import * as actions           from '~/actions';
 
 class Payment extends PureComponent {
@@ -89,7 +89,11 @@ class Payment extends PureComponent {
           {this.renderTitle(lang, order.label)}
 
           <section>
-            <OrderDetails order={order} />
+            <OrderDetails order={order}>
+              <p>
+                <em><Text id="ref">Order ref.</Text> {order.id}</em>
+              </p>
+            </OrderDetails>
             { !isValidated && !isPaid && isPackOrder ?
               <CouponField {...{ orderId }} />
               : ''

@@ -8,7 +8,7 @@ import * as actions           from '~/actions';
 import { Button }             from 'react-toolbox/lib/button';
 import Portal                 from 'preact-portal';
 import Carousel               from '~/components/Carousel';
-import style                  from '~/containers/room/style.css';
+import style                  from '~/components/room/style.css';
 
 class Header extends Component {
   @autobind

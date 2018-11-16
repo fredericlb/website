@@ -1,8 +1,9 @@
 import { PureComponent }      from 'react';
 import { IntlProvider, Text } from 'preact-i18n';
-import { ProgressBar }        from 'react-toolbox/lib/progress_bar';
 import D                      from 'date-fns';
 import capitalize             from 'lodash/capitalize';
+import { ProgressBar }        from 'react-toolbox/lib/progress_bar';
+import OrderDetails           from '~/components/order/OrderDetails';
 import Utils                  from '~/utils';
 import _const                 from '~/const';
 import style                  from './style';
@@ -43,37 +44,6 @@ export default class Invoice extends PureComponent {
     }
   }
 
-  renderOrderItem({ label, unitPrice, vatRate, quantity }) {
-    return (
-      <tr>
-        <td className={`${style.title} text-left`}>{label}</td>
-        <td className="text-right">{unitPrice /100}€</td>
-        <td className="text-right">{vatRate > 0 ? `${vatRate * 100}%` : ''}</td>
-        <td className="text-right">{quantity}</td>
-        <td className="text-right">{unitPrice * quantity / 100}€</td>
-      </tr>
-    );
-  }
-
-  renderInvoiceDetails({ order, lang }) {
-    return   (
-      <table className={`${style['table-3']} ${style.noborder}`}>
-        <th className="text-left">
-          <p>Total</p>
-          <p><Text id="paid">Paid</Text></p>
-          <p><Text id="due.amount">Balance</Text></p>
-          <p><Text id="state">Status</Text></p>
-        </th>
-        <th className="text-right">
-          <p>{order.amount / 100}€</p>
-          <p>{order.totalPaid / 100}€</p>
-          <p>{order.balance / 100}€</p>
-          <p>{order.balance < 0 ? lang ==='fr-FR' ? 'Impayée' : 'Unpaid': lang ==='fr-FR' ? 'Payée' : 'Paid'}</p>
-        </th>
-      </table>
-    );
-  }
-
   render({ lang }) {
     const {
       isLoading,
@@ -112,12 +82,12 @@ export default class Invoice extends PureComponent {
                 </tr>
                 <tr>
                   <td><a href="http://www.chez-nestor.com">www.chez-nestor.com</a></td>
-                  <td>16, Rue de Condé</td>
+                  <td>15-17 rue Jean Bourgey 69100 Villeurbanne</td>
                 </tr>
                 <tr>
                   <td><a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
                   </td>
-                  <td>69002, Lyon</td>
+                  <td>69100, Villeurbanne</td>
                 </tr>
                 <tr>
                   <td>+33 (0) 972 323 102</td>
@@ -165,32 +135,19 @@ export default class Invoice extends PureComponent {
                   <td className={style.bottom} />
                 </tr>
               </table>
-              <table className={style['table-2']}>
-                <tr>
-                  <td className="text-left"><strong><Text id="item">Item</Text></strong></td>
-                  <td className="text-right"><strong><Text id="unitPrice">Unit Price</Text></strong></td>
-                  <td className="text-right"><strong><Text id="vat">VAT Rate</Text></strong></td>
-                  <td className="text-right"><strong><Text id="quantity">Quantity</Text></strong></td>
-                  <td className="text-right"><strong>Total</strong></td>
-                </tr>
-                { ( order.OrderItems || [] ).map(this.renderOrderItem) }
-              </table>
-              <div className={style['invoice-part3']}>
-                <div className={style.conditions}>
-                  <p>Conditions</p>
-                  <p><Text id="conditions">
-                    This rent invoice is valid only for the specified time period
-                    and annuls any financial obligation. It does not waiver the
-                    occupant from earlier unpaid rents and is provided subject
-                    to any undergoing legal procedures.
-                  </Text></p>
-                </div>
-                {this.renderInvoiceDetails({ order, lang })}
-              </div>
+              <OrderDetails order={order}>
+                <p>Conditions</p>
+                <p><Text id="conditions">
+                  This rent invoice is valid only for the specified time period
+                  and annuls any financial obligation. It does not waiver the
+                  occupant from earlier unpaid rents and is provided subject
+                  to any undergoing legal procedures.
+                </Text></p>
+              </OrderDetails>
             </div>
           )}
           <footer className={style.footer}>
-            <p>Someby | 16 rue de Condé 69002 Lyon | +33 (0)972323102 | hello@chez-nestor.com</p>
+            <p>Someby | 15-17 rue Jean Bourgey 69100 Villeurbanne | +33 (0)972323102 | hello@chez-nestor.com</p>
             <p>www.chez-nestor.com | SARL au capital de 170.000€ immatriculée au RCS de Lyon</p>
             <p>SIRET n°751570003 00036 | N° de TVA intracommunautaire FR20 751 570 003</p>
           </footer>
@@ -211,12 +168,6 @@ const definition = {
       date: 'Date d\'échéance',
       amount: 'Montant dû',
     },
-    item: 'Produits',
-    unitPrice: 'Prix Unitaire',
-    vat: 'TVA',
-    quantity: 'Quantité',
-    paid: 'Payé à ce jour',
-    state: 'État',
     conditions:
       `La présente quittance ne libère l'occupant que pour la période
       indiquée et annule tout reçu à valoir. Elle n'est pas libératoire des
@@ -233,16 +184,10 @@ const definition = {
       date: 'Fecha de vencimiento',
       amount: 'Importe adeudado',
     },
-    item: 'Productos',
-    unitPrice: 'Precio unitario',
-    vat: 'IVA',
-    quantity: 'Cantidad',
-    paid: 'Pagado hasta ahora',
-    state: 'Estado',
     conditions: `
       El presente recibo de pago de arrendamiento solo libera el ocupante para el período especificado
       y anula todo recibo exigible.
-      No se acompaña de ningún carácter liberatorio en cuanto a los alquileres anteriores pendientes 
+      No se acompaña de ningún carácter liberatorio en cuanto a los alquileres anteriores pendientes
       y será entregada sin perjuicio de todo procedimiento judicial en curso.
     `,
   },

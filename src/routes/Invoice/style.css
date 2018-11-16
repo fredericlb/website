@@ -1,3 +1,7 @@
+.invoice-data ul {
+  text-align: right;
+}
+
 .invoice-content {
   height: auto;
   width: 1024px;
@@ -19,10 +23,10 @@
   content: "";
   position: absolute;
   height: 1px;
-  left: 100px;
+  left: 150px;
   border-top: 1px solid #1C2B4A;
   top: 64px;
-  width: 924px;
+  width: 874px;
 }
 
 .table-0 {
@@ -37,20 +41,6 @@
   margin:0;
   width:1024px;
   line-height: 5px;
-}
-
-.table-2 {
-  padding:10px;
-  width:1024px;
-  display: table;
-  margin-top: 40px;
-}
-
-.table-3 {
-  width: 400px;
-  line-height: 20px;
-  font-size: 20px;
-  float: right;
 }
 
 .noborder, .noborder th, .noborder td {
@@ -81,12 +71,6 @@
 
 .invoice-part3 {
   width: 1024px;
-}
-
-.conditions {
-  float: left;
-  width: 400px;
-  margin-left: 12px;
 }
 
 .footer {

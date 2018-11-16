@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Button }             from 'react-toolbox/lib/button';
 import * as actions           from '~/actions';
 import Utils                  from '~/utils';
-import style                  from '~/containers/room/style.css';
+import style                  from '~/components/room/style.css';
 
 function Housemates({ lang, housemates, roomId }) {
   return (

@@ -1,8 +1,8 @@
 import { IntlProvider, Text } from 'preact-i18n';
 import Utils                  from '~/utils';
 import FeatureList						from '~/components/booking/FeatureList';
-import PackPicker							from '~/containers/booking/PackPicker';
-import ClientInputs			      from '~/containers/booking/ClientInputs';
+import PackPicker							from '~/components/booking/PackPicker';
+import ClientInputs			      from '~/components/booking/ClientInputs';
 
 function BookingFormSections({ lang }) {
   return (
