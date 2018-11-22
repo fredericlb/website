@@ -100,7 +100,7 @@ const packs = {
     },
     'en-US': {
       title: 'Basic',
-      subtitle: 'All essential services for a stress-free stay in your accomodation',
+      subtitle: 'All essential services for a stress-free stay in your accommodation',
       listHeader: 'Main services including',
       listItems: [
         'Customized individual contract',

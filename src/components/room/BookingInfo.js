@@ -17,7 +17,7 @@ const BookingInfo = ({ lang, roomId, room }) => {
 
   return (
     <IntlProvider definition={definition[lang]}>
-      <section className={style.bookingInfo}>
+      <section id="bookingInfo" className={style.bookingInfo}>
         <h3 className={style.subtitle}>
           <span><Text id="mensuel">Monthly Payments</Text></span>
         </h3>

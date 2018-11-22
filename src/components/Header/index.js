@@ -27,7 +27,7 @@ class Header extends Component {
   @autobind
   handleScroll() {
     this.setState({
-      scrollPx: Utils.getDocumentScrollTop(),
+      scrollPx: window.scrollY,
     });
   }
 
@@ -44,7 +44,7 @@ class Header extends Component {
 
     this.state = {
       isDrawerActive: false,
-      scrollPx: Utils.getDocumentScrollTop(),
+      scrollPx: typeof window !== 'object' ? 0 : window.scrollY,
     };
   }
 

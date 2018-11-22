@@ -17,7 +17,7 @@ function Guide({ lang }) {
         <h2>
           <Text id="title">Free housing guide</Text>
         </h2>
-        <p><Text id="text.0">Where to look for an accomodation?</Text></p>
+        <p><Text id="text.0">Where to look for an accommodation?</Text></p>
         <p><Text id="text.1">Which files are required for a student?</Text></p>
         <p><Text id="text.2">What fees are expected for a rental agreement?</Text></p>
         <Button

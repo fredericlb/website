@@ -55,11 +55,11 @@ class ResultsList extends PureComponent {
               <p>
                 <Text id="content" fields={{ city, count }}>{`
                   Discover and compare our selection of ${count} shared rooms
-                  in ${city}. All our accomodations in ${city} are fully
+                  in ${city}. All our accommodations in ${city} are fully
                   furnished, equipped, all included and in the city center.
                   Book online or visit our rooms and just bring your
                   suitcase: for 1 month, 1 semester, 1 year… Renting a shared
-                  accomodation in ${city} has never been easier with Chez Nestor!
+                  accommodation in ${city} has never been easier with Chez Nestor!
                 `}</Text>
               </p>
             </div>

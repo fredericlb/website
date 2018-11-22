@@ -14,18 +14,22 @@ class Header extends Component {
   @autobind
   handleScroll() {
     // This function will never get called server-side
-    let $el = document.getElementById('bookBtn');
+    let $el = document.getElementById('bookingInfo');
+
     if ( $el !== null ) {
-      const maxPos = $el.offsetTop + window.innerHeight;
-      const showBookBtn = Utils.getDocumentScrollTop() > maxPos;
+      const showBookBtn =
+        $el.getBoundingClientRect().bottom < window.innerHeight;
+
       if (this.state.showBookBtn !== showBookBtn) {
         this.setState({ showBookBtn });
       }
     }
+
     $el = document.getElementById('room-anchors');
+
     if ( $el !== null ) {
-      const maxPos = $el.offsetTop + window.innerHeight;
-      const showLinks = Utils.getDocumentScrollTop() > maxPos;
+      const showLinks = $el.getBoundingClientRect().top < 0;
+
       if (this.state.showLinks !== showLinks) {
         this.setState({ showLinks });
       }
@@ -158,10 +162,10 @@ class Header extends Component {
             </Portal>
           ) : ''}
           <div className={`${style.fixedHeader} ${btnState}`}>
-            <Button href={`/${lang}/booking/${roomId}`}
-              raised primary id="bookBtn" style="width: 100%"
+            <Button id="bookBtnMobile" href={`/${lang}/booking/${roomId}`}
+              raised primary style="width: 100%"
             >
-              <Text id="book">Book this accomodation</Text>
+              <Text id="book">Book this accommodation</Text>
             </Button>
           </div>
           <section className={style.coverPicture} style={localStyle}>
@@ -189,7 +193,7 @@ const definition = {
     `,
   },
   'en-US': {
-    book: 'Book this accomodation',
+    book: 'Book this accommodation',
     galery: 'See all pictures',
     virtualVisit: '3D Visit',
     floorplans: 'Plans',

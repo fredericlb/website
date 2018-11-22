@@ -35,7 +35,7 @@ function Features({ lang, roomFeatures, apartmentFeatures }) {
         </div>
         <h4 className={style.subtitle}>
           <span>
-            <Text id="accomodation">Accomodation</Text>
+            <Text id="accommodation">Accommodation</Text>
           </span>
         </h4>
         <div className={style.featuresContent}>
@@ -94,7 +94,7 @@ const definition = {
   'fr-FR': {
     title: 'Équipements',
     bedroom: 'Chambre',
-    accomodation: 'Logement',
+    accommodation: 'Logement',
     sleep: 'Dormir',
     dress: 'S\'habiller',
     work: 'Travailler',
@@ -105,7 +105,7 @@ const definition = {
   'es-ES': {
     title: 'Equipamiento',
     bedroom: 'Habitación',
-    accomodation: 'Alojamiento',
+    accommodation: 'Alojamiento',
     sleep: 'Dormir',
     dress: 'Vestirse',
     work: 'Trabajo',

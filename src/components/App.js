@@ -206,7 +206,7 @@ const definition = {
     appDescription: `
       Chez Nestor is the leader in furnished shared accommodation in France.
       Present in many cities, we offer you brand new, equipped and furnished
-      accomodations in the heart of the city centre! Discover and book your
+      accommodations in the heart of the city centre! Discover and book your
       room on our website!
     `,
   },

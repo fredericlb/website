@@ -20,7 +20,7 @@ function Description({ lang, room, apartment }) {
             <i className="icon-24 picto-description_surface" />
             <span>
               {apartment.floorArea}m²
-              (<Text id="accomodation">accomodation</Text>)
+              (<Text id="accommodation">accommodation</Text>)
             </span>
           </li>
           <ElevatorDetail {...{ lang, apartment }} />
@@ -84,7 +84,7 @@ function ElevatorDetail({ lang, apartment }) {
 const definition = {
   'fr-FR': {
     title: 'Description',
-    accomodation: 'logement',
+    accommodation: 'logement',
     groundFloor: 'Rez-de-chaussée',
     floor: 'Étage',
     elevator: 'ascenseur',
@@ -94,7 +94,7 @@ const definition = {
   },
   'es-ES': {
     title: 'Descripción',
-    accomodation: 'vivienda',
+    accommodation: 'vivienda',
     groundFloor: 'Planta baja',
     floor: 'Planta',
     elevator: 'ascensor',
