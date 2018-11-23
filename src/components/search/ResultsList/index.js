@@ -138,6 +138,7 @@ const mapStateToProps = ({ route: { lang, city, date }, rooms, apartments }) => 
       roomName: Utils.localizeRoomName(room.name, lang),
       latLng: Utils.getApartmentLatLng(apartments[room.ApartmentId]),
       roomCount: apartments[room.ApartmentId].roomCount,
+      bedroomCount: apartments[room.ApartmentId].bedroomCount,
       pictures: [].concat(
         Utils.getPictures(room),
         Utils.getPictures(apartments[room.ApartmentId])

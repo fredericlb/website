@@ -28,6 +28,7 @@ function Room(args) {
       createdAt,
       id,
       roomCount,
+      bedroomCount,
       galery,
       roomName,
     },
@@ -64,14 +65,14 @@ function Room(args) {
               <abbr className={`${style.roomAttributesIcon} ${style.chambersCount}`}
                 title={<Text id="bedrooms">Bedrooms</Text>}
               >
-                {roomCount}
+                {bedroomCount}
               </abbr>
             </Localizer>
             <Localizer>
               <abbr className={`${style.roomAttributesIcon} ${style.roomsCount}`}
                 title={<Text id="rooms">Rooms</Text>}
               >
-                {roomCount + 2}
+                {roomCount}
               </abbr>
             </Localizer>
             <Localizer>

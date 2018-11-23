@@ -173,6 +173,7 @@ const mapStateToProps = (state, { hightlightedRoomId }) => {
         roomName: Utils.localizeRoomName(room.name, lang),
         latLng: Utils.getApartmentLatLng(apartments[room.ApartmentId]),
         roomCount: apartments[room.ApartmentId].roomCount,
+        bedroomCount: apartments[room.ApartmentId].bedroomCount,
         pictures: [].concat(
           Utils.getPictures(room),
           Utils.getPictures(apartments[room.ApartmentId])
