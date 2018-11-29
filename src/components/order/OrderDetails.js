@@ -55,8 +55,8 @@ function OrderDetails({ lang, order, children }) {
               <p>{order.totalPaid / 100}€</p>
               <p>{order.balance / 100}€</p>
               <p>{order.balance < 0 ?
-                <Text id="paid">Paid</Text> :
-                <Text id="pending">Pending</Text>
+                <Text id="pending">Pending</Text> :
+                <Text id="paid">Paid</Text>
               }</p>
             </th>
           </tr>
