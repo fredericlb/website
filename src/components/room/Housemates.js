@@ -2,10 +2,13 @@
 import { IntlProvider, Text } from 'preact-i18n';
 import { connect }            from 'react-redux';
 import { bindActionCreators } from 'redux';
+import capitalize             from 'lodash/capitalize';
 import { Button }             from 'react-toolbox/lib/button';
 import * as actions           from '~/actions';
 import Utils                  from '~/utils';
 import style                  from '~/components/room/style.css';
+
+const _ = { capitalize };
 
 function Housemates({ lang, housemates, roomId }) {
   return (
@@ -61,7 +64,7 @@ function Housemate({ lang, housemate, roomId, index }) {
                     <Text id="student.male">Student</Text> :
                     <Text id="student.female">Student</Text>
                 ) }</li>
-                <li>{housemate.countryEn}</li>
+                <li>{housemate[`country${_.capitalize(lang.split('-')[0])}`]}</li>
               </ul>
             ) : (
               <Text id="booked">Booked</Text>
