@@ -73,12 +73,18 @@ class Banner extends Component {
 function mapStateToProps(args) {
   const { route: { lang, roomId, city }, session, rooms, apartments, i18ns } = args;
   const apartmentId = _.get(rooms, `${roomId}.ApartmentId`, '');
+  // Promo banners shouldn't be displayed if the room isn't available
+  // since banners are only used for promos right now, this is hardcoded here.
+  // In the future, we should Use Google Tag Manager to pilot those banners and
+  // give more control to sales and marketing
+  const isSellable = _.get(rooms, `${roomId}.availableAt`, '') !== null;
   const cityId = city ?
     city.toLowerCase() :
     _.get(apartments, `${apartmentId}.addressCity`);
   const roomInfo = roomId && i18ns[`${roomId}-${lang}-banner`];
   const cityInfo = cityId && i18ns[`${cityId}-${lang}-banner`];
-  const isActive = (cityInfo || roomInfo) && session.isInfoSnackbarActive;
+  const isActive =
+    (cityInfo || roomInfo) && isSellable  && session.isInfoSnackbarActive;
   const info = cityInfo || roomInfo;
 
   return {
