@@ -50,7 +50,7 @@ export const resetPayment = createAction('reset payment data and errors');
 export const getRoom =
   createActionAsync('get Room by id',
     // We need a list query to use a segment
-    (id) => Utils.fetchJson(`/Room?filterType=and&filter[id]=${id}&segment=default`)
+    (id) => Utils.fetchJson(`/public/Room?filterType=and&filter[id]=${id}&segment=default`)
       .then(throwIfNotFound('Room', id)),
     { ok: { payloadReducer: reduceRooms } }
   );
@@ -67,7 +67,7 @@ export const [
   getDistrict,
 ] = ['Renting', 'District'].map((modelName) => createActionAsync(
   `get ${modelName} by id`,
-  (id) => Utils.fetchJson(`/${modelName}/${id}`)
+  (id) => Utils.fetchJson(`/public/${modelName}/${id}`)
     // No record returned is an error
     .then(throwIfNotFound(modelName,id)),
   { ok: { payloadReducer: ({ response }) => ({
@@ -83,7 +83,7 @@ export const [
 export const getI18n =
   createActionAsync('get the banner associated with a MetadatableId, if any',
     ({ id, lang, name }) => Utils.fetchJson([
-      '/Metadata?filterType=and',
+      '/public/I18n?filterType=and',
       `&filter[MetadatableId]=${id}&filter[name]=i18n-${lang}-${name}`,
       '&fields[Metadata]=value',
     ].join('')),
@@ -95,8 +95,9 @@ export const getI18n =
 
 export const getOrder =
   createActionAsync('get Order and associated OrderItems by Order id',
-    (id) => Utils.fetchJson(`/OrderItem?filterType=and&filter[OrderId]=${id}`)
-      .then(throwIfNotFound('Order', id)),
+    (id) => Utils.fetchJson(
+      `/public/OrderItem?filterType=and&filter[OrderId]=${id}`
+    ).then(throwIfNotFound('Order', id)),
     {
       noRethrow: true,
       ok: { payloadReducer: ({ request, response: { meta, data, included } }) => ({
@@ -113,7 +114,7 @@ export const listOrders =
       }
 
       return Utils.fetchJson(
-        `/OrderItem?filterType=and&filter[RentingId]=${rentingId}`
+        `/public/OrderItem?filterType=and&filter[RentingId]=${rentingId}`
       ).then(throwIfNotFound('Renting', rentingId));
     },
     { ok: { payloadReducer: ({ response: { data, included } }) => ({
@@ -146,7 +147,7 @@ export const listRooms =
       };
       const qs = queryString.stringify(params, { encode: false });
 
-      return Utils.fetchJson(`/SellableRoom?${qs}`);
+      return Utils.fetchJson(`/public/SellableRoom?${qs}`);
     },
     { ok: { payloadReducer: reduceRooms } }
   );
@@ -159,7 +160,7 @@ export const listProducts =
       const size = `page[number]=1&page[size]=30`;
 
       return Utils.fetchJson(
-        `/Product?filterType=and&${filters}&${fields}&${size}`
+        `/public/Product?filterType=and&${filters}&${fields}&${size}`
       );
     },
     { ok: { payloadReducer: ({ response: { data } }) => ({
@@ -284,7 +285,7 @@ function mapOrderItems(data, orderId) {
     }));
 }
 
-function reduceRooms({ response: { data = [], included = [], meta: { count } } }) {
+function reduceRooms({ response: { data = [], included = [], meta = {} } }) {
   return {
     rooms: data
       .filter((item) => item.type === 'Room')
@@ -303,7 +304,7 @@ function reduceRooms({ response: { data = [], included = [], meta: { count } } }
         addressCity: attributes.addressCity || attributes._addressCity,
       }))
       .reduce(arrayToMap, {}),
-    count,
+    count: meta.count || 0,
   };
 }
 
