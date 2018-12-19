@@ -50,7 +50,11 @@ export const resetPayment = createAction('reset payment data and errors');
 export const getRoom =
   createActionAsync('get Room by id',
     // We need a list query to use a segment
-    (id) => Utils.fetchJson(`/public/Room?filterType=and&filter[id]=${id}&segment=default`)
+    (id) => Utils.fetchJson([
+      `/public/Room?filterType=and&filter[id]=${id}`,
+      '&segment=default',
+      '&page[number]=1&page[size]=1',
+    ].join(''))
       .then(throwIfNotFound('Room', id)),
     { ok: { payloadReducer: reduceRooms } }
   );
@@ -86,6 +90,7 @@ export const getI18n =
       '/public/I18n?filterType=and',
       `&filter[MetadatableId]=${id}&filter[name]=i18n-${lang}-${name}`,
       '&fields[Metadata]=value',
+      '&page[number]=1&page[size]=1',
     ].join('')),
     { ok: { payloadReducer: ({ request: [{ id, lang, name }], response: { data } }) => ({
       key: `${id}-${lang}-${name}`,
