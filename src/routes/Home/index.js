@@ -27,7 +27,7 @@ function Home ({ lang }) {
               <SearchForm mode="home" />
             </div>
             <div id="skip" className={`hide-xs hide-sm ${style.contentAnchor}`}>
-              <a href="#skip">⮟</a>
+              <a href="#skip">⬇</a>
             </div>
           </div>
         </Slideshow>
