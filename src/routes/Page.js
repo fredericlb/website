@@ -18,12 +18,12 @@ class Page extends Component {
     return `${lang.toLowerCase()}-${slug.toLowerCase()}`;
   }
 
-  static async loadData(lang, fullSlug, actions) {
+  static async loadData(lang, fullSlug, actions, noRedirect) {
     try {
       await actions.getPage(fullSlug);
     }
     catch (e) {
-      if (!this.props.noRedirect && e.error.isNotFound) {
+      if (!noRedirect && e.error.isNotFound) {
         route(`/${lang}/404`);
       }
       else {
@@ -41,7 +41,7 @@ class Page extends Component {
   componentDidMount () {
     const fullSlug = Page.getFullSlug(this.props.lang, this.props.slug);
     if (this.props.pages[fullSlug] === undefined) {
-      Page.loadData(this.props.lang, fullSlug, this.props.actions);
+      Page.loadData(this.props.lang, fullSlug, this.props.actions, this.props.noRedirect);
     }
   }
 
@@ -60,11 +60,11 @@ class Page extends Component {
     return (
       <div>
         <Helmet
-          title={page.yoast_meta.yoast_wpseo_title}
+          title={page.yoast_meta.yoast_wpseo_title || ''}
           meta={[{
             name: 'description',
             content: page.yoast_meta.yoast_wpseo_metadesc,
-          }].concat(this.props.i18nMeta)}
+          }].concat(this.props.i18nMeta).filter(Boolean)}
         />
         <h1>{page.title.rendered}</h1>
         <div className={'wp-content'} dangerouslySetInnerHTML={this.createMarkup()} />
