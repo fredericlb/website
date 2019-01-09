@@ -54,7 +54,7 @@ export default { 'fr-FR': ({ depositLines, packLines }) => ([
                                                         '149€', '149€', '79€'],
   ['Service bagagerie', 'Voyagez les mains libres en déposant vos bagages en agence (2 bag. pour 10j max.)',
                                                                  '129€', 1, 1],
-  ['Remboursement de caution', 'Délai maximum (sauf dégats dans l\'appartment)',
+  ['Remboursement de caution', 'Délai maximum (sauf dégats dans l\'appartement)',
                                            '60 jours', '40 jours', '20 jours'],
   ['Caution (remboursée en fin de séjour)'],
   ...depositLines,
