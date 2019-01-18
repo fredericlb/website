@@ -60,13 +60,13 @@ export default Object.assign({}, common, {
     d.getElementsByTagName("head")[0].appendChild(s);})();
   `,
 
-  GTM_SCRIPT: `
+  GTM_SCRIPT: ((environment) => `
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WCRQV25');
-  `,
+  })(window,document,'script','dataLayer','${/^prod/.test(environment) ? 'GTM-WCRQV25' : 'GTM-PB7VBPL'}');
+  `)(process.env.PREACT_APP_ENV),
 
   PIXEL_SCRIPT: `
     !function(f,b,e,v,n,t,s)
