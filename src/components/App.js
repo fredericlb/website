@@ -64,12 +64,14 @@ export default class App extends Component {
         returnUrl,
         rentingPrice,
         city,
-        page: +page,
         admin,
-        rentingId,
+      }), {
+        // the following props need to be reset when absent
+        date,
         roomId,
-      }),
-      { date } // needs to be reset when absent
+        rentingId,
+        page: +page,
+      }
     )));
 
     this.setState({ lang });

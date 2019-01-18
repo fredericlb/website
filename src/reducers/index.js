@@ -54,6 +54,11 @@ const sessionReducer = createReducer({
     ...state,
     isInfoSnackbarActive: true,
   }),
+  // activate SnackBar when we receive new i18ns
+  [getI18n.ok]: (state, { key }) => ({
+    ...state,
+    isInfoSnackbarActive: Boolean(key),
+  }),
 }, {});
 const searchReducer = createReducer({
   [updateSearch]: (state, payload) => ({

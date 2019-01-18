@@ -92,8 +92,11 @@ export const getI18n =
       '&fields[Metadata]=value',
       '&page[number]=1&page[size]=1',
     ].join('')),
-    { ok: { payloadReducer: ({ request: [{ id, lang, name }], response: { data } }) => ({
-      key: `${id}-${lang}-${name}`,
+    { ok: { payloadReducer: ({
+      request: [{ id, locale, key, lang, name }],
+      response: { data },
+    }) => ({
+      key: `${id}-${locale || lang}-${key || name}`,
       value: data[0] ? data[0].attributes.value : false,
     }) } }
   );

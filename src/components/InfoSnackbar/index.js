@@ -84,8 +84,8 @@ function mapStateToProps(args) {
   const roomInfo = roomId && i18ns[`${roomId}-${lang}-banner`];
   const cityInfo = cityId && i18ns[`${cityId}-${lang}-banner`];
   const isActive =
-    (cityInfo || roomInfo) && isSellable  && session.isInfoSnackbarActive;
-  const info = cityInfo || roomInfo;
+    (cityInfo || roomInfo) && isSellable && session.isInfoSnackbarActive;
+  const info = roomInfo || cityInfo;
 
   return {
     lang,
