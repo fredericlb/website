@@ -878,14 +878,3 @@
   height: 100%;
   color: white;
 }
-
-/* = BookingInfo = */
-
-.buttonsDivide {
-  display: flex;
-  justify-content: space-between;
-}
-
-.buttonsDivide > div {
-  flex: 0 0 48%;
-}
