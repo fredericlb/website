@@ -133,26 +133,14 @@ const BookingInfo = ({ lang, roomId, room }) => {
           </Button>
         </p>
 
-        <div className={style.buttonsDivide}>
-          <div>
-            <Button onClick={Utils.getEnquireHandler(lang)}
-              icon="local_see"
-              raised
-              disabled={availableAt === null}
-              style="width: 100%"
-            >
-              <Text id="visit">Visit</Text>
-            </Button>
-          </div>
-          <div>
-            <Button onClick={Utils.getEnquireHandler(lang)}
-              raised
-              icon="question_answer"
-              style="width: 100%"
-            >
-              <Text id="enquire">Enquire</Text>
-            </Button>
-          </div>
+        <div>
+          <Button onClick={Utils.getEnquireHandler(lang)}
+            raised
+            icon="question_answer"
+            style="width: 100%"
+          >
+            <Text id="enquire">Enquire</Text>
+          </Button>
         </div>
       </section>
     </IntlProvider>
@@ -186,7 +174,6 @@ const definition = {
     maintenance: 'Maintenance technique',
     waste: 'Taxes sur les ordures',
     booking: 'Réserver ce logement',
-    visit: 'Visite',
     enquire: 'Renseignements',
   },
   'es-ES': {
@@ -215,7 +202,6 @@ const definition = {
     maintenance: 'Mantenimiento técnico',
     waste: 'Impuestos sobre la recogida de basuras domésticas',
     booking: 'Reservar este alojamiento',
-    visit: 'Visita',
     enquire: 'Información',
   },
 };
