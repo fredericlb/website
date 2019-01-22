@@ -264,24 +264,9 @@ class Summary extends PureComponent {
               <h4>5. <Text id="checkin.goThrough">Go through check-in</Text></h4>
               <p>
                 <Text id="checkin.options">
-                  For your check-in, several options are available to you:
+                  You can check-in <b> by yourself </b> any day/time (24/7) at the agency's key safes -
+                  <b> {free} </b>
                 </Text>
-                <ul>
-                  <li>
-                    <b><Text id="checkin.self.0">Self-service</Text> </b>
-                    <Text id="checkin.self.1">any day/time (24/7) at the agency's key safes</Text> -
-                    <b> {free}</b>
-                  </li>
-                  <li>
-                    <b><Text id="checkin.home.0">At home</Text> </b>
-                    <Text id="checkin.home.1">Monday to Friday from 9am to 6pm (bank holidays excluded)</Text> -
-                    <b> {homeCheckinFee ? `${homeCheckinFee / 100}€` : free}</b>
-                  </li>
-                  <li>
-                    <b><Text id="checkin.special">At home 24/7</Text> </b> -
-                    <b> {specialCheckinFee ? `${specialCheckinFee / 100}€` : free}</b>
-                  </li>
-                </ul>
               </p>
             </section>
 
