@@ -19,7 +19,7 @@ export default { 'en-US': ({ depositLines, packLines }) => ([
   ['Check-in at home 24/7', 'Evenings, nights, weekends, bank holidays',
                                                                       0, 0, 1],
   ['Cancellation insurance', '80% refund of the pack (delay before the reservation starts)',
-                                                        0, '1 month', '1 week'],
+                                                       0, '1 month', '1 week'],
   ['Luggage service', 'Travel hands free, drop your luggage at our agency (2 for 10 days max)',
                                                                  '129€', 1, 1],
   ['Public transport ticket x2', 'Valid on all lines (metro, tram, bus)',
