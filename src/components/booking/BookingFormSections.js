@@ -14,6 +14,7 @@ function BookingFormSections({ lang }) {
       <div>
         <section>
           <h3><Text id="housingPack">Choose Your Housing Pack</Text></h3>
+          <br />
           <MarkupText id="presentation" />
           <br /><br />
           <PackPicker />
@@ -40,7 +41,7 @@ const definition = {
       You only pay it once, to finalize your booking, and it covers the cost of our service.
       <br /><br />
       Chez Nestor renovates, furnishes, equips and decorates its accommodations. <b>We manage all
-      housing services</b>:<br /> housing insurance, WiFi, condominium fees, gas, electricity and water,
+      housing services</b>: WiFi, electricity, housing insurance, condominium fees, gas and water,
       maintenance and assistance throughout your stay, as well as providing you with a duvet,
       pillows, temporary bed linen and other essential services like 24/7 check-in for example.
       <br /><br />
@@ -60,7 +61,7 @@ const definition = {
       et vous offre l’assistance et la maintenance <b>pendant l’intégralité de votre séjour</b>.
       <br /><br />
       Les packs logement <b>Confort</b> et <b>Privilège</b> incluent de nombreux services additionnels
-      (chauffeur privé, draps permanents, pack de nourriture…)pour un emménagement plus premium et
+      (chauffeur privé, draps permanents, pack de nourriture…) pour un emménagement plus premium et
       personnalisé.
     `,
     detail: 'Comparaison Détaillée',
