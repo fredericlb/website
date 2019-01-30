@@ -145,7 +145,7 @@ function AppNavigation({ lang, path, type, className, handleToggle }) {
 
 function handleClickContact() {
   if (typeof window === 'object') {
-    window.$crisp.push(['do', 'chat:open']);
+    window.Intercom('show');
   }
 }
 

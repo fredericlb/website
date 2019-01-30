@@ -29,7 +29,6 @@ import Header           from './Header';
 import Footer           from './Footer';
 
 const {
-  CRISP_SCRIPT,
   GTM_SCRIPT,
   PIXEL_SCRIPT,
 } = _const;
@@ -146,7 +145,6 @@ export default class App extends Component {
                   },
                 ]}
                 script={[
-                  { type: 'javascript', innerHTML: CRISP_SCRIPT },
                   { type: 'javascript', innerHTML: GTM_SCRIPT },
                   { type: 'javascript', innerHTML: PIXEL_SCRIPT },
                 ]}

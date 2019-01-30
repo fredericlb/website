@@ -194,21 +194,7 @@ const pureUtils = {
     return diffDays > 10;
   },
   getEnquireHandler() {
-    return () => window.$crisp.push(['do', 'chat:open']);
-  },
-  getVisitHandler(lang) {
-    const definition = {
-      'fr-FR': 'Je souhaite visiter cette chambre',
-      'en-US': 'I wish to visit this room',
-      'es-ES': 'Deseo visitar esta habitación',
-    };
-
-    return () => {
-      if (typeof window === 'object') {
-        window.$crisp.push(['do', 'chat:open']);
-        window.$crisp.push(['do', 'message:send', ['text', definition[lang]]]);
-      }
-    };
+    return () => window.Intercom('show');
   },
   formatDate(date, { lang, timeZone = 'Europe/Paris' } = {}) {
     const formatted = new Intl.DateTimeFormat(lang, {

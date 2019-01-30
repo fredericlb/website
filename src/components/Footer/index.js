@@ -115,7 +115,7 @@ function Footer({ lang }) {
 function handleClickContact(e) {
   e.preventDefault();
 
-  window.$crisp.push(['do', 'chat:open']);
+  window.Intercom('show');
 }
 
 const definition = {

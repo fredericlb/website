@@ -53,13 +53,6 @@ export default Object.assign({}, common, {
     'es-ES': 'Habitaciones en {city} el {date}',
   },
 
-  CRISP_SCRIPT: `
-    window.$crisp=[];window.CRISP_WEBSITE_ID="25c594c7-3fd4-4b61-b3d5-7416747ff5ac";
-    (function(){d=document;s=d.createElement("script");
-    s.src="https://client.crisp.chat/l.js";s.async=1;
-    d.getElementsByTagName("head")[0].appendChild(s);})();
-  `,
-
   GTM_SCRIPT: ((environment) => `
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
