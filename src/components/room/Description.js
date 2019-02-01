@@ -8,7 +8,7 @@ import style                  from './style.css';
 
 const _ = { capitalize };
 
-function Description({ lang, room, apartment }) {
+function Description({ lang, room, apartment, i18ns }) {
   return (
     <IntlProvider definition={definition[lang]}>
       <section>
@@ -40,9 +40,9 @@ function Description({ lang, room, apartment }) {
         </ul>
 
         <CroppedContainer height={40}>
-          {room[`description${_.capitalize(lang.split('-')[0])}`]}
+          {i18ns[`${room.id}-${lang}-description`]}
           <br />
-          {apartment[`description${_.capitalize(lang.split('-')[0])}`]}
+          {i18ns[`${apartment.id}-${lang}-description`]}
         </CroppedContainer>
       </section>
     </IntlProvider>
@@ -143,7 +143,7 @@ const bedDetails = {
   },
 };
 
-function mapStateToProps({ route: { lang }, rooms, apartments }, { roomId, apartmentId }) {
+function mapStateToProps({ route: { lang }, rooms, apartments, i18ns }, { roomId, apartmentId }) {
   const room = rooms[roomId];
   const apartment = apartments[apartmentId];
 
@@ -151,6 +151,7 @@ function mapStateToProps({ route: { lang }, rooms, apartments }, { roomId, apart
     lang,
     room,
     apartment,
+    i18ns,
   };
 }
 

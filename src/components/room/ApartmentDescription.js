@@ -2,15 +2,11 @@ import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import { ProgressBar }        from 'react-toolbox/lib/progress_bar';
 import { IntlProvider, Text } from 'preact-i18n';
-import capitalize             from 'lodash/capitalize';
-import Utils                  from '~/utils';
 import CroppedContainer       from '~/components/room/CroppedContainer';
 import * as actions           from '~/actions';
 import style                  from './style.css';
 
-const _ = { capitalize };
-
-function ApartmentDescription({ lang, isLoading, apartment, district, floorPlan }) {
+function ApartmentDescription({ lang, isLoading, district, description }) {
   if ( isLoading ) {
     return (
       <div className="content text-center">
@@ -28,7 +24,7 @@ function ApartmentDescription({ lang, isLoading, apartment, district, floorPlan 
             <div className="one-half">
               <CroppedContainer height={150}>
                 <p><b>{district.label}</b></p>
-                <div>{district[`description${_.capitalize(lang.split('-')[0])}`]}</div>
+                <div>{description}</div>
               </CroppedContainer>
             </div>
             <div className="one-quarter">
@@ -101,23 +97,22 @@ const definition = {
 //   nearbyBike: { 'fr-FR': 'Vélos', 'en-US': 'Bikes', 'es-ES': 'Bicicletas' },
 // };
 
-function mapStateToProps({ route: { lang, roomId }, rooms, apartments, districts }) {
+function mapStateToProps(args) {
+  const { route: { lang, roomId }, rooms, apartments, districts, i18ns } = args;
   const apartment = apartments[rooms[roomId].ApartmentId];
   const district = apartment && districts[apartment._DistrictId];
-  const floorPlan = apartment &&
-    Utils.getPictures(apartment).find(({ alt }) => alt === 'floorplan');
 
   if ( !apartment || apartment.isLoading || !district || district.isLoading ) {
     return { isLoading: true };
   }
 
+  const description = i18ns[`${district.id}-${lang}-description`];
+
   return {
     lang,
     apartment,
     district,
-    apartmentFeatures: Utils.getFeatures(apartment),
-    districtFeatures: Utils.getFeatures(district),
-    floorPlan,
+    description,
   };
 }
 

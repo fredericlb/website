@@ -22,7 +22,13 @@ class Room extends PureComponent {
       } } = await actions.getRoom(roomId);
       const districtId = apartmentData.attributes._DistrictId;
 
-      return actions.getDistrict(districtId);
+      return Promise.all([
+        actions.getDistrict(districtId),
+        // TODO: we need a listI18n action that combines those 3 requests
+        actions.getI18n({ id: roomId, key: 'description', locale: lang }),
+        actions.getI18n({ id: apartmentData.id, key: 'description', locale: lang }),
+        actions.getI18n({ id: districtId, key: 'description', locale: lang }),
+      ]);
     }
     catch (e) {
       if ( e.error.isNotFound ) {
@@ -71,7 +77,7 @@ class Room extends PureComponent {
   }
 }
 
-function mapStateToProps({ route: { lang }, apartments, rooms }, { roomId }) {
+function mapStateToProps({ route: { lang }, apartments, rooms, i18ns }, { roomId }) {
   const room = rooms[roomId];
 
   if ( !room || room.isLoading || !('pic 0 url' in room) ) {
@@ -82,6 +88,7 @@ function mapStateToProps({ route: { lang }, apartments, rooms }, { roomId }) {
     roomId,
     room,
     apartmentId: room.ApartmentId,
+    i18ns,
   };
 }
 
