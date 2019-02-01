@@ -127,7 +127,7 @@ const definition = {
   },
 };
 
-function mapStateToProps({ route: { lang }, rooms, apartments }, { roomId, apartmentId }) {
+function mapStateToProps({ route: { lang }, rooms, apartments, i18ns }, { roomId, apartmentId }) {
   const room = rooms[roomId];
   const apartment = apartments[apartmentId];
 
@@ -135,6 +135,7 @@ function mapStateToProps({ route: { lang }, rooms, apartments }, { roomId, apart
     lang,
     room: { ...room, name: Utils.localizeRoomName(room.name, lang) },
     apartment,
+    i18ns,
     viewsCount: (
       100 +
       ((new Date()).getDate() * 2) +

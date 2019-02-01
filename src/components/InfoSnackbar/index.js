@@ -23,14 +23,14 @@ class Banner extends Component {
 
   componentWillMount() {
     const { actions, lang, roomId, cityId, cityInfo, roomInfo } = this.props;
-    const name = 'banner';
+    const key = 'banner';
 
     if ( roomId && roomInfo == null ) {
-      actions.getI18n({ id: roomId, lang, name });
+      actions.getI18n({ id: roomId, locale: lang, key });
     }
 
     if ( cityId && cityInfo == null ) {
-      actions.getI18n({ id: cityId, lang, name });
+      actions.getI18n({ id: cityId, locale: lang, key });
     }
   }
 
@@ -44,14 +44,14 @@ class Banner extends Component {
 
   componentWillReceiveProps({ lang, roomId, cityId }) {
     const { actions } = this.props;
-    const name = 'banner';
+    const key = 'banner';
 
     if ( roomId && roomId !== this.props.roomId || lang !== this.props.lang ) {
-      actions.getI18n({ id: roomId, lang, name });
+      actions.getI18n({ id: roomId, locale: lang, key });
     }
 
     if ( cityId && cityId !== this.props.cityId || lang !== this.props.lang ) {
-      actions.getI18n({ id: cityId, lang, name });
+      actions.getI18n({ id: cityId, locale: lang, key });
     }
   }
 

@@ -85,18 +85,18 @@ export const [
 ) );
 
 export const getI18n =
-  createActionAsync('get the banner associated with a MetadatableId, if any',
-    ({ id, lang, name }) => Utils.fetchJson([
+  createActionAsync('get a translation using a key given an I18nableId',
+    ({ id, key, locale }) => Utils.fetchJson([
       '/public/I18n?filterType=and',
-      `&filter[MetadatableId]=${id}&filter[name]=i18n-${lang}-${name}`,
-      '&fields[Metadata]=value',
+      `&filter[I18nableId]=${id}&filter[key]=${key}&filter[locale]=${locale}`,
+      '&fields[I18n]=value',
       '&page[number]=1&page[size]=1',
     ].join('')),
     { ok: { payloadReducer: ({
-      request: [{ id, locale, key, lang, name }],
+      request: [{ id, locale, key }],
       response: { data },
     }) => ({
-      key: `${id}-${locale || lang}-${key || name}`,
+      key: `${id}-${locale}-${key}`,
       value: data[0] ? data[0].attributes.value : false,
     }) } }
   );
