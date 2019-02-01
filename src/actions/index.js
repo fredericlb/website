@@ -101,6 +101,10 @@ export const getI18n =
     }) } }
   );
 
+// TODO:
+// - add a listI18ns action that allows retrieving descriptions of a room,
+//   its apartment and its district in 1 request
+
 export const getOrder =
   createActionAsync('get Order and associated OrderItems by Order id',
     (id) => Utils.fetchJson(

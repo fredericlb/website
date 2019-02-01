@@ -22,10 +22,13 @@ class Room extends PureComponent {
       } } = await actions.getRoom(roomId);
       const districtId = apartmentData.attributes._DistrictId;
 
-      await actions.getI18n({ id: roomId, key: 'description', locale: lang });
-      await actions.getI18n({ id: apartmentData.id, key: 'description', locale: lang });
-
-      return actions.getDistrict(districtId);
+      return Promise.all([
+        actions.getDistrict(districtId),
+        // TODO: we need a listI18n action that combines those 3 requests
+        actions.getI18n({ id: roomId, key: 'description', locale: lang }),
+        actions.getI18n({ id: apartmentData.id, key: 'description', locale: lang }),
+        actions.getI18n({ id: districtId, key: 'description', locale: lang }),
+      ]);
     }
     catch (e) {
       if ( e.error.isNotFound ) {
