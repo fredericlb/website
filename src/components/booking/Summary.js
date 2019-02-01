@@ -72,8 +72,6 @@ class Summary extends PureComponent {
       ],
       summary: { check0, check1, check2, check3, check4 },
     } = args;
-    const homeCheckinFee = HOME_CHECKIN_FEES[packLevel];
-    const specialCheckinFee = SPECIAL_CHECKIN_FEES[packLevel];
     const free = (<Text id="free">Free</Text>);
 
     return (

@@ -11,7 +11,7 @@ const BookingInfo = ({ lang, roomId, room }) => {
     availableAt,
     _currentPrice: currentPrice,
     _serviceFees: serviceFees,
-    depositPrice,
+    _depositPrice: depositPrice,
   } = room;
   const priceLineClasses = `grid-4 has-gutter ${style.priceLine}`;
 
