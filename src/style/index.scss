@@ -168,12 +168,6 @@ section {
   min-height: 70vh !important;
 }
 
-.wp-content {
-  width: 80%;
-  margin: auto;
-  padding-top: 40px;
-}
-
 .wp-content h1 {
   text-align: center;
 }
@@ -211,4 +205,24 @@ img.alignleft {
   display: inline;
   float: left;
   margin-right: 15px;
+}
+
+img.aligncenter {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.wp-content h4 {
+  color: #1c2b4a;
+  font-size: 18px;
+  padding-top: 5px;
+  padding-bottom: 20px;
+  font-weight: 500;
+  line-height: 1em;
+}
+
+.wp-title {
+  margin-top: 100px;
+
 }

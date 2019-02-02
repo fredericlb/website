@@ -66,8 +66,11 @@ class Page extends Component {
             content: page.yoast_meta.yoast_wpseo_metadesc,
           }].concat(this.props.i18nMeta).filter(Boolean)}
         />
-        <h1>{page.title.rendered}</h1>
+      <div className={'content'}>
+        <h1 className={'wp-title'}>{page.title.rendered}</h1>
         <div className={'wp-content'} dangerouslySetInnerHTML={this.createMarkup()} />
+      </div>
+
       </div>
     );
 
